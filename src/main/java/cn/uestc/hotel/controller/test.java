@@ -14,11 +14,15 @@ public class test {
 
     @Autowired
     private Cservice Cservice;
+    @RequestMapping("/login")
+    public String login(Model model) {
 
+        return "login.html";
+    }
     @RequestMapping("/Customer")
     public String goUserListPage(Model model) {
         model.addAttribute("customer", Cservice.listCustomer());
-        return "list.html";
+        return "login.html";
     }
     @GetMapping("/search")
     public String goUserEditPage(@RequestParam("cid") String id, Model model) {
