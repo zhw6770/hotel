@@ -13,5 +13,8 @@ public class Cservice {
     public List<Customer> listCustomer() {
         return customerMapper.findAll();
     }
+    public Customer findUserByPrimaryKey(String id) {
+        return customerMapper.selectByPrimaryKey(id);
+    }
 
 }
