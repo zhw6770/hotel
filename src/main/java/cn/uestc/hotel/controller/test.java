@@ -22,7 +22,7 @@ public class test {
     @RequestMapping("/Customer")
     public String goUserListPage(Model model) {
         model.addAttribute("customer", Cservice.listCustomer());
-        return "login.html";
+        return "list.html";
     }
     @GetMapping("/search")
     public String goUserEditPage(@RequestParam("cid") String id, Model model) {
