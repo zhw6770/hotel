@@ -15,9 +15,14 @@ public class test {
     @Autowired
     private Cservice Cservice;
     @RequestMapping("/")
-    public String login(Model model) {
+    public String index(Model model) {
 
         return "index.html";
+    }
+    @RequestMapping("/login")
+    public String login(Model model) {
+
+        return "login.html";
     }
     @RequestMapping("/Customer")
     public String goUserListPage(Model model) {
