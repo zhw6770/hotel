@@ -2,6 +2,7 @@ package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.service.Cservice;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,7 @@ public class test {
     @GetMapping("/list")
     public String goUserListPage(Model model) {
         model.addAttribute("customer", Cservice.listCustomer());
+
         return "list.html";
     }
 
@@ -43,7 +45,14 @@ public class test {
     public String test2(@ModelAttribute Customer customer,Model model) {
         model.addAttribute("check", (Cservice.findUserByPrimaryKey(customer.getCid())).getCpassword());
         System.out.println((Cservice.findUserByPrimaryKey(customer.getCid())).getCpassword());
-        return "list";
+        System.out.println(customer.getCpassword());
+        if((Cservice.findUserByPrimaryKey(customer.getCid())).getCpassword().equals(customer.getCpassword())){
+            return "list";
+        }
+        else  {return "login";
+
+                }
+
     }
 
     //访问search的跳转界面。

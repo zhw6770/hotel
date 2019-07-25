@@ -16,5 +16,5 @@ public class Cservice {
     public Customer findUserByPrimaryKey(String id) {
         return customerMapper.selectByPrimaryKey(id);
     }
-
+    public boolean islogin(){ return false;}
 }
