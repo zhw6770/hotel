@@ -1,10 +1,11 @@
 @font-face {
     font-family: 'Rancho-Regular';
-    src:url(../fonts/Rancho-Regular.ttf) format('truetype');
+    src:url(../fonts/xianxi.otf) format('truetype');
+    font-weight: bolder;
 }
 @font-face {
     font-family: 'OpenSans-Regular';
-    src:url(../fonts/OpenSans-Regular.ttf) format('truetype');
+    src:url(../fonts/GBK.ttf) format('truetype');
 }
 body a{
     transition:0.5s all;
