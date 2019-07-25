@@ -137,7 +137,7 @@ body{
     -o-background-size: cover;
     -ms-background-size: cover;
 	min-height:1080px;
-	padding-bottom: 4em;
+	padding-bottom: 1em;
 }
 .slider {
 	position: relative;
