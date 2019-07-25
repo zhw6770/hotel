@@ -9,15 +9,20 @@
 </head>
 <body>
 User List:
-<table border="1" bgcolor="red">
+<table border="1" bgcolor="red" th:if="${customer.cpassword} eq ${check} ">
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>密码</th>
     </tr>
-    <tr th:each="customer : ${customer}">
+    <tr th:each="customer : ${customer}" >
         <td th:text="${customer.cid}"></td>
         <td th:text="${customer.cname}"></td>
+        <td th:text="${customer.cpassword}"></td>
     </tr>
 </table>
+
+
+
 </body>
 </html>

@@ -5,32 +5,45 @@ import cn.uestc.hotel.service.Cservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class test {
 
-    @Autowired    //Cservice的依赖引入
+    @Autowired
     private Cservice Cservice;
-//访问服务器跳转页面。
+    //访问服务器跳转页面。
     @RequestMapping("/")
     public String index(Model model) {
 
         return "index.html";
     }
-    //login 的跳转页面
-    @RequestMapping("/login")
-    public String login(Model model) {
 
+
+
+    //login 的跳转页面
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("customer",new Customer());
         return "login.html";
     }
+
+
+
+
     //访问customer的跳转界面
-    @RequestMapping("/Customer")
+    @GetMapping("/list")
     public String goUserListPage(Model model) {
         model.addAttribute("customer", Cservice.listCustomer());
         return "list.html";
+    }
+
+
+    @PostMapping("/list")
+    public String test2(@ModelAttribute Customer customer,Model model) {
+        model.addAttribute("check", (Cservice.findUserByPrimaryKey(customer.getCid())).getCpassword());
+        System.out.println((Cservice.findUserByPrimaryKey(customer.getCid())).getCpassword());
+        return "list";
     }
 
     //访问search的跳转界面。
