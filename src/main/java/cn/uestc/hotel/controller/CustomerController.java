@@ -39,10 +39,10 @@ public class CustomerController {
 
 
 
-    @GetMapping("/customer")
-    public String getCustomerPage(Model model) {
-        return "customer";
-    }
+//    @GetMapping("/customer")
+//    public String getCustomerPage(Model model) {
+//        return "customer";
+//    }
 
 
     @GetMapping("/customeredit")
