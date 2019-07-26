@@ -26,6 +26,11 @@ public class WebController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String register(Model model,Customer customer) {
+        return "register";
+    }
+
     @PostMapping("/login")
     public String login(@ModelAttribute Customer customer, Model model) {
 
