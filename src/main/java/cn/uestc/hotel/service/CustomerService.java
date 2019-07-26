@@ -1,6 +1,7 @@
 package cn.uestc.hotel.service;
 
 import cn.uestc.hotel.domain.Customer;
+import cn.uestc.hotel.domain.CustomerExample;
 import cn.uestc.hotel.mapper.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,12 @@ import java.util.List;
 public class CustomerService {
 @Autowired
     private CustomerMapper customerMapper;
-    public List<Customer> listCustomer() {
-        return customerMapper.findAll();
+    public Customer checkCustomer(Customer customer){
+        CustomerExample ex=new CustomerExample();
+        ex.createCriteria().andCustomeridEqualTo(customer.getCustomerid()).andCustomerpasswordEqualTo(customer.getCustomerpassword());
+        List<Customer> customers=customerMapper.selectByExample(ex);
+        return customers.size()>0 ? customers.get(0) :null;
+
     }
-    public Customer findUserByPrimaryKey(String id) {
-        return customerMapper.selectByPrimaryKey(id);
-    }
-    public boolean islogin(){ return false;}
+
 }
