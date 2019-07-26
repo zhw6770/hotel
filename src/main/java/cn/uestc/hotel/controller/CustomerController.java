@@ -27,9 +27,11 @@ public class CustomerController {
 
         if(customerService.checkCustomer(customer)!=null){
             request.getSession().setAttribute("customerid", customer.getCustomerid());
+
             return "index";
         }
         else{
+            model.addAttribute("msg","0");
             return "login";
         }
 
