@@ -15,7 +15,7 @@ public class WebController {
     private CustomerService customerService;
 
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model,Customer customer) {
         return "index";
     }
 
@@ -24,6 +24,15 @@ public class WebController {
     public String getlogin(Model model) {
         model.addAttribute("customer", new Customer());
         return "login";
+    }
+    @GetMapping("/customeredit")
+    public String customeredit(Model model,Customer customer) {
+        return "customer";
+    }
+    @GetMapping("/logout")
+    public String logout(Model model,Customer customer) {
+        //使cookie无效
+        return "/";
     }
 
     @GetMapping("/register")
