@@ -28,7 +28,7 @@ public class CustomerController {
         if(customerService.checkCustomer(customer)!=null){
             request.getSession().setAttribute("customerid", customer.getCustomerid());
 
-            return "index";
+            return "redirect:index";
         }
         else{
             model.addAttribute("msg","0");
@@ -36,13 +36,6 @@ public class CustomerController {
         }
 
     }
-
-
-
-//    @GetMapping("/customer")
-//    public String getCustomerPage(Model model) {
-//        return "customer";
-//    }
 
 
     @GetMapping("/customeredit")
