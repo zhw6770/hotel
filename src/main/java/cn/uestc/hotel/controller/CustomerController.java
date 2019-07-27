@@ -1,4 +1,5 @@
 package cn.uestc.hotel.controller;
+
 import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/login")
-    public String getLoginPage(Model model, HttpServletRequest request, Customer customer) {
+    public String getLoginPage(HttpServletRequest request, Customer customer) {
         request.getSession(true);
         return "login";
     }
@@ -25,13 +26,11 @@ public class CustomerController {
     @PostMapping("/login")
     public String login(@ModelAttribute Customer customer, Model model, HttpServletRequest request, HttpServletResponse response) {
 
-        if(customerService.checkCustomer(customer)!=null){
+        if (customerService.checkCustomer(customer) != null) {
             request.getSession().setAttribute("customerid", customer.getCustomerid());
-
             return "redirect:index";
-        }
-        else{
-            model.addAttribute("msg","0");
+        } else {
+            model.addAttribute("msg", "0");
             return "login";
         }
 
@@ -39,22 +38,28 @@ public class CustomerController {
 
 
     @GetMapping("/customeredit")
-    public String customeredit(Model model,Customer customer) {
+    public String customeredit(Model model, Customer customer) {
         return "customer";
     }
 
 
     @GetMapping("/logout")
-    public String logout(Model model,Customer customer) {
+    public String logout(Model model, Customer customer) {
         //使cookie无效
         return "/";
     }
 
 
     @GetMapping("/register")
-    public String register(Model model,Customer customer) {
+    public String register(Model model, Customer customer) {
         return "register";
     }
 
-
+    @GetMapping("/delete")
+    @ResponseBody
+    public Boolean deleteUser(@RequestParam("id") String id) {
+        customerService.deleteCustomerByid(id);
+        System.out.println("shanchu");
+        return true;
+    }
 }

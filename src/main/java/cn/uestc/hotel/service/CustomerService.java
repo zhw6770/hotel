@@ -24,5 +24,12 @@ public class CustomerService {
        return customerMapper.selectByPrimaryKey(request.getSession().getAttribute("customerid").toString());
 
     }
+    public Boolean deleteCustomerByid(String customerid){
+        customerMapper.deleteByPrimaryKey(customerid);
+        return true;
+    }
+    public List<Customer> findAll(){
+        return customerMapper.findAll();
+    }
 
 }
