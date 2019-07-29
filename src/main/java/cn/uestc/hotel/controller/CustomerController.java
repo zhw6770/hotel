@@ -56,15 +56,26 @@ public class CustomerController {
 
 
     @GetMapping("/register")
-    public String registerCustomer(Model model, Customer customer) {
+    public String getRegisterPage(Model model, Customer customer) {
         return "register";
     }
 
-    @PostMapping("/search")
 
-    public String  searchhotel(@RequestParam("word") String word,Model model) {
-        List<Hotel> hotels=customerService.search(word);
-        model.addAttribute("hotels",hotels);
+    @PostMapping("/register")
+
+    public String registerCustomer(Model model, Customer customer) {
+        customer.setRoleid("2");
+        customerService.insertCustomer(customer);
+       return "redirect:login";
+
+    }
+
+
+
+    @PostMapping("/search")
+    public String searchhotel(@RequestParam("word") String word, Model model) {
+        List<Hotel> hotels = customerService.search(word);
+        model.addAttribute("hotels", hotels);
         return "searchResult";
 
     }

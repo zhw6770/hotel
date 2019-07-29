@@ -60,5 +60,14 @@ public class CustomerService {
 
 
     }
+    public Boolean insertCustomer(Customer customer){
+       if(customer!=null) {
+           customerMapper.insert(customer);
+           return true;
+       }
+       else {
+           return false;
+       }
+    }
 
 }

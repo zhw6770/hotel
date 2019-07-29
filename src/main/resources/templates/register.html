@@ -36,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">请输入您的账户基本信息</p>
 
-    <form action="login" method="post" th:object="${customer}">
+    <form action="register" method="post" th:object="${customer}">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" th:field="*{customerid}" placeholder="用户名" >
       </div>
