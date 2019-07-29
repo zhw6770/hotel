@@ -1,73 +1,170 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"></html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>我的信息</title>
-<link th:href="@{/index/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
-<link th:href="@{/index/css/style.css}" rel="stylesheet" type="text/css" media="all" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-
-<script th:src="@{http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js}"></script>
-<script th:src="@{/index/js/bootstrap.js}"></script>
-<script th:src="@{/index/js/responsiveslides.min.js}"></script>
- <script>
-    $(function () {
-      $("#slider").responsiveSlides({
-      	auto: true,
-      	nav: true,
-      	speed: 500,
-        namespace: "callbacks",
-        pager: true,
-      });
-    });
-  </script>
-	<style type="text/css">
-		.shadow {
-			text-shadow: 4px 4px 14px #000000;
-			font-size: 50px;
-		}
-	</style>
+    <title>customer</title>
+    <!--<base href="../static/">-->
+    <link th:href="@{/index/css/bootstrap.css}" href="../static/index/css/bootstrap.css" rel="stylesheet"
+          type="text/css" media="all">
+    <link th:href="@{/index/css/style.css}" href="../static/index/css/style.css" rel="stylesheet" type="text/css"
+          media="all"/>
+    <link th:href="@{/index/css/style-customer.css}" href="../static/index/css/style-customer.css" rel="stylesheet"
+          media="all"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script th:src="@{http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js}"
+            src="../static/dminlte/bower_components/jquery/dist/jquery.min.js"></script>
+    <script th:src="@{/index/js/bootstrap.js}" src="index/js/bootstrap.js"></script>
+    <script th:src="@{/index/js/responsiveslides.min.js}" src="index/js/responsiveslides.min.j"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <style type="text/css">
+        .shadow {
+            text-shadow: 4px 4px 14px #000000;
+            font-size: 50px;
+        }
+    </style>
 </head>
 <body>
-    <div class="customer">
-        <div class="container">
-            <div class="header-top">
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-<!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                              </button>
-                            <div class="navbar-brand">
-                                <h1><a href="/" ><i class="shadow">酒店预约</i></a></h1>
-                            </div>
+<div class="customer">
+    <div class="container">
+        <div class="header-top">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">
+                            <h1><a href="/"><i class="shadow">酒店预约</i></a></h1>
                         </div>
+                    </div>
 
-<!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                      <ul class="nav navbar-nav">
-                            <li class="active"><a href="/" class="shadow">主页 <span class="sr-only">(current)</span></a></li>
+                        <ul class="nav navbar-nav">
+                            <li ><a href="/" class="shadow">主页 <span class="sr-only">(current)</span></a></li>
                             <li><a href="login" class="shadow">登录</a></li>
                             <li><a href="search" class="shadow">搜索</a></li>
 
                             <li><a href="gallery.html" class="shadow">Gallery</a></li>
                             <li><a href="codes.html" class="shadow">Codes</a></li>
                             <li><a href="contact.html" class="shadow">Contact</a></li>
+                            <li class="active" tclass="dropdown" th:if="${msg}!=0">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${customer.customername}" ><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="customer" >用户信息管理</a></li>
+                                    <li><a href="/logout" >注销用户</a></li>
+                                </ul>
+                            </li>
 
-                          <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${customer.customername}"><span class="caret"></span></a>
-                              <ul class="dropdown-menu">
-                                  <li><a href="customeredit" >用户信息管理</a></li>
-                                  <li><a th:action="logout" >注销用户</a></li>
-                              </ul>
-                          </li>
+
                         </ul>
-                      
+
                     </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+        </div>
+    </div>
+</div><!--header-->
+
+<div id="mid">
+    <br>
+    <br>
+    <br>
+    <section class="blog_w3ls py-lg-5">
+        <div class="container">
+            <div class="row py-5">
+                <!-- blog grid -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 med-blog">
+                        <div class="card-header p-0">
+                            <a href="customerinfoedit">
+                                <img class="card-img-bottom" th:src="@{/index/images/yonghu.png}" src="../static/index/images/yonghu.png"
+                                     alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="card-body border-0 px-0">
+                            <div class="blog_w3icon">
+                            </div>
+                            <div class="pt-2">
+                                <h1 class="blog-title card-title">
+                                    <a href="customerinfoedit">用户信息更改</a>
+                                    <br>
+                                    <br>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //blog grid -->
+                <!-- blog grid -->
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-5">
+                    <div class="card border-0 med-blog">
+                        <div class="card-header p-0">
+                            <a href="search">
+                                <img class="card-img-bottom" th:src="@{/index/images/hotelproview.png}" src="../static/index/images/hotelproview.png"
+                                     alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="card-body border-0 px-0">
+                            <div class="blog_w3icon">
+                            </div>
+                            <div class="pt-2">
+                                <h1 class="blog-title card-title font-weight-bold">
+                                    <a href="search">&nbsp;&nbsp;&nbsp;&nbsp;酒店搜索</a>
+                                    <br>
+                                    <br>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //blog grid -->
+                <!-- blog grid -->
+                <div class="col-lg-4 col-md-6 mt-lg-0 mt-5">
+                    <div class="card border-0 med-blog">
+                        <div class="card-header p-0">
+                            <a href="orderview">
+                                <img class="card-img-bottom" th:src="@{/index/images/order.png}" src="../static/index/images/order.png"
+                                     alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="card-body border-0 px-0">
+                            <div class="blog_w3icon">
+                            </div>
+                            <div class="pt-2">
+                                <h1 class="blog-title card-title font-weight-bold">
+                                    <a href="orderview">&nbsp;&nbsp;&nbsp;&nbsp;订单查看</a>
+                                    <br>
+                                    <br>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //blog grid -->
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
 </body>
 </html>

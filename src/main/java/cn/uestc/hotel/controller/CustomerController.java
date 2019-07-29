@@ -1,7 +1,6 @@
 package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
-import cn.uestc.hotel.domain.Hotel;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,14 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 
 @Controller
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
-
 
     @GetMapping("/login")
     public String getLoginPage(HttpServletRequest request, Customer customer) {
@@ -39,51 +36,44 @@ public class CustomerController {
 
     }
 
-
-    @GetMapping("/customeredit")
-    public String customerEdit(Model model, Customer customer) {
-        return "customer";
-    }
+//
+//    @GetMapping("/customer")
+//    public String customeredit(Model model, Customer customer) {
+//        return "customer";
+//    }
 
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, Model model, Customer customer) {
+    public String logout(HttpServletRequest request,Model model, Customer customer) {
         //使cookie无效
-        request.getSession(false).invalidate();
+       request.getSession(false).invalidate();
 
         return "/index";
     }
 
 
+
+    @RequestMapping("customer")
+    public String customerEdit(Model model,Customer customer) {
+
+        return "customer";//用户修改页面
+    }
+    @RequestMapping("customerinfoedit")
+    public String customerInfoEdit(Model model,Customer customer) {
+
+        return "customerinfoedit";//用户修改页面
+    }
+    @RequestMapping("orderview")
+    public String orderview(Model model,Customer customer) {
+
+        return "orderview";//用户修改页面
+    }
+
+
     @GetMapping("/register")
-    public String getRegisterPage(Model model, Customer customer) {
+    public String register(Model model, Customer customer) {
         return "register";
     }
 
-
-    @PostMapping("/register")
-
-    public String registerCustomer(Model model, Customer customer) {
-        customer.setRoleid("2");
-        customerService.insertCustomer(customer);
-       return "redirect:login";
-
-    }
-
-
-
-    @PostMapping("/search")
-    public String searchhotel(@RequestParam("word") String word, Model model) {
-        List<Hotel> hotels = customerService.search(word);
-        model.addAttribute("hotels", hotels);
-        return "searchResult";
-
-    }
-
-    @GetMapping("search")
-    public String getSearchPage(Model model, Customer customer) {
-
-        return "search";
-    }
 
 }

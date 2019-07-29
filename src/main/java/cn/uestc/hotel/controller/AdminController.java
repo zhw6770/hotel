@@ -22,6 +22,7 @@ public class AdminController {
     }
 
 
+
     @GetMapping("/delete")
     @ResponseBody
     public Boolean deleteUser(@RequestParam("id") String id) {
