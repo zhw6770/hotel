@@ -55,11 +55,5 @@ public class CustomerController {
         return "register";
     }
 
-    @GetMapping("/delete")
-    @ResponseBody
-    public Boolean deleteUser(@RequestParam("id") String id) {
-        customerService.deleteCustomerByid(id);
-        System.out.println("shanchu");
-        return true;
-    }
+
 }

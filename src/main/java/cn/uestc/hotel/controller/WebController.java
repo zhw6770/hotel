@@ -35,12 +35,5 @@ public class WebController {
     }
 
 
-    @RequestMapping("customerlist")
-    public String getListPage(Model model) {
-
-        model.addAttribute("customer",customerService.findAll());
-        return "customerlist";
-    }
-
 
 }
