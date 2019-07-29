@@ -37,16 +37,18 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/customeredit")
+    @GetMapping("/customer")
     public String customeredit(Model model, Customer customer) {
         return "customer";
     }
 
 
     @GetMapping("/logout")
-    public String logout(Model model, Customer customer) {
+    public String logout(HttpServletRequest request,Model model, Customer customer) {
         //使cookie无效
-        return "/";
+       request.getSession(false).invalidate();
+
+        return "/index";
     }
 
 
