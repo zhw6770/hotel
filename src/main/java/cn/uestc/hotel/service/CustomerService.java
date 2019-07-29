@@ -47,7 +47,7 @@ public class CustomerService {
         HotelExample.Criteria criteria1 = ex.createCriteria();
         criteria1.andHotelnameLike("%"+word+"%");
         HotelExample.Criteria criteria2 = ex.createCriteria();
-        criteria2.andHotelnameLike("%"+word+"%");
+        criteria2.andAddressLike("%"+word+"%");
         ex.or(criteria2);
 
 
@@ -59,6 +59,15 @@ public class CustomerService {
         }
 
 
+    }
+    public Boolean insertCustomer(Customer customer){
+       if(customer!=null) {
+           customerMapper.insert(customer);
+           return true;
+       }
+       else {
+           return false;
+       }
     }
 
 }
