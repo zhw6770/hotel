@@ -12,18 +12,24 @@
 User List:
 <table border="1">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>sex</th>
+        <th>名字</th>
+        <th>房间数目</th>
+        <th>地址</th>
+        <th>城市</th>
+        <th>网址</th>
         <th>电话</th>
-        <th>删除</th>
+        <th>邮编</th>
+
     </tr>
-    <tr th:each="customer: ${customers}">
-        <td th:text="${customer.customerid}"></td>
-        <td th:text="${customer.customername}"></td>
-        <td th:text="${customer.sex}"></td>
-        <td th:text="${customer.phone}"></td>
-        <td>  <a th:href ="@{/delete(id=${customer.customerid})}" class="shadow">delete</a></td>
+    <tr th:each="hotel: ${hotels}">
+        <td th:text="${hotel.hotelname}"></td>
+        <td th:text="${hotel.numroom}"></td>
+        <td th:text="${hotel.address}"></td>
+        <td th:text="${hotel.city}"></td>
+        <td th:text="${hotel.url}"></td>
+        <td th:text="${hotel.tel}"></td>
+        <td th:text="${hotel.zipcode}"></td>
+
 
     </tr>
 </table>

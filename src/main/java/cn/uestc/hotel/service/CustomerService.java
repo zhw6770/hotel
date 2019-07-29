@@ -42,20 +42,20 @@ public class CustomerService {
         return customerMapper.findAll();
     }
 
-    public long search(String word) {
+    public List<Hotel> search(String word) {
         HotelExample ex = new HotelExample();
         HotelExample.Criteria criteria1 = ex.createCriteria();
         criteria1.andHotelnameLike("%"+word+"%");
         HotelExample.Criteria criteria2 = ex.createCriteria();
         criteria2.andHotelnameLike("%"+word+"%");
         ex.or(criteria2);
-//        hotelMapper.selectByExample(ex);
+
 
         if(hotelMapper.selectByExample(ex)!=null){
-            return hotelMapper.countByExample(ex);
+            return hotelMapper.selectByExample(ex);
         }
         else {
-            return 404;
+            return null;
         }
 
 

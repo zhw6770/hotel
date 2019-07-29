@@ -17,7 +17,7 @@ public class AdminController {
     @RequestMapping("customerlist")
     public String getListPage(Model model) {
 
-        model.addAttribute("customer",customerService.findAll());
+        model.addAttribute("customers",customerService.findAll());
         return "customerlist";
     }
 

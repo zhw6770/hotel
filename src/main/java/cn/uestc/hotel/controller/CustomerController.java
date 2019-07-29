@@ -1,6 +1,7 @@
 package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
+import cn.uestc.hotel.domain.Hotel;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 
 @Controller
@@ -58,6 +60,19 @@ public class CustomerController {
         return "register";
     }
 
+    @PostMapping("/search")
 
+    public String  searchhotel(@RequestParam("word") String word,Model model) {
+        List<Hotel> hotels=customerService.search(word);
+        model.addAttribute("hotels",hotels);
+        return "searchResult";
+
+    }
+
+    @GetMapping("search")
+    public String getSearchPage(Model model, Customer customer) {
+
+        return "search";
+    }
 
 }

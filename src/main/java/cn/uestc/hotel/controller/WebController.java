@@ -1,6 +1,7 @@
 package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
+import cn.uestc.hotel.domain.Hotel;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,28 +18,21 @@ public class WebController {
     private CustomerService customerService;
 
     @RequestMapping("/")
-    public String index(Model model,Customer customer) {
+    public String index(Model model, Customer customer) {
         return "index";
     }
 
     @GetMapping("/index")
-    public String getIndexpage(Model model,Customer customer, HttpServletRequest request) {
-        customer=customerService.findCustomerByid(request);//customer has the total data including id,name,password....
-        if(customer==null){
-            model.addAttribute("msg","0");
-        }
-        else{
-            model.addAttribute("customer",customer);
+    public String getIndexpage(Model model, Customer customer, HttpServletRequest request) {
+        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        if (customer == null) {
+            model.addAttribute("msg", "0");
+        } else {
+            model.addAttribute("customer", customer);
         }
 
         return "index";
     }
 
-    @GetMapping("/search")
-    @ResponseBody
-    public long searchCustomer(@RequestParam("word") String word) {
-        return customerService.search(word);
-
-    }
 
 }
