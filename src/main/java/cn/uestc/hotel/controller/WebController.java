@@ -34,9 +34,11 @@ public class WebController {
         return "index";
     }
 
-    @RequestMapping("/search")
-    public String getSearchPage(Model model,Customer customer) {
-        return "search";
+    @GetMapping("/search")
+    @ResponseBody
+    public long searchCustomer(@RequestParam("word") String word) {
+        return customerService.search(word);
+
     }
 
 }

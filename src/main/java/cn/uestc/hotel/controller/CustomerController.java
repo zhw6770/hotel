@@ -16,6 +16,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+
     @GetMapping("/login")
     public String getLoginPage(HttpServletRequest request, Customer customer) {
         request.getSession(true);
@@ -37,25 +38,26 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/customer")
-    public String customeredit(Model model, Customer customer) {
+    @GetMapping("/customeredit")
+    public String customerEdit(Model model, Customer customer) {
         return "customer";
     }
 
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request,Model model, Customer customer) {
+    public String logout(HttpServletRequest request, Model model, Customer customer) {
         //使cookie无效
-       request.getSession(false).invalidate();
+        request.getSession(false).invalidate();
 
         return "/index";
     }
 
 
     @GetMapping("/register")
-    public String register(Model model, Customer customer) {
+    public String registerCustomer(Model model, Customer customer) {
         return "register";
     }
+
 
 
 }
