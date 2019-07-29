@@ -38,5 +38,10 @@
             <property name="constructorBased" value="true"/>
             <generatedKey column="id" sqlStatement="select uuid()" identity="false"/>
         </table>
+        <table schema="hotel" tableName="hotel" domainObjectName="Hotel">
+            <property name="rootInterface" value="cn.uestc.hotel.mapper.HotelMapperExt"/>
+            <property name="constructorBased" value="true"/>
+            <generatedKey column="hotelid" sqlStatement="select uuid()" identity="false"/>
+        </table>
     </context>
 </generatorConfiguration>
