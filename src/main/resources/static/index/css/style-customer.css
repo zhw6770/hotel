@@ -35,6 +35,18 @@ body a,
     left:50%;
     margin:-20px 0 0 -960px;
 }
+#whole{
+	border: 30px solid rgba(0, 0, 0, 0.274);
+	background:  hsla(0,0%,90%,.5);
+	background-clip: padding-box;
+	width: 1920px;
+	height: 800px;
+	/* border: 1px solid black; */
+	position:absolute;
+    top:50%;
+    left:50%;
+    margin:-300px 0 0 -960px;
+}
 h1,
 h2,
 h3,

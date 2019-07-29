@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>酒店预约</title>
+    <link th:href="@{/index/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
+    <link th:href="@{/index/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/index/css/style-customer.css}" href="../static/index/css/style-customer.css" rel="stylesheet"
+        media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+
+    <script th:src="@{http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/index/js/bootstrap.js}"></script>
+    <script th:src="@{/index/js/responsiveslides.min.js}"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <style type="text/css">
+        .shadow {
+            text-shadow: 4px 4px 14px #000000;
+            font-size: 50px;
+        }
+    </style>
+    <style>
+    body{ text-align:center}
+    .middiv{ margin:0 auto; width:400px; height:100px; }
+    .midbig{margin:0 auto; width:800px; height:900px; }
+    /* css注释：为了观察效果设置宽度 边框 高度等样式 */
+    </style>
+    </head>
+
+<body>
+    <!--header-->
+    <div class="orderview">
+        <div class="container">
+            <div class="header-top">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="navbar-brand">
+                                <h1><a href="/"><i class="shadow">酒店预约</i></a></h1>
+                            </div>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/" class="shadow">主页 <span
+                                            class="sr-only">(current)</span></a></li>
+                                <li><a href="login" class="shadow">登录</a></li>
+                                <li><a href="search" class="shadow">搜索</a></li>
+                                <li><a href="gallery.html" class="shadow">Gallery</a></li>
+                                <li><a href="codes.html" class="shadow">Codes</a></li>
+                                <li><a href="contact.html" class="shadow">Contact</a></li>
+                                <li class="active" tclass="dropdown" >
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="customer">用户信息管理</a></li>
+                                        <li><a href="/logout">注销用户</a></li>
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+
+            </div>
+        </div>
+        <!--header-->
+        <div id="whole">
+            <br>
+            <br>
+            <br>
+            <div class="middiv">
+                <h1>您的订单</h1>
+
+            </div>
+            <div class="midbig">
+                <h2>
+                    <table border="1" cellspacing="10">
+                        <tr>
+                            <td>订单号</td>
+                            <td>酒店编号</td>
+                            <td>客户账号</td>
+                            <td>入住时间</td>
+                            <td>离开时间</td>
+                            <td>价格</td>
+                        </tr>
+                        <tr>
+                            <td>FormID</td>
+                            <td>HotelID</td>
+                            <td>CustomerID</td>
+                            <td>ArriveTime</td>
+                            <td>LeftTime</td>
+                            <td>Price</td>
+                        </tr>
+
+                    </table>
+                </h2>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

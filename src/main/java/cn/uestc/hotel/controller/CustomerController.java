@@ -97,7 +97,7 @@ public class CustomerController {
     @RequestMapping("orderview")
     public String orderview(Model model,Customer customer) {
 
-        return "orderview";//用户修改页面
+        return "orderview";//查看订单页面
     }
 
 
