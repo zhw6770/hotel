@@ -36,7 +36,7 @@ ul{
 }
 body{
 	padding:0 0;
-	margin:0 0; 
+	margin:0 0;
 	font-family: 'OpenSans-Regular'
 }
 .header-top {
@@ -129,15 +129,79 @@ body{
     padding-right: 0px;
      padding-left: 0px; 
 }
-.search{
-    background:url(../images/pao.jpg) no-repeat 0px 0px;
-    background-size:cover;
+.search {
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
-    min-height:1080px;
+    min-height: 1080px;
     padding-bottom: 1em;
+    background: url(../images/test.jpg) repeat;
+    -webkit-animation: Scroll_background 40s linear infinite;
+    /*-moz-animation: Scroll_background 40s linear infinite;*/
+    -ms-animation: Scroll_background 40s linear infinite;
+    /*-o-animation: Scroll_background 40s linear infinite;
+    animation: Scroll_background 40s linear infinite;*/
+}
+@-webkit-keyframes Scroll_background {
+    from {
+        background-position: 1662px 100%;
+    }
+    to {
+        background-position: 0 100%;
+    }
+}
+@-moz-keyframes Scroll_background {
+    from {
+        background-position: 1662px 100%;
+    }
+    to {
+        background-position: 0 100%;
+    }
+}
+@-ms-keyframes Scroll_background {
+    from {
+        background-position: 1662px 100%;
+    }
+    to {
+        background-position: 0 100%;
+    }
+}
+@-o-keyframes Scroll_background {
+    from {
+        background-position: 1662px 100%;
+    }
+    to {
+        background-position: 0 100%;
+    }
+}
+/*主体框架载入后连续动画*/
+.frame_turn {
+    animation: frame_turn 10s infinite;
+    -webkit-animation: frame_turn 10s infinite;
+    -moz-animation: frame_turn 10s infinite;
+    -o-animation: frame_turn 10s infinite;
+}
+@keyframes frame_turn{
+    0%{transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
+    50% {transform:matrix3d(1,0,0,0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(-0.5deg);}
+    100% {transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
+}
+@-webkit-keyframes frame_turn{
+    0%{-webkit-transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
+    50% {-webkit-transform:matrix3d(1,0,0,0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(-0.5deg);}
+    100% {-webkit-transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
+}
+@-moz-keyframes frame_turn{
+    0%{-moz-transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
+    50% {-moz-transform:matrix3d(1,0,0,0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(-0.5deg);}
+    100% {-moz-transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
+}
+@-o-keyframes frame_turn{
+    0%{-o-transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
+    50% {-o-transform:matrix3d(1,0,0,0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(-0.5deg);}
+    100% {-o-transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
 }
 .header{
 	background:url(../images/banner1.jpg) no-repeat 0px 0px;
