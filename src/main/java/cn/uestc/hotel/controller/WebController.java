@@ -34,6 +34,9 @@ public class WebController {
         return "index";
     }
 
-
+    @RequestMapping("/search")
+    public String getSearchPage(Model model,Customer customer) {
+        return "search";
+    }
 
 }

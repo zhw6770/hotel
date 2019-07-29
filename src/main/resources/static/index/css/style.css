@@ -129,6 +129,16 @@ body{
     padding-right: 0px;
      padding-left: 0px; 
 }
+.search{
+    background:url(../images/pao.jpg) no-repeat 0px 0px;
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height:1080px;
+    padding-bottom: 1em;
+}
 .header{
 	background:url(../images/banner1.jpg) no-repeat 0px 0px;
 	background-size:cover;
