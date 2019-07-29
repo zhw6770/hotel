@@ -22,6 +22,7 @@ public class WebController {
         return "index";
     }
 
+
     @GetMapping("/index")
     public String getIndexpage(Model model, Customer customer, HttpServletRequest request) {
         customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
@@ -32,6 +33,11 @@ public class WebController {
         }
 
         return "index";
+    }
+
+    @RequestMapping("/roomlist")
+    public String sindex(Model model, Customer customer) {
+        return "roomlist";
     }
 
 
