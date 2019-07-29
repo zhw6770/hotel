@@ -77,15 +77,26 @@ public class CustomerController {
     }
 
     @GetMapping("search")
-    public String getSearchPage(Model model, Customer customer) {
+    public String getSearchPage(Model model, Customer customer,HttpServletRequest request) {
+        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        if (customer == null) {
+            model.addAttribute("msg", "0");
+        } else {
+            model.addAttribute("customer", customer);
+        }
 
         return "search";
     }
 
-    @RequestMapping("customer")
-    public String getCustomerPage(Model model,Customer customer) {
-
-        return "customer";//用户修改页面
+    @RequestMapping("customerInformation")
+    public String getCustomerPage(Model model,Customer customer,HttpServletRequest request) {
+        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        if (customer == null) {
+            model.addAttribute("msg", "0");
+        } else {
+            model.addAttribute("customer", customer);
+        }
+        return "customerInformation";//用户修改页面
     }
 
     @RequestMapping("customerinfoedit")
