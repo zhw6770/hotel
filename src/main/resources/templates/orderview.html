@@ -108,15 +108,14 @@
                             <td>离开时间</td>
                             <td>价格</td>
                         </tr>
-                        <tr>
-                            <td>FormID</td>
-                            <td>HotelID</td>
-                            <td>CustomerID</td>
-                            <td>ArriveTime</td>
-                            <td>LeftTime</td>
-                            <td>Price</td>
+                        <tr th:each="order: ${orderForms}">
+                            <td th:text="${order.orderformid}">OrderID</td>
+                            <td th:text="${order.hotelid}">HotelID</td>
+                            <td th:text="${order.customerid}">CustomerID</td>
+                            <td th:text="${order.arrivetime}">ArriveTime</td>
+                            <td th:text="${order.lefttime}">LeftTime</td>
+                            <td th:text="${order.price}">Price</td>
                         </tr>
-
                     </table>
                 </h2>
 
