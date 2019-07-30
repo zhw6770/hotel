@@ -25,8 +25,6 @@ public class CustomerController {
         request.getSession(true);
         return "login";
     }
-
-
     @PostMapping("/login")
     public String login(@ModelAttribute Customer customer, Model model, HttpServletRequest request, HttpServletResponse response) {
 
@@ -54,10 +52,7 @@ public class CustomerController {
     public String getRegisterPage(Model model, Customer customer) {
         return "register";
     }
-
-
     @PostMapping("/register")
-
     public String registerCustomer(Model model, Customer customer) {
         customer.setRoleid("2");
         customerService.insertCustomer(customer);
@@ -73,7 +68,6 @@ public class CustomerController {
         return "searchResult";
 
     }
-
     @GetMapping("search")
     public String getSearchPage(Model model, Customer customer, HttpServletRequest request) {
         if (customerService.findCustomerByRequest(request) == null) {
@@ -104,23 +98,22 @@ public class CustomerController {
         return "customerInformation";//用户修改页面
     }
 
-    @GetMapping("customerInformationEdit")
-    public String getCustomerInformationEdit(Model model, Customer customer) {
-
-        return "customerInformationEdit";//用户修改页面
-    }
-
     @GetMapping("orderCreate")
     public String getCreateOrder(Model model, Customer customer, Room room ,Hotel hotel) {
 
         return "orderCreate";//用户修改页面
     }
 
+    @GetMapping("customerInformationEdit")
+    public String getCustomerInformationEdit(Model model, Customer customer) {
+
+        return "customerInformationEdit";//用户修改页面
+    }
     @PostMapping("customerInformationEdit")
     public String customerInformationEdit(Model model, Customer customer, HttpServletRequest request) {
         String customerid = customerService.findCustomerByRequest(request).getCustomerid();
         customerService.updateCustomer(customer, customerid);
-        return "customerInformation";
+        return "redirect:customerInformation";
     }
 
     @GetMapping("customerPasswordEdit")
@@ -128,12 +121,11 @@ public class CustomerController {
 
         return "customerPasswordEdit";//密码修改页面
     }
-
     @PostMapping("customerPasswordEdit")
     public String ChangePassword(Model model, Customer customer, HttpServletRequest request) {
         String customerid = customerService.findCustomerByRequest(request).getCustomerid();
         customerService.updateCustomer(customer, customerid);
-        return "redirect:customerInformation";//密码修改页面
+        return "redirect:customerInformation";
     }
 
 
