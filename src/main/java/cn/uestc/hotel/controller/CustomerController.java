@@ -2,6 +2,7 @@ package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.domain.Hotel;
+import cn.uestc.hotel.domain.Room;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -107,6 +108,12 @@ public class CustomerController {
     public String getCustomerInformationEdit(Model model, Customer customer) {
 
         return "customerInformationEdit";//用户修改页面
+    }
+
+    @GetMapping("createOrder")
+    public String getCreateOrder(Model model, Customer customer, Room room ,Hotel hotel) {
+
+        return "createOrder";//用户修改页面
     }
 
     @PostMapping("customerInformationEdit")
