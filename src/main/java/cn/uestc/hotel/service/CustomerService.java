@@ -44,14 +44,20 @@ public class CustomerService {
 
     }
 
+    public Boolean deleteHotelByid(String customerid) {
+        hotelMapper.deleteByPrimaryKey(customerid);
+        return true;
+    }
+
+
     public Boolean deleteCustomerByid(String customerid) {
         customerMapper.deleteByPrimaryKey(customerid);
         return true;
     }
-
     public List<Customer> findAll() {
         return customerMapper.findAll();
     }
+    public List<Hotel> hotelList(){return hotelMapper.hotelList();}
 
     public List<Hotel> search(String word) {
         HotelExample ex = new HotelExample();
