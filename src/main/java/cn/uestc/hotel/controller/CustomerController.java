@@ -129,9 +129,9 @@ public class CustomerController {
     }
 
     @RequestMapping("/roomlist")
-    public String getRoomList(Model model) {
+    public String getRoomList(Model model,@RequestParam("hotelid") String hotelid) {
 
-        model.addAttribute("rooms",customerService.selectRoomByHotelID("1297"));
+        model.addAttribute("rooms",customerService.selectRoomByHotelID(hotelid));
         return "roomlist";
     }
 

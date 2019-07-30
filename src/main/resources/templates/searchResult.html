@@ -57,7 +57,7 @@
                     </tr>
                     </thead>
                     <tr th:each="hotel: ${hotels}">
-                        <td><a th:href ="@{/roomlist}" class="shadow" th:text="${hotel.hotelname}"></a></td>
+                        <td><a th:href ="@{/roomlist(hotelid=${hotel.hotelid})}" class="shadow" th:text="${hotel.hotelname}"></a></td>
                         <td th:text="${hotel.numroom}"></td>
                         <td th:text="${hotel.address}"></td>
                         <td th:text="${hotel.city}"></td>
