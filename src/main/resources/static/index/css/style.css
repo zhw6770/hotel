@@ -203,6 +203,29 @@ body{
     50% {-o-transform:matrix3d(1,0,0,0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(-0.5deg);}
     100% {-o-transform:matrix3d(1,0,0,-0.00008,0,1,0,0,0,0,1,0,0,0,0,1) rotate(0.5deg);}
 }
+
+.room{
+    background:url(../images/geijin.jpg) no-repeat 0px 0px;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height:1080px;
+    padding-bottom: 1em;
+}
+.feedback-btn a {
+    background:#fb7299;
+    border:1px solid #fb7299;
+    color:#fff;
+    box-shadow:0 6px 10px 0 rgba(251,114,153,.4);
+    border-radius:2px;
+    vertical-align:baseline}
+.guide .feedback-btn a:hover{background:#ff85ad}
 .header{
 	background:url(../images/banner1.jpg) no-repeat 0px 0px;
 	background-size:cover;
