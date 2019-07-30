@@ -157,6 +157,7 @@ public class CustomerController {
     public String getRoomList(Model model,@RequestParam("hotelid") String hotelid) {
 
         model.addAttribute("rooms",customerService.selectRoomByHotelID(hotelid));
+        model.addAttribute("hotelid",hotelid);
         return "roomlist";
     }
 

@@ -25,7 +25,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <link th:href="@{/index/css/style.css}" rel="stylesheet" type="text/css" media="all" />
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
@@ -60,8 +60,8 @@
                 <td th:text="${customer.customername}"></td>
                 <td th:text="${customer.sex}"></td>
                 <td th:text="${customer.phone}"></td>
-                <td>  <a th:href ="@{/deleteCustomer(id=${customer.customerid})}" class="shadow">delete</a></td>
-            </tr>
+                <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/deleteCustomer(id=${customer.customerid})}" target="_blank">点我删除</a></div></td>
+
             </tbody>
             <tfoot>
             <tr>
