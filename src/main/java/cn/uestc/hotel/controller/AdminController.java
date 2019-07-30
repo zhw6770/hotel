@@ -8,20 +8,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 @Controller
 public class AdminController {
     @Autowired
     private CustomerService customerService;
 
 
-    @RequestMapping("customerlist")
-    public String getListPage(Model model) {
 
-        model.addAttribute("customers",customerService.findAll());
+
+    @RequestMapping("customerlist")
+    public String getCustomerListPage(Model model) {
+
+        model.addAttribute("customers", customerService.findAll());
         return "customerlist";
     }
 
+    @RequestMapping("hotellist")
+    public String getHotelListPage(Model model) {
 
+        model.addAttribute("hotels", customerService.hotelList());
+        return "hotellsit";
+    }
 
     @GetMapping("/delete")
     @ResponseBody

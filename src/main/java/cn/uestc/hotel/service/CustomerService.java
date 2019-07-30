@@ -52,6 +52,7 @@ public class CustomerService {
     public List<Customer> findAll() {
         return customerMapper.findAll();
     }
+    public List<Hotel> hotelList(){return hotelMapper.hotelList();}
 
     public List<Hotel> search(String word) {
         HotelExample ex = new HotelExample();
