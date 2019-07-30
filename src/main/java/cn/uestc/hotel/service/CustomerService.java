@@ -26,13 +26,11 @@ public class CustomerService {
         return customers.size() > 0 ? customers.get(0) : null;
 
     }
-
-    public Customer findCustomerByid(HttpServletRequest request) {
+    public Customer findCustomerByRequest(HttpServletRequest request) {
 
         return customerMapper.selectByPrimaryKey(request.getSession().getAttribute("customerid").toString());
 
     }
-
     public Boolean deleteCustomerByid(String customerid) {
         customerMapper.deleteByPrimaryKey(customerid);
         return true;
@@ -71,6 +69,11 @@ public class CustomerService {
         OrderFormExample ex=new OrderFormExample();
         ex.createCriteria().andCustomeridEqualTo(customerID);
         return orderFormMapper.selectByExample(ex);
+    }
+    public Boolean updateCustomer(Customer customer,String customerid){
+        customer.setCustomerid(customerid);
+        customerMapper.updateByPrimaryKeySelective(customer);
+        return true;
     }
 
 }
