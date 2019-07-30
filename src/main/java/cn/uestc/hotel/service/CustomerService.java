@@ -60,6 +60,12 @@ public class CustomerService {
         HotelExample.Criteria criteria2 = ex.createCriteria();
         criteria2.andAddressLike("%" + word + "%");
         ex.or(criteria2);
+        HotelExample.Criteria criteria3 = ex.createCriteria();
+        criteria2.andCityLike("%" + word + "%");
+        ex.or(criteria3);
+        HotelExample.Criteria criteria4 = ex.createCriteria();
+        criteria2.andCountryLike("%" + word + "%");
+        ex.or(criteria4);
 
 
         if (hotelMapper.selectByExample(ex) != null) {

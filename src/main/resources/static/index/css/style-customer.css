@@ -64,14 +64,7 @@ p {
 	line-height: 1.6;
 }
 
-ul {
-	margin: 0;
-	padding: 0;
-}
 
-ul {
-	list-style-type: none;
-}
 
 body a:hover {
 	text-decoration: none;
@@ -101,10 +94,7 @@ body a:focus {
 }
 
 
-li.breadcrumb-item a {
-	color: #008eff;
-	font-weight: 600;
-}
+
 
 .breadcrumb-item.active {
 	color: #000;
