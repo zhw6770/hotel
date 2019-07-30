@@ -15,20 +15,18 @@ public class AdminController {
     private CustomerService customerService;
 
 
-
-
-    @RequestMapping("customerlist")
+    @RequestMapping("customerList")
     public String getCustomerListPage(Model model) {
 
         model.addAttribute("customers", customerService.findAll());
-        return "customerlist";
+        return "customerList";
     }
 
-    @RequestMapping("hotellist")
+    @RequestMapping("hotelList")
     public String getHotelListPage(Model model) {
 
         model.addAttribute("hotels", customerService.hotelList());
-        return "hotellist";
+        return "hotelList";
     }
 
     @GetMapping("/deleteCustomer")

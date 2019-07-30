@@ -62,8 +62,8 @@
 											  <li><a href="customerInformation" th:if=" ${customer.customername} !='登录'" >我的信息</a></li>
 
 											  <li><a href="login" th:if=" ${customer.customername} =='登录'">登录</a></li>
-											  <li><a href="customerlist" th:if=" ${customer.roleid} =='1'">用户管理</a></li>
-											  <li><a href="hotellist" th:if=" ${customer.roleid} =='1'">酒店管理</a></li>
+											  <li><a href="customerList" th:if=" ${customer.roleid} =='1'">用户管理</a></li>
+											  <li><a href="hotelList" th:if=" ${customer.roleid} =='1'">酒店管理</a></li>
 											  <li><a href="/logout" th:if=" ${customer.customername} !='登录'">注销</a></li>
 									  </ul>
 								    </li>
