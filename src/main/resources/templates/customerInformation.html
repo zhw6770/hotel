@@ -67,7 +67,7 @@
                             <li class="active" tclass="dropdown" th:if="${msg}!=0">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${customer.customername}" ><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="customer" >我的信息</a></li>
+                                    <li><a href="customerInformation" >我的信息</a></li>
                                     <li><a href="/logout" >注销</a></li>
                                 </ul>
                             </li>
@@ -94,7 +94,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card border-0 med-blog">
                         <div class="card-header p-0">
-                            <a href="customerinfoedit">
+                            <a href="customerInformationEdit">
                                 <img class="card-img-bottom" th:src="@{/index/images/yonghu.png}" src="../static/index/images/yonghu.png"
                                      alt="Card image cap">
                             </a>

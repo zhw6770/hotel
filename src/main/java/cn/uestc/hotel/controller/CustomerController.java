@@ -75,7 +75,7 @@ public class CustomerController {
 
     @GetMapping("search")
     public String getSearchPage(Model model, Customer customer, HttpServletRequest request) {
-        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        customer = customerService.findCustomerByRequest(request);//customer has the total data including id,name,password....
         if (customer == null) {
             model.addAttribute("msg", "0");
         } else {
@@ -87,7 +87,7 @@ public class CustomerController {
 
     @RequestMapping("customerInformation")
     public String getCustomerPage(Model model, Customer customer, HttpServletRequest request) {
-        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        customer = customerService.findCustomerByRequest(request);//customer has the total data including id,name,password....
         if (customer == null) {
             model.addAttribute("msg", "0");
         } else {
@@ -96,21 +96,28 @@ public class CustomerController {
         return "customerInformation";//用户修改页面
     }
 
-    @RequestMapping("customerinfoedit")
-    public String customerInfoEdit(Model model, Customer customer) {
+    @GetMapping("customerInformationEdit")
+    public String getCustomerInformationEdit(Model model, Customer customer) {
 
-        return "customerinfoedit";//用户修改页面
+        return "customerInformationEdit";//用户修改页面
+    }
+
+    @PostMapping("customerInformationEdit")
+    public String customerInformationEdit(Model model, Customer customer, HttpServletRequest request) {
+        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
+        customerService.updateCustomer(customer, customerid);
+        return "customerInformation";
     }
 
     @RequestMapping("orderview")
     public String orderview(Model model, Customer customer, HttpServletRequest request) {
-        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        customer = customerService.findCustomerByRequest(request);//customer has the total data including id,name,password....
         if (customer == null) {
             model.addAttribute("msg", "0");
         } else {
             model.addAttribute("customer", customer);
         }
-        String customerid = customerService.findCustomerByid(request).getCustomerid();
+        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
         model.addAttribute("orderForms", customerService.selectOrderFormByCustomerID(customerid));
         return "orderview";//查看订单页面
     }
