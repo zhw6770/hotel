@@ -45,7 +45,7 @@ public class CustomerController {
         //使cookie无效
         request.getSession(false).invalidate();
 
-        return "/index";
+        return "redirect:index";
     }
 
 
@@ -75,22 +75,29 @@ public class CustomerController {
 
     @GetMapping("search")
     public String getSearchPage(Model model, Customer customer, HttpServletRequest request) {
-        customer = customerService.findCustomerByRequest(request);//customer has the total data including id,name,password....
-        if (customer == null) {
-            model.addAttribute("msg", "0");
+        if (customerService.findCustomerByRequest(request) == null) {
+            Customer customer1=new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
         } else {
+
+            customer =customerService.findCustomerByRequest(request);
             model.addAttribute("customer", customer);
         }
+
 
         return "search";
     }
 
-    @RequestMapping("customerInformation")
+    @GetMapping("customerInformation")
     public String getCustomerPage(Model model, Customer customer, HttpServletRequest request) {
-        customer = customerService.findCustomerByRequest(request);//customer has the total data including id,name,password....
-        if (customer == null) {
-            model.addAttribute("msg", "0");
+        if (customerService.findCustomerByRequest(request) == null) {
+            Customer customer1=new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
         } else {
+
+            customer =customerService.findCustomerByRequest(request);
             model.addAttribute("customer", customer);
         }
         return "customerInformation";//用户修改页面
@@ -100,6 +107,13 @@ public class CustomerController {
     public String getCustomerInformationEdit(Model model, Customer customer) {
 
         return "customerInformationEdit";//用户修改页面
+    }
+
+    @PostMapping("customerInformationEdit")
+    public String customerInformationEdit(Model model, Customer customer, HttpServletRequest request) {
+        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
+        customerService.updateCustomer(customer, customerid);
+        return "customerInformation";
     }
 
     @GetMapping("customerPasswordEdit")
@@ -112,22 +126,19 @@ public class CustomerController {
     public String ChangePassword(Model model, Customer customer, HttpServletRequest request) {
         String customerid = customerService.findCustomerByRequest(request).getCustomerid();
         customerService.updateCustomer(customer, customerid);
-        return "customerInformation";//密码修改页面
+        return "redirect:customerInformation";//密码修改页面
     }
 
-    @PostMapping("customerInformationEdit")
-    public String customerInformationEdit(Model model, Customer customer, HttpServletRequest request) {
-        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
-        customerService.updateCustomer(customer, customerid);
-        return "customerInformation";
-    }
 
-    @RequestMapping("orderview")
+    @GetMapping("orderview")
     public String orderview(Model model, Customer customer, HttpServletRequest request) {
-        customer = customerService.findCustomerByRequest(request);//customer has the total data including id,name,password....
-        if (customer == null) {
-            model.addAttribute("msg", "0");
+        if (customerService.findCustomerByRequest(request) == null) {
+            Customer customer1=new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
         } else {
+
+            customer =customerService.findCustomerByRequest(request);
             model.addAttribute("customer", customer);
         }
         String customerid = customerService.findCustomerByRequest(request).getCustomerid();
@@ -135,7 +146,7 @@ public class CustomerController {
         return "orderview";//查看订单页面
     }
 
-    @RequestMapping("/roomlist")
+    @GetMapping("/roomlist")
     public String getRoomList(Model model,@RequestParam("hotelid") String hotelid) {
 
         model.addAttribute("rooms",customerService.selectRoomByHotelID(hotelid));

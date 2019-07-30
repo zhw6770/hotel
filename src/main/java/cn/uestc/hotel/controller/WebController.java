@@ -18,16 +18,18 @@ public class WebController {
 
     @RequestMapping("/")
     public String index(Model model, Customer customer) {
-        return "index";
+        return "redirect:index";
     }
 
 
     @GetMapping("/index")
     public String getIndexpage(Model model, Customer customer, HttpServletRequest request) {
-        customer = customerService.findCustomerByRequest(request);//customer has the total data including id,name,password....
-        if (customer == null) {
-            model.addAttribute("msg", "0");
+        if (customerService.findCustomerByRequest(request) == null) {
+            Customer customer1=new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
         } else {
+            customer =customerService.findCustomerByRequest(request);
             model.addAttribute("customer", customer);
         }
 
