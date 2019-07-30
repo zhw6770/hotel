@@ -40,8 +40,6 @@ public class CustomerController {
     }
 
 
-
-
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, Model model, Customer customer) {
         //使cookie无效
@@ -62,10 +60,9 @@ public class CustomerController {
     public String registerCustomer(Model model, Customer customer) {
         customer.setRoleid("2");
         customerService.insertCustomer(customer);
-       return "redirect:login";
+        return "redirect:login";
 
     }
-
 
 
     @PostMapping("/search")
@@ -77,26 +74,44 @@ public class CustomerController {
     }
 
     @GetMapping("search")
-    public String getSearchPage(Model model, Customer customer) {
+    public String getSearchPage(Model model, Customer customer, HttpServletRequest request) {
+        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        if (customer == null) {
+            model.addAttribute("msg", "0");
+        } else {
+            model.addAttribute("customer", customer);
+        }
 
         return "search";
     }
 
-    @RequestMapping("customer")
-    public String getCustomerPage(Model model,Customer customer) {
-
-        return "customer";//用户修改页面
+    @RequestMapping("customerInformation")
+    public String getCustomerPage(Model model, Customer customer, HttpServletRequest request) {
+        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        if (customer == null) {
+            model.addAttribute("msg", "0");
+        } else {
+            model.addAttribute("customer", customer);
+        }
+        return "customerInformation";//用户修改页面
     }
 
     @RequestMapping("customerinfoedit")
-    public String customerInfoEdit(Model model,Customer customer) {
+    public String customerInfoEdit(Model model, Customer customer) {
 
         return "customerinfoedit";//用户修改页面
     }
 
     @RequestMapping("orderview")
-    public String orderview(Model model,Customer customer) {
-
+    public String orderview(Model model, Customer customer, HttpServletRequest request) {
+        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        if (customer == null) {
+            model.addAttribute("msg", "0");
+        } else {
+            model.addAttribute("customer", customer);
+        }
+        String customerid = customerService.findCustomerByid(request).getCustomerid();
+        model.addAttribute("orderForms", customerService.selectOrderFormByCustomerID(customerid));
         return "orderview";//查看订单页面
     }
 

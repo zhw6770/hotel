@@ -45,14 +45,14 @@
 											<span class="icon-bar"></span>
 									  </button>
 									<div class="navbar-brand">
-										<h1><a href="/" ><i class="shadow">酒店预约</i></a></h1>
+										<h1><a href="/index" ><i class="shadow">酒店预约</i></a></h1>
 									</div>
 								</div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							  <ul class="nav navbar-nav">
-									<li class="active"><a href="/" class="shadow">主页 <span class="sr-only">(current)</span></a></li>
+									<li class="active"><a href="/index" class="shadow">主页 <span class="sr-only">(current)</span></a></li>
 									<li><a href="login" class="shadow">登录</a></li>
 									<li><a href="search" class="shadow">搜索</a></li>
 
@@ -62,8 +62,8 @@
                                     <li tclass="dropdown" th:if="${msg}!=0">
 									  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${customer.customername}" ><span class="caret"></span></a>
 										  <ul class="dropdown-menu">
-											  <li><a href="customer" >用户信息管理</a></li>
-										  <li><a href="/logout" >注销用户</a></li>
+											  <li><a href="customerInformation" >我的信息</a></li>
+										  <li><a href="/logout" >注销</a></li>
 									  </ul>
 								    </li>
 

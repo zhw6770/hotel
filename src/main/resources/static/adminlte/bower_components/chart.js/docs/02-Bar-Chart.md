@@ -53,10 +53,10 @@ These are the customisation options specific to Bar charts. These options are me
 
 ```javascript
 {
-	//Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+	order
 	scaleBeginAtZero : true,
 
-	//Boolean - Whether grid lines are shown across the chart
+	//Boolean - Whether gridorders are shown across the chart
 	scaleShowGridLines : true,
 
 	//String - Colour of the grid lines

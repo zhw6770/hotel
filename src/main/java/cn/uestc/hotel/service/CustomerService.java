@@ -1,11 +1,9 @@
 package cn.uestc.hotel.service;
 
-import cn.uestc.hotel.domain.Customer;
-import cn.uestc.hotel.domain.CustomerExample;
-import cn.uestc.hotel.domain.Hotel;
-import cn.uestc.hotel.domain.HotelExample;
+import cn.uestc.hotel.domain.*;
 import cn.uestc.hotel.mapper.CustomerMapper;
 import cn.uestc.hotel.mapper.HotelMapper;
+import cn.uestc.hotel.mapper.OrderFormMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +16,8 @@ public class CustomerService {
     private CustomerMapper customerMapper;
     @Autowired
     private HotelMapper hotelMapper;
+    @Autowired
+    private OrderFormMapper orderFormMapper;
 
     public Customer checkCustomer(Customer customer) {
         CustomerExample ex = new CustomerExample();
@@ -37,11 +37,9 @@ public class CustomerService {
         customerMapper.deleteByPrimaryKey(customerid);
         return true;
     }
-
     public List<Customer> findAll() {
         return customerMapper.findAll();
     }
-
     public List<Hotel> search(String word) {
         HotelExample ex = new HotelExample();
         HotelExample.Criteria criteria1 = ex.createCriteria();
@@ -69,5 +67,11 @@ public class CustomerService {
            return false;
        }
     }
+    public List<OrderForm> selectOrderFormByCustomerID(String customerID){
+        OrderFormExample ex=new OrderFormExample();
+        ex.createCriteria().andCustomeridEqualTo(customerID);
+        return orderFormMapper.selectByExample(ex);
+    }
 
 }
+
