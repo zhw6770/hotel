@@ -110,10 +110,10 @@ public class CustomerController {
         return "customerInformationEdit";//用户修改页面
     }
 
-    @GetMapping("createOrder")
+    @GetMapping("orderCreate")
     public String getCreateOrder(Model model, Customer customer, Room room ,Hotel hotel) {
 
-        return "createOrder";//用户修改页面
+        return "orderCreate";//用户修改页面
     }
 
     @PostMapping("customerInformationEdit")
