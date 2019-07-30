@@ -28,13 +28,20 @@ public class AdminController {
     public String getHotelListPage(Model model) {
 
         model.addAttribute("hotels", customerService.hotelList());
-        return "hotellsit";
+        return "hotellist";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/deleteCustomer")
+    @ResponseBody
+    public Boolean deleteCustomer(@RequestParam("id") String id) {
+        customerService.deleteCustomerByid(id);
+        return true;
+    }
+
+    @GetMapping("/deleteHotel")
     @ResponseBody
     public Boolean deleteUser(@RequestParam("id") String id) {
-        customerService.deleteCustomerByid(id);
+        customerService.deleteHotelByid(id);
         return true;
     }
 
