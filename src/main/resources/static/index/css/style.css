@@ -206,10 +206,10 @@ body{
 
 .room{
     background:url(../images/geijin.jpg) no-repeat 0px 0px;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.5;
+    filter:alpha(opacity=70);
+    -moz-opacity:1.0;
     -khtml-opacity: 0.5;
-    opacity: 0.5;
+    opacity: 1.0;
     background-size:cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -218,14 +218,21 @@ body{
     min-height:1080px;
     padding-bottom: 1em;
 }
-.feedback-btn a {
-    background:#fb7299;
-    border:1px solid #fb7299;
-    color:#fff;
-    box-shadow:0 6px 10px 0 rgba(251,114,153,.4);
-    border-radius:2px;
+.feedback-btn img{
+    width:36px;
+    margin-left:6px;
+    position:relative;
+    top:6px;
     vertical-align:baseline}
-.guide .feedback-btn a:hover{background:#ff85ad}
+.feedback-btn a{
+    background:#fb7299;
+    border:1px solid #fb7299;color:#fff;
+    box-shadow:0 6px 10px 0 rgba(251,114,153,.4);
+    border-radius:4px;
+    vertical-align:baseline}
+.feedback-btn a:hover{
+    background:#ff85ad}
+
 .header{
 	background:url(../images/banner1.jpg) no-repeat 0px 0px;
 	background-size:cover;
