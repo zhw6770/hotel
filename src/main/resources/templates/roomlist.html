@@ -50,6 +50,7 @@
                     <tr role="row">
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="width: 217px;">Number</th>
                         <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" style="width: 266.6px;" aria-sort="ascending">Type</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">DailyPrice</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">Breakfast</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">Order</th>
                     </tr>
@@ -58,6 +59,7 @@
                     <tr th:each="room: ${rooms}">
                         <td th:text="${room.roomid}"></td>
                         <td th:text="${room.type}"></td>
+                        <td th:text="${room.dailyprice}"></td>
                         <td th:text="${room.breakfast}"></td>
                         <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="orderCreate.html" target="_blank"><br>点我预订</a></div></td>
                     </tr>
@@ -66,6 +68,7 @@
                     <tr>
                         <th rowspan="1" colspan="1">房间号</th>
                         <th rowspan="1" colspan="1">房间类型</th>
+                        <th rowspan="1" colspan="1">当日房价</th>
                         <th rowspan="1" colspan="1">早饭</th>
                         <th rowspan="1" colspan="1">创建订单</th>
                     </tr>
