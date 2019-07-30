@@ -102,10 +102,17 @@ public class CustomerController {
         return "customerInformationEdit";//用户修改页面
     }
 
-    @GetMapping("passportchange")
+    @GetMapping("customerPasswordEdit")
     public String getCustomerPassportEdit(Model model, Customer customer) {
 
-        return "customerPassportEdit";//密码修改页面
+        return "customerPasswordEdit";//密码修改页面
+    }
+
+    @PostMapping("customerPasswordEdit")
+    public String ChangePassword(Model model, Customer customer, HttpServletRequest request) {
+        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
+        customerService.updateCustomer(customer, customerid);
+        return "customerInformation";//密码修改页面
     }
 
     @PostMapping("customerInformationEdit")
