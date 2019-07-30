@@ -34,10 +34,7 @@ public class WebController {
         return "index";
     }
 
-    @RequestMapping("/roomlist")
-    public String sindex(Model model, Customer customer) {
-        return "roomlist";
-    }
+
 
 
 }

@@ -128,5 +128,11 @@ public class CustomerController {
         return "orderview";//查看订单页面
     }
 
+    @RequestMapping("/roomlist")
+    public String getRoomList(Model model) {
+
+        model.addAttribute("rooms",customerService.selectRoomByHotelID("1297"));
+        return "roomlist";
+    }
 
 }
