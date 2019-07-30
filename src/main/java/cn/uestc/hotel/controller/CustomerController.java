@@ -104,6 +104,12 @@ public class CustomerController {
 
     @RequestMapping("orderview")
     public String orderview(Model model, Customer customer, HttpServletRequest request) {
+        customer = customerService.findCustomerByid(request);//customer has the total data including id,name,password....
+        if (customer == null) {
+            model.addAttribute("msg", "0");
+        } else {
+            model.addAttribute("customer", customer);
+        }
         String customerid = customerService.findCustomerByid(request).getCustomerid();
         model.addAttribute("orderForms", customerService.selectOrderFormByCustomerID(customerid));
         return "orderview";//查看订单页面
