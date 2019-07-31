@@ -103,19 +103,21 @@ public class CustomerController {
     }
 
     @GetMapping("orderCreate")
-    public String getCreateOrder(Model model,@RequestParam("hotelid") String hotelid,@RequestParam("roomid") String roomid) {
-       OrderForm orderform=new OrderForm();
+    public String getCreateOrder(Model model, @RequestParam("hotelid") String hotelid, @RequestParam("roomid") String roomid) {
+        OrderForm orderform = new OrderForm();
         orderform.setHotelid(hotelid);
         orderform.setRoomid(roomid);
-        model.addAttribute("orderform",orderform);
+
+        model.addAttribute("orderform", orderform);
+
         return "orderCreate";//用户修改页面
     }
 
     @PostMapping("orderCreate")
-    public String createOrder(Model model,@ModelAttribute OrderForm orderform,@ModelAttribute String test) {
+    public String createOrder(Model model, @ModelAttribute OrderForm orderform, @ModelAttribute String arrivetime) {
         System.out.println(orderform.getHotelid());
         System.out.println(orderform.getLefttime());
-        return "search";//用户修改页面
+        return "redirect:index";//用户修改页面
     }
 
     @GetMapping("customerInformationEdit")

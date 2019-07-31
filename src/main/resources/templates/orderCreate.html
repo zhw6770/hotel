@@ -111,12 +111,12 @@
 		</div>
 
 
-		<form th:action ="@{/orderCreate}"class="am-form" id="doc-vld-msg" method="post">
+		<form th:action ="@{/orderCreate}"class="am-form" id="doc-vld-msg" method="post" th:object="${orderform}">
 			<div id="checkinout">
 				<div id="firstSelect" style="width:100%;">
 					<div class="Date_lr" style="float:left;">
 						<P>入住</p>
-						<input id="startDate" type="text" value=""style=""   th:field="${orderform.arrivetime}" readonly>
+						<input id="startDate" type="text" value="" style=""   th:field="${orderform.arrivetime}" readonly>
 					</div>
 					<div class="Date_lr" style="float:right;">
 						<p>离店</p>

@@ -31,13 +31,13 @@ public class CustomerService {
     }
 
     public Customer findCustomerByRequest(HttpServletRequest request) {
-        try{
+        try {
             if (customerMapper.selectByPrimaryKey(request.getSession().getAttribute("customerid").toString()) != null) {
                 return customerMapper.selectByPrimaryKey(request.getSession().getAttribute("customerid").toString());
             } else {
                 return null;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
 
@@ -54,10 +54,14 @@ public class CustomerService {
         customerMapper.deleteByPrimaryKey(customerid);
         return true;
     }
+
     public List<Customer> findAll() {
         return customerMapper.findAll();
     }
-    public List<Hotel> hotelList(){return hotelMapper.hotelList();}
+
+    public List<Hotel> hotelList() {
+        return hotelMapper.hotelList();
+    }
 
     public List<Hotel> search(String word) {
         HotelExample ex = new HotelExample();
