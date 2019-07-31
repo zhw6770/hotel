@@ -109,24 +109,25 @@
 
 			<p style="font-size: 15px">· 一诺千金，确保您入住无忧</p>
 		</div>
-		<div id="checkinout">
-			<div id="firstSelect" style="width:100%;">
-				<div class="Date_lr" style="float:left;">
-					<P>入住</p>
-					<input id="startDate" type="text" value=""style="" readonly>
-				</div>
-				<div class="Date_lr" style="float:right;">
-					<p>离店</p>
-					<input id="endDate" type="text" value="" style="" readonly>
-				</div>
-				<span class="span21">共<span class="NumDate">1</span>晚</span>
-			</div>
-		</div>
-		<div class="mask_calendar">
-			<div class="calendar"></div>
-		</div>
 
-		<form th:action ="@{/index(day=${NumDate})}"class="am-form" id="doc-vld-msg">
+
+		<form th:action ="@{/orderCreate}"class="am-form" id="doc-vld-msg" method="post">
+			<div id="checkinout">
+				<div id="firstSelect" style="width:100%;">
+					<div class="Date_lr" style="float:left;">
+						<P>入住</p>
+						<input id="startDate" type="text" value=""style=""   th:field="${orderform.arrivetime}" readonly>
+					</div>
+					<div class="Date_lr" style="float:right;">
+						<p>离店</p>
+						<input id="endDate" type="date" value="" style=""  th:field="${orderform.lefttime}" readonly>
+					</div>
+					<span class="span21">共<span class="NumDate">1</span>晚</span>
+				</div>
+			</div>
+			<div class="mask_calendar">
+				<div class="calendar"></div>
+			</div>
 			<div class="tr_rechbox">
 				<div class="tr_rechnum">
 					<span style="font-size: 15px">应付金额：</span>

@@ -112,8 +112,7 @@ public class CustomerController {
     }
 
     @PostMapping("orderCreate")
-    public String createOrder(Model model,@ModelAttribute OrderForm orderform) {
-        System.out.println("test");
+    public String createOrder(Model model,@ModelAttribute OrderForm orderform,@ModelAttribute String test) {
         System.out.println(orderform.getHotelid());
         System.out.println(orderform.getLefttime());
         return "search";//用户修改页面
