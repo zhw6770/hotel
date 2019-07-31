@@ -67,10 +67,10 @@ public class CustomerService {
         criteria2.andAddressLike("%" + word + "%");
         ex.or(criteria2);
         HotelExample.Criteria criteria3 = ex.createCriteria();
-        criteria2.andCityLike("%" + word + "%");
+        criteria3.andCityLike("%" + word + "%");
         ex.or(criteria3);
         HotelExample.Criteria criteria4 = ex.createCriteria();
-        criteria2.andCountryLike("%" + word + "%");
+        criteria4.andCountryLike("%" + word + "%");
         ex.or(criteria4);
 
 
