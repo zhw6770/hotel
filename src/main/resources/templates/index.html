@@ -118,11 +118,15 @@
             <br>
             <tr>
                 <th>入住时间</th>
-                <input type="date">
+                <input type="date" id="avtime">
             </tr>
+            <script>
+                var atime=document.getElementById(avtime).value;
+                alert(atime);
+            </script>
             <tr>
                 <th>离开时间</th>
-                <input type="date">
+                <input type="date" >
             </tr>
             <br>
             <br>
@@ -132,11 +136,11 @@
                     <ul>
                         <li>
                             <h5>成年人人数</h5>
-                            <input type="number">
+                            <input type="number" min="0">
                         </li>
                         <li>
                             <h5>儿童人数</h5>
-                            <input type="number">
+                            <input type="number" min="0">
                         </li>
                     </ul>
                 </td>
