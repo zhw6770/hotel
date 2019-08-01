@@ -52,6 +52,8 @@
                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" style="width: 266.6px;" aria-sort="ascending">Address</th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">Country</th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">City</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">Picture</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">ManageRoom</th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">Delete</th>
                         </tr>
                         </thead>
@@ -61,6 +63,8 @@
                             <td th:text="${hotel.address}"></td>
                             <td th:text="${hotel.country}"></td>
                             <td th:text="${hotel.city}"></td>
+                            <td> <div class="feedback-btn"><a th:href="${hotel.address}" target="_blank">添加图片</a></div></td>
+                            <td> <div class="feedback-btn"><a th:href="@{/roomlist(hotelid=${hotel.hotelid})}" target="_blank">管理房间</a></div></td>
                             <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/deleteHotel(id=${hotel.hotelid})}" target="_blank"><br>点我删除</a></div></td>
                         </tr>
                         </tbody>
@@ -70,6 +74,8 @@
                             <th rowspan="1" colspan="1">酒店地址</th>
                             <th rowspan="1" colspan="1">所在国家</th>
                             <th rowspan="1" colspan="1">所在城市</th>
+                            <th rowspan="1" colspan="1">添加图片</th>
+                            <th rowspan="1" colspan="1">管理房间</th>
                             <th rowspan="1" colspan="1">移除酒店</th>
                         </tr>
                         </tfoot>

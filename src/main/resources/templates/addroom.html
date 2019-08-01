@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户注册</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" th:href="@{/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/adminlte/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" th:href="@{/adminlte/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/adminlte/dist/css/adminlte.min.css}">
+    <!-- iCheck -->
+    <link rel="stylesheet" th:href="@{/adminlte/plugins/iCheck/square/blue.css}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/adminlte/html5shiv.min.js}"></script>
+    <script th:src="@{/adminlte/respond.min.js}"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet" th:href="@{/adminlte/font.css}">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a><b>添加房间</b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">请输入房间基本信息</p>
+
+        <form action="addroom" method="post" th:object="${room}">
+            <div class="form-group has-feedback">
+                <label class="col-md-4">缩略图</label>
+                <input id="icon" class="form-control" type="file" accept="image/x-png,image/gif,image/jpeg" th:field="*{Pic}" placeholder="选择文件">
+            </div>
+
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" th:field="*{Type}" placeholder="房间类型" >
+            </div>
+
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control"  th:field="*{DailyPrice}" placeholder="房间日价">
+            </div>
+
+
+
+
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">添加</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+
+        <!-- /.social-auth-links -->
+
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 3 -->
+<script th:src="@{/adminlte/bower_components/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script th:src="@{/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!-- iCheck -->
+<script th:src="@{/adminlte/plugins/iCheck/icheck.min.js}"></script>
+<script>
+
+    // bind change event to select
+    $('#dynamic_select').on('change', function () {
+        var url = $(this).val(); // get selected value
+        if (url) { // require a URL
+            window.location = url; // redirect
+        }
+        return false;
+    });
+
+
+    /////////////////////////////////////////patient info edit
+    $("#uploadweb").on('click',function(){
+        var file_icon = $("#icon").prop("files")[0];
+        var file_web = $("#webp").prop("files")[0];
+        // alert(file_web);
+        //      console.log(file_icon);
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        var form_data = new FormData();
+        form_data.append("file", file_web);
+        form_data.append("fileicon", file_icon);
+        form_data.append("info", $("#info").val());
+        form_data.append("lesson", 1);
+        form_data.append("type",3);
+        // form_data.append("owner", 65);
+        //  alert(form_data);
+        var requestp= "../gupload/"+1;
+        $.ajax({
+            url: requestp,
+            //  dataType: 'script' ,    //改为 dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token); },
+            success: function(){
+
+                alert("works");
+            }
+        });
+    });
+
+
+</script>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' /* optional */
+        });
+    });
+</script>
+</body>
+</html>
