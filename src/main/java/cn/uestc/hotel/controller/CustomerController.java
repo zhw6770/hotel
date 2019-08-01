@@ -3,6 +3,7 @@ package cn.uestc.hotel.controller;
 import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.domain.Hotel;
 import cn.uestc.hotel.domain.OrderForm;
+import cn.uestc.hotel.domain.Room;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,21 +64,6 @@ public class CustomerController {
     }
 
 
-    @GetMapping("customerInformation")
-    public String getCustomerPage(Model model, Customer customer, HttpServletRequest request) {
-        if (customerService.findCustomerByRequest(request) == null) {
-            Customer customer1 = new Customer();
-            customer1.setCustomername("登录");
-            model.addAttribute("customer", customer1);
-        } else {
-
-            customer = customerService.findCustomerByRequest(request);
-            model.addAttribute("customer", customer);
-        }
-        return "customerInformation";//用户修改页面
-    }
-
-
     @GetMapping("customerInformationEdit")
     public String getCustomerInformationEdit(Model model, Customer customer) {
 
@@ -88,7 +74,7 @@ public class CustomerController {
     public String customerInformationEdit(Model model, Customer customer, HttpServletRequest request) {
         String customerid = customerService.findCustomerByRequest(request).getCustomerid();
         customerService.updateCustomer(customer, customerid);
-        return "redirect:customerInformation";
+        return "redirect:index";
     }
 
     @GetMapping("customerPasswordEdit")
@@ -101,9 +87,8 @@ public class CustomerController {
     public String ChangePassword(Model model, Customer customer, HttpServletRequest request) {
         String customerid = customerService.findCustomerByRequest(request).getCustomerid();
         customerService.updateCustomer(customer, customerid);
-        return "redirect:customerInformation";
+        return "redirect:index";
     }
-
 
     @GetMapping("orderview")
     public String orderview(Model model, Customer customer, HttpServletRequest request) {
@@ -121,41 +106,44 @@ public class CustomerController {
         return "orderview";//查看订单页面
     }
 
-    @GetMapping("/roomlist")
-    public String getRoomList(Model model, @RequestParam("hotelid") String hotelid) {
-
-//        model.addAttribute("rooms", customerService.selectRoomByHotelID(hotelid));
-//        model.addAttribute("hotelid", hotelid);
-        return "roomlist";
-    }
-
-
-    @GetMapping("orderCreate")
-    public String getCreateOrder(Model model, @RequestParam("hotelid") String hotelid, @RequestParam("roomid") String roomid) {
-        OrderForm orderform = new OrderForm();
-        orderform.setHotelid(hotelid);
-
-
-        model.addAttribute("orderform", orderform);
-
-        return "orderCreate";//用户修改页面
-    }
-
-    @PostMapping("orderCreate")
-    public String createOrder(Model model, @ModelAttribute OrderForm orderform, @ModelAttribute String arrivetime) {
-        System.out.println(orderform.getHotelid());
-        System.out.println(orderform.getLefttime());
-        return "redirect:index";//用户修改页面
-    }
 
 
 
-    @PostMapping("/search")
-    public String searchhotel(@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where) {
-        List<Hotel> hotels = customerService.searchHotelByConditions(word,where,hotelclass);
+
+
+
+
+
+
+
+
+
+    @PostMapping("searchResult")
+    public String searchHotel(@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where) {
+        List<Hotel> hotels = customerService.searchHotelByConditions(word, where, hotelclass);
         model.addAttribute("hotels", hotels);
         return "searchResult";
 
     }
+
+//@GetMapping("/roomshow")
+//public String searchRoom(){
+//
+//}
+
+
+    @GetMapping("/pay")
+    public String getOrderRoom(Model model, @RequestParam("hotelid") String hotelid, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("num") String num, String type) {
+        List<Room> rooms = customerService.searchRoomByCondition(hotelid, arrivetime, lefttime, num, type);
+        if (rooms != null) {
+            System.out.println("预定成功");
+
+        } else {
+            System.out.println("fail");
+        }
+        return "roomlist";
+    }
+
+
 
 }

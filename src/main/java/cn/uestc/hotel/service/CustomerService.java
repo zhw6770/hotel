@@ -63,44 +63,10 @@ public class CustomerService {
         return hotelMapper.hotelList();
     }
 
-    public List<Hotel> searchHotelByConditions(String word, String where, String hotelclass) {
-        HotelExample ex = new HotelExample();
-        if(hotelclass.equals("0")){
-
-            HotelExample.Criteria criteria1 = ex.createCriteria();
-            criteria1.andHotelnameLike("%" + word + "%").andCityLike("%"+where+"%");
-            HotelExample.Criteria criteria2 = ex.createCriteria();
-            criteria2.andAddressLike("%" + word + "%").andCityLike("%"+where+"%");
-            ex.or(criteria2);
-            HotelExample.Criteria criteria3 = ex.createCriteria();
-            criteria3.andCountryLike("%" + word + "%").andCityLike("%"+where+"%");
-            ex.or(criteria3);
-
-        }
-        else{
-
-            HotelExample.Criteria criteria1 = ex.createCriteria();
-            criteria1.andHotelnameLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%"+where+"%");
-            HotelExample.Criteria criteria2 = ex.createCriteria();
-            criteria2.andAddressLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%"+where+"%");
-            ex.or(criteria2);
-            HotelExample.Criteria criteria3 = ex.createCriteria();
-            criteria3.andCountryLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%"+where+"%");
-            ex.or(criteria3);
-
-        }
-
-
-
-
-        if (hotelMapper.selectByExample(ex) != null) {
-            return hotelMapper.selectByExample(ex);
-        } else {
-            return null;
-        }
-
-
-
+    public Boolean updateCustomer(Customer customer, String customerid) {
+        customer.setCustomerid(customerid);
+        customerMapper.updateByPrimaryKeySelective(customer);
+        return true;
     }
 
     public Boolean insertCustomer(Customer customer) {
@@ -118,16 +84,61 @@ public class CustomerService {
         return orderFormMapper.selectByExample(ex);
     }
 
-    public List<Room> selectByConditions(String where,String word) {
-        RoomExample ex = new RoomExample();
+    public List<Hotel> searchHotelByConditions(String word, String where, String hotelclass) {
+        HotelExample ex = new HotelExample();
+        if (hotelclass.equals("0")) {
 
-        return roomMapper.selectByExample(ex);
+            HotelExample.Criteria criteria1 = ex.createCriteria();
+            criteria1.andHotelnameLike("%" + word + "%").andCityLike("%" + where + "%");
+            HotelExample.Criteria criteria2 = ex.createCriteria();
+            criteria2.andAddressLike("%" + word + "%").andCityLike("%" + where + "%");
+            ex.or(criteria2);
+            HotelExample.Criteria criteria3 = ex.createCriteria();
+            criteria3.andCountryLike("%" + word + "%").andCityLike("%" + where + "%");
+            ex.or(criteria3);
+
+        } else {
+
+            HotelExample.Criteria criteria1 = ex.createCriteria();
+            criteria1.andHotelnameLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%");
+            HotelExample.Criteria criteria2 = ex.createCriteria();
+            criteria2.andAddressLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%");
+            ex.or(criteria2);
+            HotelExample.Criteria criteria3 = ex.createCriteria();
+            criteria3.andCountryLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%");
+            ex.or(criteria3);
+
+        }
+
+
+        if (hotelMapper.selectByExample(ex) != null) {
+            return hotelMapper.selectByExample(ex);
+        } else {
+            return null;
+        }
+
+
+    }
+    public List<Hotel> searchRoomTypeByHotelid(String hotelid){
+        HotelExample ex=new HotelExample();
+        ex.createCriteria().andHotelidEqualTo(hotelid);
+        return hotelMapper.selectByExample(ex);
     }
 
-    public Boolean updateCustomer(Customer customer, String customerid) {
-        customer.setCustomerid(customerid);
-        customerMapper.updateByPrimaryKeySelective(customer);
-        return true;
+    public List<Room> searchRoomByCondition(String hotelid, String arrivetime, String lefttime, String num,String type) {
+        RoomExample ex = new RoomExample();
+        int number=Integer.valueOf(num);
+        ex.createCriteria().andHotelidEqualTo(hotelid).andEndtimeLessThan(arrivetime).andTypeEqualTo(type);
+        List<Room> rooms=roomMapper.selectByExample(ex);
+        if ( rooms.size()<number){
+            return null;
+        }
+        else{
+            for(int i=0;i<number;i++){
+                rooms.get(i).setEndtime(lefttime);
+            }
+            return rooms.subList(0,number);
+        }
     }
 
 

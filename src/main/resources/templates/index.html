@@ -80,7 +80,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="index" class="shadow">主页 <span class="sr-only">(current)</span></a>
                             </li>
-                            <li><a href="hotelList">我的订单</a></li>
+                            <li><a href="orderview">我的订单</a></li>
                             <li><a href="customerList" th:if=" ${customer.roleid} =='1'">用户管理</a></li>
                             <li><a href="hotelList" th:if=" ${customer.roleid} =='1'">酒店管理</a></li>
                             <li><a href="register" class="shadow" th:if=" ${customer.customername} =='登录'">注册</a></li>
@@ -89,10 +89,11 @@
                                    aria-haspopup="true" aria-expanded="false" th:text="${customer.customername}"><span
                                         class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="customerInformation" th:if=" ${customer.customername} !='登录'">我的信息</a>
+                                    <li><a href="customerInformationEdit" th:if=" ${customer.customername} !='登录'">信息修改</a>
                                     </li>
 
                                     <li><a href="login" th:if=" ${customer.customername} =='登录'">登录</a></li>
+                                    <li><a href="customerPasswordEdit" th:if=" ${customer.customername} !='登录'">密码修改</a></li>
                                     <li><a href="/logout" th:if=" ${customer.customername} !='登录'">注销</a></li>
                                 </ul>
                             </li>
@@ -105,7 +106,7 @@
             </nav>
 
         </div>
-        <form action="search" method="post" th:object="${orderform}">
+        <form action="searchResult" method="post" th:object="${orderform}">
             <div id="searchbox">
                 <br>
                 <br>
