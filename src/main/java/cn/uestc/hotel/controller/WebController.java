@@ -1,6 +1,7 @@
 package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
+import cn.uestc.hotel.domain.OrderForm;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,16 +24,16 @@ public class WebController {
 
 
     @GetMapping("/index")
-    public String getIndexpage(Model model, Customer customer, HttpServletRequest request) {
+    public String getIndexpage(Model model, Customer customer, HttpServletRequest request, OrderForm orderform) {
         if (customerService.findCustomerByRequest(request) == null) {
-            Customer customer1=new Customer();
+            Customer customer1 = new Customer();
             customer1.setCustomername("登录");
             model.addAttribute("customer", customer1);
         } else {
-            customer =customerService.findCustomerByRequest(request);
+            customer = customerService.findCustomerByRequest(request);
             model.addAttribute("customer", customer);
         }
-
+        model.addAttribute("orderform", orderform);
         return "index";
     }
 
@@ -40,7 +41,6 @@ public class WebController {
     public String dr() {
         return "orderCreate";
     }
-
 
 
 }

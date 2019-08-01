@@ -106,7 +106,7 @@ public class CustomerController {
     public String getCreateOrder(Model model, @RequestParam("hotelid") String hotelid, @RequestParam("roomid") String roomid) {
         OrderForm orderform = new OrderForm();
         orderform.setHotelid(hotelid);
-        orderform.setRoomid(roomid);
+
 
         model.addAttribute("orderform", orderform);
 
