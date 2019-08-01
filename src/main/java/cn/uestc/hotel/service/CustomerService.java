@@ -63,19 +63,34 @@ public class CustomerService {
         return hotelMapper.hotelList();
     }
 
-    public List<Hotel> search(String word) {
+    public List<Hotel> searchHotelByConditions(String word, String where, String hotelclass) {
         HotelExample ex = new HotelExample();
-        HotelExample.Criteria criteria1 = ex.createCriteria();
-        criteria1.andHotelnameLike("%" + word + "%");
-        HotelExample.Criteria criteria2 = ex.createCriteria();
-        criteria2.andAddressLike("%" + word + "%");
-        ex.or(criteria2);
-        HotelExample.Criteria criteria3 = ex.createCriteria();
-        criteria3.andCityLike("%" + word + "%");
-        ex.or(criteria3);
-        HotelExample.Criteria criteria4 = ex.createCriteria();
-        criteria4.andCountryLike("%" + word + "%");
-        ex.or(criteria4);
+        if(hotelclass.equals("0")){
+
+            HotelExample.Criteria criteria1 = ex.createCriteria();
+            criteria1.andHotelnameLike("%" + word + "%").andCityLike("%"+where+"%");
+            HotelExample.Criteria criteria2 = ex.createCriteria();
+            criteria2.andAddressLike("%" + word + "%").andCityLike("%"+where+"%");
+            ex.or(criteria2);
+            HotelExample.Criteria criteria3 = ex.createCriteria();
+            criteria3.andCountryLike("%" + word + "%").andCityLike("%"+where+"%");
+            ex.or(criteria3);
+
+        }
+        else{
+
+            HotelExample.Criteria criteria1 = ex.createCriteria();
+            criteria1.andHotelnameLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%"+where+"%");
+            HotelExample.Criteria criteria2 = ex.createCriteria();
+            criteria2.andAddressLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%"+where+"%");
+            ex.or(criteria2);
+            HotelExample.Criteria criteria3 = ex.createCriteria();
+            criteria3.andCountryLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%"+where+"%");
+            ex.or(criteria3);
+
+        }
+
+
 
 
         if (hotelMapper.selectByExample(ex) != null) {
@@ -83,6 +98,7 @@ public class CustomerService {
         } else {
             return null;
         }
+
 
 
     }
@@ -102,9 +118,9 @@ public class CustomerService {
         return orderFormMapper.selectByExample(ex);
     }
 
-    public List<Room> selectRoomByHotelID(String hotelid) {
+    public List<Room> selectByConditions(String where,String word) {
         RoomExample ex = new RoomExample();
-        ex.createCriteria().andHotelidEqualTo(hotelid);
+
         return roomMapper.selectByExample(ex);
     }
 
