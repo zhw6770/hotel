@@ -107,7 +107,7 @@
                     <th class="e_h1">邮编</th>
                 </tr>
                 <tr th:each="hotel: ${hotels}">
-                    <td><div class="picture"><img th:src="@{/index/images/g1.jpg}" alt=""><br><a th:href ="@{/roomlist(hotelid=${hotel.hotelid})}" class="shadow"th:text="${hotel.hotelname}"></a></div></td>
+                    <td><div class="picture"><img th:src="@{/index/images/g1.jpg}" alt=""><br><a th:href ="@{/hotelInformation(hotelid=${hotel.hotelid})}" class="shadow"th:text="${hotel.hotelname}"></a></div></td>
                     <td class="e_h1" th:text="${hotel.hotelclass}">星级</td>
                     <td class="e_h1" th:text="${hotel.numroom}"></td>
                     <td class="e_h1" th:text="${hotel.address}"></td>

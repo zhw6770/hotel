@@ -163,6 +163,9 @@
                             var NumDate = $('.lidian_hover').text().replace(/[^0-9]/ig,"");
                             $('.NumDate').text(NumDate);
 
+                            var Price = NumDate * 180;
+                            $('.Price').text(Price);
+
                             var st = $('#startDate').val();
                             var en = $('#endDate').val();
                             //如果入住没值

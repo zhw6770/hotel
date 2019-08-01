@@ -2,7 +2,6 @@ package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.domain.Hotel;
-import cn.uestc.hotel.domain.OrderForm;
 import cn.uestc.hotel.domain.Room;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,9 +140,15 @@ public class CustomerController {
         } else {
             System.out.println("fail");
         }
-        return "roomlist";
+        return "hotelInformation";
     }
 
 
+
+    @GetMapping("hotelInformation")
+    public String getroomInformation(Model model,@RequestParam("hotelid") String hotelid) {
+
+        return "hotelInformation";//密码修改页面
+    }
 
 }
