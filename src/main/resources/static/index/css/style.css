@@ -212,7 +212,7 @@ body{
 }
 
 .room{
-    background:url(../images/geijin.jpg) no-repeat 0px 0px;
+    /*background:url(../images/geijin.jpg) no-repeat 0px 0px;*/
     filter:alpha(opacity=100);
     -moz-opacity:1;
     -khtml-opacity: 1;

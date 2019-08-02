@@ -108,12 +108,12 @@
                 </tr>
                 <tr th:each="hotel: ${hotels}">
                     <td><div class="picture"><img th:src="@{/index/images/g1.jpg}" alt=""><br><a th:href ="@{/hotelInformation(hotelid=${hotel.hotelid})}" class="shadow"th:text="${hotel.hotelname}"></a></div></td>
-                    <td class="e_h1" th:text="${hotel.hotelclass}">星级</td>
-                    <td class="e_h1" th:text="${hotel.numroom}"></td>
-                    <td class="e_h1" th:text="${hotel.address}"></td>
-                    <td class="e_h1" th:text="${hotel.city}"></td>
-                    <td class="e_h1" th:text="${hotel.url}"></td>
-                    <td class="e_h1" th:text="${hotel.zipcode}"></td>
+                    <td class="e_h1" th:text="${hotel.hotelclass}" style="vertical-align: middle">星级</td>
+                    <td class="e_h1" th:text="${hotel.numroom}" style="vertical-align: middle"></td>
+                    <td class="e_h1" th:text="${hotel.address}" style="vertical-align: middle"></td>
+                    <td class="e_h1" th:text="${hotel.city}" style="vertical-align: middle"></td>
+                    <td class="e_h1" th:text="${hotel.url}" style="vertical-align: middle"></td>
+                    <td class="e_h1" th:text="${hotel.zipcode}" style="vertical-align: middle"></td>
                 </tr>
 
                 </tbody>
