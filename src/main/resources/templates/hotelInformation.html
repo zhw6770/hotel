@@ -51,22 +51,22 @@
     </style>
 </head>
 <body>
-<!--<div>-->
-    <!--<div>-->
-        <!--<h2 style="color: #0b58a2" th:text="${hotel.HotelName}"></h2>-->
-        <!--<span th:text="${hotel.EnglishName}"></span>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--<span th:text="'国家旅游局评定为'+${hotel.HotelClass}"+'星级'></span>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--<span th:text="${hotel.Country}"></span>-->
-        <!--<span th:text="${hotel.City}"></span>-->
-        <!--<span th:text="${hotel.Address}"></span>-->
-        <!--<span style="color: #666666">邮政编码</span>-->
-        <!--<span th:text="${hotel.Zipcode}"></span>-->
-    <!--</div>-->
-<!--</div>-->
+<div>
+    <div>
+        <h1 style="color: #0b58a2" th:text="${hotel.hotelname}"></h1>
+        <h4 th:text="${hotel.englishname}"></h4>
+    </div>
+    <div>
+        <span th:text="'国家旅游局评定为'+${hotel.hotelclass}+'星级'"></span>
+    </div>
+    <div>
+        <span th:text="${hotel.country}"style="color: #222222"></span>
+        <span th:text="${hotel.city}"style="color: #444444"></span>
+        <span th:text="${hotel.address}" style="color: #666666"></span><br>
+        <span style="color: #444444">邮政编码</span>
+        <span th:text="${hotel.zipcode}" style="color: #666666"></span>
+    </div>
+</div>
 <div class="room">
 <div class="box">
     <div class="box-header">
@@ -87,19 +87,37 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr >
+                    <tr th:if=" ${hotel.roomtype1} !=null">
                         <td></td><!--img-->
                         <!--<td th:text="${room.roomid}"></td>-->
-                        <td th:text="${hotel.roomtype1}" ></td>
-                        <td th:text="${hotel.roomtype2}" th:if=" ${hotel.roomtype2} !=null"></td>
-                        <td th:text="${hotel.roomtype3}" th:if=" ${hotel.roomtype3} !=null"></td>
-                        <td th:text="${hotel.roomtype4}" th:if=" ${hotel.roomtype4} !=null"></td>
-                        <td th:text="${hotel.roomtype5}" th:if=" ${hotel.roomtype5} !=null"></td>
+                        <td th:text="${hotel.roomtype1}"></td>
+                        <td style="color: #fd6601;font-size:15px">￥180</td>
+                        <td>1份早餐</td>
+                    </tr>
+                    <tr th:if=" ${hotel.roomtype2} !=null">
+                        <td></td><!--img-->
+                        <td th:text="${hotel.roomtype2}"></td>
+                        <td style="color: #fd6601;;font-size:15px">￥200</td>
+                        <td>2份早餐</td>
+                    </tr>
+                    <tr th:if=" ${hotel.roomtype3} !=null">
+                        <td></td><!--img-->
+                        <td th:text="${hotel.roomtype3}"></td>
+                        <td style="color: #fd6601;;font-size:15px">￥380</td>
+                    </tr>
+                    <tr th:if=" ${hotel.roomtype4} !=null">
+                        <td></td><!--img-->
+                        <td th:text="${hotel.roomtype4}"></td>
+                    </tr>
+                    <tr th:if=" ${hotel.roomtype5} !=null">
+                        <td></td><!--img-->
+                        <td th:text="${hotel.roomtype5}"></td>
+                    </tr>
 
                         <!--<td th:text="'￥'+${room.dailyprice}"></td>-->
                         <!--<td th:text="${room.breakfast}"></td>-->
                         <!--<td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderCreate(hotelid=${hotelid},roomid=${room.roomid})}" target="_blank"><br>点我预订</a></div></td>-->
-                    </tr>
+
                     </tbody>
                 </table>
             </div>
