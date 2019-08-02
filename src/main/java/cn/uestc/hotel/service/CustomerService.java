@@ -22,6 +22,11 @@ public class CustomerService {
     @Autowired
     private RoomMapper roomMapper;
 
+    public Boolean updateHotel(Hotel hotel) {
+
+        hotelMapper.updateByPrimaryKeySelective(hotel);
+        return true;
+    }
 
     public Boolean updateCustomer(Customer customer, String customerid) {
         customer.setCustomerid(customerid);
@@ -43,8 +48,11 @@ public class CustomerService {
         return true;
     }
 
-    public Boolean Grant(String customerid) {
-        customerMapper.deleteByPrimaryKey(customerid);
+    public Boolean grant(String customerid) {
+        Customer customer = new Customer();
+        customer.setCustomerid(customerid);
+        customer.setRoleid("1");
+        customerMapper.updateByPrimaryKeySelective(customer);
         return true;
     }
 
@@ -75,14 +83,17 @@ public class CustomerService {
 
     }
 
-    public List<Customer> findAll() {
+    public List<Customer> findAllCustomer() {
         return customerMapper.findAll();
     }
 
-    public List<Hotel> hotelList() {
+    public List<Hotel> findAllHotel() {
         return hotelMapper.hotelList();
     }
 
+    public Hotel searchHotelByHotelID(String hotelid) {
+        return hotelMapper.selectByPrimaryKey(hotelid);
+    }
 
     public List<OrderForm> selectOrderFormByCustomerID(String customerID) {
         OrderFormExample ex = new OrderFormExample();
