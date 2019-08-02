@@ -43,4 +43,12 @@ public class AdminController {
         return true;
     }
 
+
+    @GetMapping("grant")
+    @ResponseBody
+    public Boolean grant(@RequestParam("id") String id) {
+        customerService.deleteHotelByid(id);
+        return true;
+    }
+
 }

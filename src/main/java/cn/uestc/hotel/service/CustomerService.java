@@ -22,6 +22,37 @@ public class CustomerService {
     @Autowired
     private RoomMapper roomMapper;
 
+
+    public Boolean updateCustomer(Customer customer, String customerid) {
+        customer.setCustomerid(customerid);
+        customerMapper.updateByPrimaryKeySelective(customer);
+        return true;
+    }
+
+    public Boolean insertCustomer(Customer customer) {
+        if (customer != null) {
+            customerMapper.insert(customer);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Boolean deleteCustomerByid(String customerid) {
+        customerMapper.deleteByPrimaryKey(customerid);
+        return true;
+    }
+
+    public Boolean Grant(String customerid) {
+        customerMapper.deleteByPrimaryKey(customerid);
+        return true;
+    }
+
+    public Boolean deleteHotelByid(String customerid) {
+        hotelMapper.deleteByPrimaryKey(customerid);
+        return true;
+    }
+
     public Customer checkCustomer(Customer customer) {
         CustomerExample ex = new CustomerExample();
         ex.createCriteria().andCustomeridEqualTo(customer.getCustomerid()).andCustomerpasswordEqualTo(customer.getCustomerpassword());
@@ -44,17 +75,6 @@ public class CustomerService {
 
     }
 
-    public Boolean deleteHotelByid(String customerid) {
-        hotelMapper.deleteByPrimaryKey(customerid);
-        return true;
-    }
-
-
-    public Boolean deleteCustomerByid(String customerid) {
-        customerMapper.deleteByPrimaryKey(customerid);
-        return true;
-    }
-
     public List<Customer> findAll() {
         return customerMapper.findAll();
     }
@@ -63,20 +83,6 @@ public class CustomerService {
         return hotelMapper.hotelList();
     }
 
-    public Boolean updateCustomer(Customer customer, String customerid) {
-        customer.setCustomerid(customerid);
-        customerMapper.updateByPrimaryKeySelective(customer);
-        return true;
-    }
-
-    public Boolean insertCustomer(Customer customer) {
-        if (customer != null) {
-            customerMapper.insert(customer);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public List<OrderForm> selectOrderFormByCustomerID(String customerID) {
         OrderFormExample ex = new OrderFormExample();
@@ -119,25 +125,25 @@ public class CustomerService {
 
 
     }
-    public List<Hotel> searchRoomTypeByHotelid(String hotelid){
-        HotelExample ex=new HotelExample();
+
+    public Hotel searchRoomTypeByHotelid(String hotelid) {
+        HotelExample ex = new HotelExample();
         ex.createCriteria().andHotelidEqualTo(hotelid);
-        return hotelMapper.selectByExample(ex);
+        return hotelMapper.selectByExample(ex).get(0);
     }
 
-    public List<Room> searchRoomByCondition(String hotelid, String arrivetime, String lefttime, String num,String type) {
+    public List<Room> searchRoomByCondition(String hotelid, String arrivetime, String lefttime, String num, String type) {
         RoomExample ex = new RoomExample();
-        int number=Integer.valueOf(num);
+        int number = Integer.valueOf(num);
         ex.createCriteria().andHotelidEqualTo(hotelid).andEndtimeLessThan(arrivetime).andTypeEqualTo(type);
-        List<Room> rooms=roomMapper.selectByExample(ex);
-        if ( rooms.size()<number){
+        List<Room> rooms = roomMapper.selectByExample(ex);
+        if (rooms.size() < number) {
             return null;
-        }
-        else{
-            for(int i=0;i<number;i++){
+        } else {
+            for (int i = 0; i < number; i++) {
                 rooms.get(i).setEndtime(lefttime);
             }
-            return rooms.subList(0,number);
+            return rooms.subList(0, number);
         }
     }
 

@@ -51,6 +51,7 @@
                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" style="width: 266.6px;" aria-sort="ascending">用户名</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">性别</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">联系电话</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">赋予管理员权限</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">删除</th>
             </tr>
             </thead>
@@ -60,6 +61,7 @@
                 <td th:text="${customer.customername}"></td>
                 <td th:text="${customer.sex}"></td>
                 <td th:text="${customer.phone}"></td>
+                <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/grant(id=${customer.customerid})}" target="_blank">点我修改</a></div></td>
                 <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/deleteCustomer(id=${customer.customerid})}" target="_blank">点我删除</a></div></td>
 
             </tbody>
@@ -69,6 +71,7 @@
                 <th rowspan="1" colspan="1">用户名</th>
                 <th rowspan="1" colspan="1">性别</th>
                 <th rowspan="1" colspan="1">联系电话</th>
+                <th rowspan="1" colspan="1">赋予管理员权限</th>
                 <th rowspan="1" colspan="1">删除</th>
             </tr>
             </tfoot>

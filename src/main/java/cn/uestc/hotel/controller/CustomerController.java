@@ -117,18 +117,22 @@ public class CustomerController {
 
 
 
-    @PostMapping("searchResult")
+    @PostMapping("hotelResult")
     public String searchHotel(@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where) {
         List<Hotel> hotels = customerService.searchHotelByConditions(word, where, hotelclass);
         model.addAttribute("hotels", hotels);
-        return "searchResult";
+        return "hotelResult";
 
     }
 
-//@GetMapping("/roomshow")
-//public String searchRoom(){
-//
-//}
+
+    @GetMapping("hotelInformation")
+    public String getroomInformation(Model model,@RequestParam("hotelid") String hotelid) {
+           Hotel hotel=customerService.searchRoomTypeByHotelid(hotelid);
+           model.addAttribute("hotel",hotel);
+        return "hotelInformation";
+    }
+
 
 
     @GetMapping("/pay")
@@ -144,11 +148,5 @@ public class CustomerController {
     }
 
 
-
-    @GetMapping("hotelInformation")
-    public String getroomInformation(Model model,@RequestParam("hotelid") String hotelid) {
-
-        return "hotelInformation";//密码修改页面
-    }
 
 }
