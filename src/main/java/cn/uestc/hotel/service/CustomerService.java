@@ -83,16 +83,28 @@ public class CustomerService {
 
     }
 
+    public Hotel searchHotelByHotelID(String hotelid) {
+        return hotelMapper.selectByPrimaryKey(hotelid);
+    }
+
+    public Room searchRoomImformationByHotelIDAndType(String hotelid, String type) {
+    try{
+        RoomExample ex = new RoomExample();
+        ex.createCriteria().andTypeEqualTo(type).andHotelidEqualTo(hotelid);
+        return roomMapper.selectByExample(ex).get(0);
+    }catch(Exception e){
+        return null;
+    }
+
+
+    }
+
     public List<Customer> findAllCustomer() {
         return customerMapper.findAll();
     }
 
     public List<Hotel> findAllHotel() {
         return hotelMapper.hotelList();
-    }
-
-    public Hotel searchHotelByHotelID(String hotelid) {
-        return hotelMapper.selectByPrimaryKey(hotelid);
     }
 
     public List<OrderForm> selectOrderFormByCustomerID(String customerID) {
@@ -135,12 +147,6 @@ public class CustomerService {
         }
 
 
-    }
-
-    public Hotel searchRoomTypeByHotelid(String hotelid) {
-        HotelExample ex = new HotelExample();
-        ex.createCriteria().andHotelidEqualTo(hotelid);
-        return hotelMapper.selectByExample(ex).get(0);
     }
 
     public List<Room> searchRoomByCondition(String hotelid, String arrivetime, String lefttime, String num, String type) {

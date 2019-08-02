@@ -35,7 +35,9 @@ public class AdminController {
         Hotel hotel = customerService.searchHotelByHotelID(hotelid);
         if (file != null) {
             hotel.setImg(file.getBytes());
-            hotel.setImgname(file.getName());
+            hotel.setImgname(file.getOriginalFilename());
+            hotel.setImglength(file.getSize());
+            hotel.setImgtype(file.getContentType());
             customerService.updateHotel(hotel);
         }
         model.addAttribute("hotels", customerService.findAllHotel());

@@ -5,6 +5,10 @@ import cn.uestc.hotel.domain.Hotel;
 import cn.uestc.hotel.domain.Room;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,16 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @GetMapping("showHotelImg")
+    public ResponseEntity<Resource> showHotelImg(@RequestParam("hotelid") String hotelid){
+        Hotel hotel=customerService.searchHotelByHotelID(hotelid);
+            return ResponseEntity.ok()
+                    .contentLength(hotel.getImglength())
+                    .contentType(MediaType.parseMediaType(hotel.getImgtype()))
+                    .body(new ByteArrayResource(hotel.getImg()));
+
+
+    }
 
     @GetMapping("/login")
     public String getLoginPage(HttpServletRequest request, Customer customer) {
@@ -106,17 +120,6 @@ public class CustomerController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     @PostMapping("hotelResult")
     public String searchHotel(@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where) {
         List<Hotel> hotels = customerService.searchHotelByConditions(word, where, hotelclass);
@@ -127,12 +130,21 @@ public class CustomerController {
 
 
     @GetMapping("hotelInformation")
-    public String getroomInformation(Model model,@RequestParam("hotelid") String hotelid) {
-           Hotel hotel=customerService.searchRoomTypeByHotelid(hotelid);
-           model.addAttribute("hotel",hotel);
+    public String getroomInformation(Model model, @RequestParam("hotelid") String hotelid) {
+        Hotel hotel = customerService.searchHotelByHotelID(hotelid);
+        Room roomType1=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype1());
+        Room roomType2=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype2());
+        Room roomType3=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype3());
+        Room roomType4=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype4());
+        Room roomType5=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype5());
+        model.addAttribute("hotel", hotel);
+        if(roomType1!=null){model.addAttribute("roomType1",roomType1);}else {model.addAttribute("roomType1",new Room());}
+        if(roomType2!=null){model.addAttribute("roomType2",roomType2);}else {model.addAttribute("roomType2",new Room());}
+        if(roomType3!=null){model.addAttribute("roomType3",roomType3);}else {model.addAttribute("roomType3",new Room());}
+        if(roomType4!=null){model.addAttribute("roomType4",roomType4);}else {model.addAttribute("roomType4",new Room());}
+        if(roomType5!=null){model.addAttribute("roomType5",roomType5);}else {model.addAttribute("roomType5",new Room());}
         return "hotelInformation";
     }
-
 
 
     @GetMapping("/pay")
@@ -146,7 +158,6 @@ public class CustomerController {
         }
         return "hotelInformation";
     }
-
 
 
 }
