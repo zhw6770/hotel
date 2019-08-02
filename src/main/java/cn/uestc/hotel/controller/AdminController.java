@@ -31,13 +31,15 @@ public class AdminController {
     }
 
     @PostMapping("hotelList")
-    public String addImg(Model model, @RequestParam("img") MultipartFile file, @RequestParam("hotelid") String hotelid) throws IOException {
+    public String addImg(Model model, @RequestParam("img") MultipartFile file, @RequestParam("hotelid") String hotelid,@RequestParam("name") String name,@RequestParam("tel") String tel) throws IOException {
         Hotel hotel = customerService.searchHotelByHotelID(hotelid);
         if (file != null) {
             hotel.setImg(file.getBytes());
             hotel.setImgname(file.getOriginalFilename());
             hotel.setImglength(file.getSize());
             hotel.setImgtype(file.getContentType());
+            hotel.setHotelname(name);
+            hotel.setTel(tel);
             customerService.updateHotel(hotel);
         }
         model.addAttribute("hotels", customerService.findAllHotel());

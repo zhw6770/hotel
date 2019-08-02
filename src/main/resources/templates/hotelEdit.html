@@ -40,26 +40,14 @@
         <form th:action="@{hotelList(hotelid=${hotel.hotelid})}" method="post" th:object="${hotel}"
               enctype="multipart/form-data">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="${hotel.hotelname}" placeholder="新的酒店名字">
+                <input type="text" class="form-control" name="name"  th:text="${hotel.hotelname}" placeholder="新的酒店名字">
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="${hotel.tel}" placeholder="新的电话">
+                <input type="text" class="form-control" name="tel" th:text="${hotel.tel}"  placeholder="新的电话">
             </div>
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="${hotel.address}" placeholder="新的地址">
-            </div>
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="${hotel.hotelclass}" placeholder="新的星级">
-            </div>
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="${hotel.zipcode}" placeholder="新的邮编">
-            </div>
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="${hotel.numroom}" placeholder="新的房间数目">
-            </div>
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="${hotel.tel}" placeholder="新的电话">
-            </div>
+
+
+
 
 
             <div class="form-group has-feedback">
