@@ -58,6 +58,10 @@
                                 </th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column descending" style="width: 266.6px;"
+                                    aria-sort="ascending">Type
+                                </th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Browser: activate to sort column descending" style="width: 266.6px;"
                                     aria-sort="ascending">Price
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -84,6 +88,7 @@
 
                             <tr th:each="room: ${rooms}">
                                 <td th:text="${room.roomid}"></td>
+                                <td th:text="${room.type}"></td>
                                 <td th:text="${room.dailyprice}"></td>
                                 <td th:text="${room.endtime}"></td>
                                 <td th:text="${room.breakfast}"></td>

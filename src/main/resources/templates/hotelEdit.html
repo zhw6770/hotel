@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>adminlte 2 | Log in</title>
+    <title>酒店信息修改</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -31,19 +31,19 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a><b>信息修改</b></a>
+        <a><b>酒店信息修改</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">请更改酒店信息信息</p>
+        <h3 class="login-box-msg">请更改酒店信息</h3>
 
         <form th:action="@{hotelList(hotelid=${hotel.hotelid})}" method="post" th:object="${hotel}"
               enctype="multipart/form-data">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="name"  th:text="${hotel.hotelname}" placeholder="新的酒店名字">
+                <h4>酒店名称：</h4><input type="text" class="form-control" name="name"  th:value="${hotel.hotelname}">
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="tel" th:text="${hotel.tel}"  placeholder="新的电话">
+                <h4>联系电话：</h4><input type="text" class="form-control" name="tel" th:value="${hotel.tel}">
             </div>
 
 
@@ -51,12 +51,49 @@
 
 
             <div class="form-group has-feedback">
-                <input th:type="file" name="img" th:text="选择图片">
+                <h4>    更改酒店图片</h4><input th:type="file" name="img" th:text="选择图片">
             </div>
+            <div class="form-group has-feedback">
+                <h4 th:switch=" ${hotel.roomtype1} !=null">
+                    <h4 th:case="true">  更改单人间图片</h4>
+                    <h4 th:case="false">    无单人间    </h4>
+                </h4>
+                <input th:type="file" name="img1">
+            </div>
+            <div class="form-group has-feedback">
+                <h4 th:switch=" ${hotel.roomtype3} !=null">
+                    <h4 th:case="true">  更改双人间图片</h4>
+                    <h4 th:case="false">    无此类型    </h4>
+                </h4>
+                <input th:type="file" name="img2">
+            </div>
+            <div class="form-group has-feedback">
+                <h4 th:switch=" ${hotel.roomtype3} !=null">
+                    <h4 th:case="true">  更改三人间图片</h4>
+                    <h4 th:case="false">    无此类型    </h4>
+                </h4>
+                <input th:type="file" name="img3">
+            </div>
+            <div class="form-group has-feedback">
+                <h4 th:switch=" ${hotel.roomtype4} !=null">
+                    <h4 th:case="true">更改温泉套房图片</h4>
+                    <h4 th:case="false">    无此类型    </h4>
+                </h4>
+                <input th:type="file" name="img4">
+            </div>
+            <div class="form-group has-feedback">
+                <h4 th:switch=" ${hotel.roomtype5} !=null">
+                    <h4 th:case="true">更改总统套房图片</h4>
+                    <h4 th:case="false">    无此类型    </h4>
+                </h4>
+                <input th:type="file" name="img5">
+            </div>
+
             <div class="row">
                 <!-- /.col -->
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">更改</button>
+                    <button type="reset" class="btn btn-primary btn-block btn-flat">重置</button>
                 </div>
                 <!-- /.col -->
             </div>
