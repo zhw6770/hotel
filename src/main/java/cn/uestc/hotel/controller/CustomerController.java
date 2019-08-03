@@ -85,7 +85,7 @@ public class CustomerController {
 
     @PostMapping("customerInformationEdit")
     public String customerInformationEdit(Model model, Customer customer, HttpServletRequest request) {
-        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
+        String customerid = customerService.searchCustomerByRequest(request).getCustomerid();
         customerService.updateCustomer(customer, customerid);
         return "redirect:index";
     }
@@ -98,23 +98,23 @@ public class CustomerController {
 
     @PostMapping("customerPasswordEdit")
     public String ChangePassword(Model model, Customer customer, HttpServletRequest request) {
-        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
+        String customerid = customerService.searchCustomerByRequest(request).getCustomerid();
         customerService.updateCustomer(customer, customerid);
         return "redirect:index";
     }
 
     @GetMapping("orderview")
     public String orderview(Model model, Customer customer, HttpServletRequest request) {
-        if (customerService.findCustomerByRequest(request) == null) {
+        if (customerService.searchCustomerByRequest(request) == null) {
             Customer customer1 = new Customer();
             customer1.setCustomername("登录");
             model.addAttribute("customer", customer1);
         } else {
 
-            customer = customerService.findCustomerByRequest(request);
+            customer = customerService.searchCustomerByRequest(request);
             model.addAttribute("customer", customer);
         }
-        String customerid = customerService.findCustomerByRequest(request).getCustomerid();
+        String customerid = customerService.searchCustomerByRequest(request).getCustomerid();
         model.addAttribute("orderForms", customerService.selectOrderFormByCustomerID(customerid));
         return "orderview";//查看订单页面
     }

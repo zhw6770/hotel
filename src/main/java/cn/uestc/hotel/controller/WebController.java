@@ -25,12 +25,12 @@ public class WebController {
 
     @GetMapping("/index")
     public String getIndexpage(Model model, Customer customer, HttpServletRequest request, OrderForm orderform) {
-        if (customerService.findCustomerByRequest(request) == null) {
+        if (customerService.searchCustomerByRequest(request) == null) {
             Customer customer1 = new Customer();
             customer1.setCustomername("登录");
             model.addAttribute("customer", customer1);
         } else {
-            customer = customerService.findCustomerByRequest(request);
+            customer = customerService.searchCustomerByRequest(request);
             model.addAttribute("customer", customer);
         }
         model.addAttribute("orderform", orderform);

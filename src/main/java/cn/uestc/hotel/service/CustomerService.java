@@ -55,13 +55,13 @@ public class CustomerService {
     }
 
     public Boolean grant(String customerid) {
-        Customer customer = new Customer();
-        customer.setCustomerid(customerid);
-        if(customer.getRoleid()=="0"){
-            customer.setRoleid("1");
-        }
-        else {
+        Customer customer = this.searchCustomerByCustomerID(customerid);
+        System.out.println("11");
+        if (Integer.valueOf(customer.getRoleid())==1) {
             customer.setRoleid("2");
+            System.out.println("re");
+        } else {
+            customer.setRoleid("1");
         }
         customerMapper.updateByPrimaryKeySelective(customer);
         return true;
@@ -80,7 +80,7 @@ public class CustomerService {
 
     }
 
-    public Customer findCustomerByRequest(HttpServletRequest request) {
+    public Customer searchCustomerByRequest(HttpServletRequest request) {
         try {
             if (customerMapper.selectByPrimaryKey(request.getSession().getAttribute("customerid").toString()) != null) {
                 return customerMapper.selectByPrimaryKey(request.getSession().getAttribute("customerid").toString());
@@ -94,6 +94,10 @@ public class CustomerService {
 
     }
 
+    public Customer searchCustomerByCustomerID(String customerid) {
+        return customerMapper.selectByPrimaryKey(customerid);
+    }
+
     public Room searchRoomByRoomID(String roomid) {
         return roomMapper.selectByPrimaryKey(roomid);
     }
@@ -102,16 +106,18 @@ public class CustomerService {
         return hotelMapper.selectByPrimaryKey(hotelid);
     }
 
-    public HotelWithBLOBs searchHotelWithBlobByHotelID(String hotelid) { return hotelMapper.selectByPrimaryKey(hotelid); }
+    public HotelWithBLOBs searchHotelWithBlobByHotelID(String hotelid) {
+        return hotelMapper.selectByPrimaryKey(hotelid);
+    }
 
     public Room searchRoomImformationByHotelIDAndType(String hotelid, String type) {
-    try{
-        RoomExample ex = new RoomExample();
-        ex.createCriteria().andTypeEqualTo(type).andHotelidEqualTo(hotelid);
-        return roomMapper.selectByExample(ex).get(0);
-    }catch(Exception e){
-        return null;
-    }
+        try {
+            RoomExample ex = new RoomExample();
+            ex.createCriteria().andTypeEqualTo(type).andHotelidEqualTo(hotelid);
+            return roomMapper.selectByExample(ex).get(0);
+        } catch (Exception e) {
+            return null;
+        }
 
 
     }
@@ -125,7 +131,7 @@ public class CustomerService {
     }
 
     public List<Room> findAllRoom(String hotelid) {
-        RoomExample ex=new RoomExample();
+        RoomExample ex = new RoomExample();
         ex.createCriteria().andHotelidEqualTo(hotelid);
         return roomMapper.selectByExample(ex);
     }

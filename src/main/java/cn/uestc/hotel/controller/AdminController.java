@@ -115,9 +115,9 @@ public class AdminController {
 
 
     @GetMapping("grant")
-    @ResponseBody
-    public Boolean grant(@RequestParam("id") String id) {
-        return customerService.grant(id);
+    public String grant(@RequestParam("id") String id) {
+       customerService.grant(id);
+         return "redirect:customerList";
 
     }
 

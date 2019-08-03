@@ -61,7 +61,10 @@
                 <td th:text="${customer.customername}"></td>
                 <td th:text="${customer.sex}"></td>
                 <td th:text="${customer.phone}"></td>
-                <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/grant(id=${customer.customerid})}" target="_blank">点我更改</a></div></td>
+                <td> <div th:switch="${customer.roleid}=='1'">
+                    <span th:case="true">管理员</span>
+                    <span th:case="false">用户</span>
+                </div> <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/grant(id=${customer.customerid})}" >点我更改</a></div></td>
                 <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/deleteCustomer(id=${customer.customerid})}" target="_blank">点我删除</a></div></td>
 
             </tbody>
