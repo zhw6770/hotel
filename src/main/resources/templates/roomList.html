@@ -58,24 +58,21 @@
                                 </th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column descending" style="width: 266.6px;"
-                                    aria-sort="ascending">Address
+                                    aria-sort="ascending">Price
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
-                                    Country
+                                   Deadline
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
-                                    City
+                                    Breakfast
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
                                     Edit
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
-                                    ManageRoom
-                                </th>
+
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">
                                     Delete
@@ -85,22 +82,19 @@
                             </thead>
                             <tbody>
 
-                            <tr th:each="hotel: ${hotels}">
-                                <td th:text="${hotel.hotelname}"></td>
-                                <td th:text="${hotel.address}"></td>
-                                <td th:text="${hotel.country}"></td>
-                                <td th:text="${hotel.city}"></td>
+                            <tr th:each="room: ${rooms}">
+                                <td th:text="${room.roomid}"></td>
+                                <td th:text="${room.dailyprice}"></td>
+                                <td th:text="${room.endtime}"></td>
+                                <td th:text="${room.breakfast}"></td>
                                 <td>
-                                    <div class="feedback-btn"><a th:href="@{/hotelEdit(hotelid=${hotel.hotelid})}"
-                                                                 >修改基本信息</a></div>
+                                    <div class="feedback-btn"><a th:href="@{/roomEdit(roomid=${room.roomid})}"
+                                    >修改基本信息</a></div>
                                 </td>
-                                <td>
-                                    <div class="feedback-btn"><a th:href="@{/roomList(hotelid=${hotel.hotelid})}"
-                                                                 >管理房间</a></div>
-                                </td>
+
                                 <td>
                                     <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a
-                                            th:href="@{/deleteHotel(id=${hotel.hotelid})}" target="_blank"><br>点我删除</a>
+                                            th:href="@{/deleteHotel}" target="_blank"><br>点我删除</a>
                                     </div>
                                 </td>
 
@@ -109,12 +103,12 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th rowspan="1" colspan="1">酒店名称</th>
-                                <th rowspan="1" colspan="1">酒店地址</th>
-                                <th rowspan="1" colspan="1">所在国家</th>
-                                <th rowspan="1" colspan="1">所在城市</th>
+                                <th rowspan="1" colspan="1">房间编号</th>
+                                <th rowspan="1" colspan="1">每日价格</th>
+                                <th rowspan="1" colspan="1">截止时间</th>
+                                <th rowspan="1" colspan="1">早餐情况</th>
                                 <th rowspan="1" colspan="1">修改基本信息</th>
-                                <th rowspan="1" colspan="1">管理房间</th>
+
                                 <th rowspan="1" colspan="1">移除酒店</th>
 
                             </tr>

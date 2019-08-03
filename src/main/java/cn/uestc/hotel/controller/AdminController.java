@@ -1,6 +1,7 @@
 package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Hotel;
+import cn.uestc.hotel.domain.Room;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -52,6 +54,22 @@ public class AdminController {
         Hotel hotel = customerService.searchHotelByHotelID(hotelid);
         model.addAttribute("hotel", hotel);
         return "hotelEdit";
+    }
+
+    @GetMapping("roomList")
+    public String getRoomListPage(Model model, @RequestParam("hotelid") String hotelid) {
+
+      List<Room> rooms=customerService.findAllRoom(hotelid);
+        model.addAttribute("rooms", rooms);
+        return "roomList";
+    }
+
+    @GetMapping("roomEdit")
+    public String roomEdit(Model model, @RequestParam("roomid") String roomid) {
+
+        Room room=customerService.searchRoomByRoomID(roomid);
+        model.addAttribute("room", room);
+        return "roomEdit";
     }
 
     @GetMapping("/deleteCustomer")

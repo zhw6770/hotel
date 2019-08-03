@@ -83,6 +83,10 @@ public class CustomerService {
 
     }
 
+    public Room searchRoomByRoomID(String roomid) {
+        return roomMapper.selectByPrimaryKey(roomid);
+    }
+
     public Hotel searchHotelByHotelID(String hotelid) {
         return hotelMapper.selectByPrimaryKey(hotelid);
     }
@@ -105,6 +109,12 @@ public class CustomerService {
 
     public List<Hotel> findAllHotel() {
         return hotelMapper.hotelList();
+    }
+
+    public List<Room> findAllRoom(String hotelid) {
+        RoomExample ex=new RoomExample();
+        ex.createCriteria().andHotelidEqualTo(hotelid);
+        return roomMapper.selectByExample(ex);
     }
 
     public List<OrderForm> selectOrderFormByCustomerID(String customerID) {
