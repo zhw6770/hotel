@@ -40,32 +40,33 @@ public class AdminController {
         hotel.setTel(tel);
         customerService.updateHotel(hotel);
         HotelWithBLOBs hotelwithblobs = customerService.searchHotelWithBlobByHotelID(hotelid);
-        if (file != null) {
+        if (file.getSize()!=0) {
+            System.out.println("111");
             hotelwithblobs.setImg(file.getBytes());
             hotelwithblobs.setImgname(file.getOriginalFilename());
 
             customerService.updateHotelWithBolb(hotelwithblobs);
-            if (file1 != null) {
+            if (file1.getSize()!=0) {
                 hotelwithblobs.setTypeimg1(file1.getBytes());
                 hotelwithblobs.setTypeimgname1(file1.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file2 != null) {
+            if (file2.getSize()!=0) {
                 hotelwithblobs.setTypeimg2(file2.getBytes());
                 hotelwithblobs.setTypeimgname2(file2.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file3 != null) {
+            if (file3.getSize()!=0) {
                 hotelwithblobs.setTypeimg3(file3.getBytes());
                 hotelwithblobs.setTypeimgname3(file3.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file4 != null) {
+            if (file4.getSize()!=0) {
                 hotelwithblobs.setTypeimg4(file4.getBytes());
                 hotelwithblobs.setTypeimgname4(file4.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file5 != null) {
+            if (file5.getSize()!=0) {
                 hotelwithblobs.setTypeimg5(file5.getBytes());
                 hotelwithblobs.setTypeimgname5(file5.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
@@ -107,10 +108,9 @@ public class AdminController {
     }
 
     @GetMapping("/deleteHotel")
-    @ResponseBody
-    public Boolean deleteUser(@RequestParam("id") String id) {
+    public String  deleteUser(@RequestParam("id") String id) {
         customerService.deleteHotelByid(id);
-        return true;
+        return "redirect:hotelList";
     }
 
 

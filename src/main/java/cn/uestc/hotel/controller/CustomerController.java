@@ -26,13 +26,56 @@ public class CustomerController {
 
     @GetMapping("showHotelImg")
     public ResponseEntity<Resource> showHotelImg(@RequestParam("hotelid") String hotelid){
-        Hotel hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
-                    .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getImg()));
+        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
+                .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getImg()));
 
 
     }
+
+
+
+    @GetMapping("showRoomImg1")
+    public ResponseEntity<Resource> showRoom1Img1(@RequestParam("hotelid") String hotelid){
+        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
+                .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg1()));
+    }
+    @GetMapping("showRoomImg2")
+    public ResponseEntity<Resource> showRoom1Img2(@RequestParam("hotelid") String hotelid){
+        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
+                .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg2()));
+    }
+    @GetMapping("showRoomImg3")
+    public ResponseEntity<Resource> showRoom1Img3(@RequestParam("hotelid") String hotelid){
+        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
+                .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg3()));
+    }
+    @GetMapping("showRoomImg4")
+    public ResponseEntity<Resource> showRoom1Img4(@RequestParam("hotelid") String hotelid){
+        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
+                .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg4()));
+    }
+    @GetMapping("showRoomImg5")
+    public ResponseEntity<Resource> showRoom1Img5(@RequestParam("hotelid") String hotelid){
+        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
+                .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg5()));
+    }
+
+
+
+
+
 
     @GetMapping("/login")
     public String getLoginPage(HttpServletRequest request, Customer customer) {

@@ -92,7 +92,7 @@
                     <div class="tl-2"></div>
                     <div class="tl-3"></div>
                 </div>
-                <p>全球领先的坟地预订网站，全球超过30000个套餐。预订入坟套餐，享受与众不同的司马体验</p>
+                <p>全球领先的酒店预订网站，全球超过30000个套餐。预订酒店套餐，享受与众不同的体验</p>
             </div>
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Event Name.." title="Type in a name">
             <table id="myTable" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
@@ -109,7 +109,7 @@
                     <th class="e_h1">邮编</th>
                 </tr>
                 <tr th:each="hotel: ${hotels}">
-                    <td><div class="picture"><img th:src="@{/index/images/g1.jpg}" alt=""><br><a th:href ="@{/hotelInformation(hotelid=${hotel.hotelid})}" class="shadow"th:text="${hotel.hotelname}"></a></div></td>
+                    <td><div class="picture" ><img th:src="@{/showHotelImg(hotelid=${hotel.hotelid})}" alt="" th:if="${hotel.imgname}!=null"><br><a th:href ="@{/hotelInformation(hotelid=${hotel.hotelid})}"  th:text="${hotel.hotelname}"></a></div></td>
                     <td class="e_h1" th:text="${hotel.hotelclass}" style="vertical-align: middle">星级</td>
                     <td class="e_h1" th:text="${hotel.numroom}" style="vertical-align: middle"></td>
                     <td class="e_h1" th:text="${hotel.address}" style="vertical-align: middle"></td>
@@ -133,7 +133,7 @@
                 <div class="tl-2"></div>
                 <div class="tl-3"></div>
             </div>
-            <p>全球领先的坟地预订网站，全球超过30000个套餐。预订入坟套餐，享受与众不同的司马体验</p>
+            <p>全球领先的酒店预订网站，全球超过30000个套餐。预订酒店套餐，享受与众不同的体验</p>
         </div>
         <div class="popu-places-home">
             <!-- POPULAR PLACES 1 -->
