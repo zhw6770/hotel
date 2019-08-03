@@ -36,13 +36,14 @@ public class AdminController {
     @PostMapping("hotelList")
     public String addImg(Model model, @RequestParam("img") MultipartFile file, @RequestParam("img1") MultipartFile file1, @RequestParam("img2") MultipartFile file2, @RequestParam("img3") MultipartFile file3, @RequestParam("img4") MultipartFile file4, @RequestParam("img5") MultipartFile file5, @RequestParam("hotelid") String hotelid, @RequestParam("name") String name, @RequestParam("tel") String tel) throws IOException {
         Hotel hotel = customerService.searchHotelByHotelID(hotelid);
+        hotel.setHotelname(name);
+        hotel.setTel(tel);
+        customerService.updateHotel(hotel);
         HotelWithBLOBs hotelwithblobs = customerService.searchHotelWithBlobByHotelID(hotelid);
         if (file != null) {
             hotelwithblobs.setImg(file.getBytes());
             hotelwithblobs.setImgname(file.getOriginalFilename());
-            hotel.setHotelname(name);
-            hotel.setTel(tel);
-            customerService.updateHotel(hotel);
+
             customerService.updateHotelWithBolb(hotelwithblobs);
             if (file1 != null) {
                 hotelwithblobs.setTypeimg1(file1.getBytes());

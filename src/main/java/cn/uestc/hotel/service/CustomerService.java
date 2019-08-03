@@ -57,7 +57,12 @@ public class CustomerService {
     public Boolean grant(String customerid) {
         Customer customer = new Customer();
         customer.setCustomerid(customerid);
-        customer.setRoleid("1");
+        if(customer.getRoleid()=="0"){
+            customer.setRoleid("1");
+        }
+        else {
+            customer.setRoleid("2");
+        }
         customerMapper.updateByPrimaryKeySelective(customer);
         return true;
     }

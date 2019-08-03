@@ -55,35 +55,35 @@
             </div>
             <div class="form-group has-feedback">
                 <h4 th:switch=" ${hotel.roomtype1} !=null">
-                    <h4 th:case="true">  更改单人间图片</h4>
-                    <h4 th:case="false">    无单人间    </h4>
+                    <h4 th:case="true" th:text="${hotel.roomtype1}+图片"></h4>
+                    <h4 th:case="false">    无此类型   </h4>
                 </h4>
                 <input th:type="file" name="img1">
             </div>
             <div class="form-group has-feedback">
-                <h4 th:switch=" ${hotel.roomtype3} !=null">
-                    <h4 th:case="true">  更改双人间图片</h4>
+                <h4 th:switch=" ${hotel.roomtype2} !=null">
+                    <h4 th:case="true" th:text="${hotel.roomtype2}+图片"></h4>
                     <h4 th:case="false">    无此类型    </h4>
                 </h4>
                 <input th:type="file" name="img2">
             </div>
             <div class="form-group has-feedback">
                 <h4 th:switch=" ${hotel.roomtype3} !=null">
-                    <h4 th:case="true">  更改三人间图片</h4>
+                    <h4 th:case="true" th:text="${hotel.roomtype3}+图片"></h4>
                     <h4 th:case="false">    无此类型    </h4>
                 </h4>
                 <input th:type="file" name="img3">
             </div>
             <div class="form-group has-feedback">
                 <h4 th:switch=" ${hotel.roomtype4} !=null">
-                    <h4 th:case="true">更改温泉套房图片</h4>
+                    <h4 th:case="true" th:text="${hotel.roomtype4}+图片"></h4>
                     <h4 th:case="false">    无此类型    </h4>
                 </h4>
                 <input th:type="file" name="img4">
             </div>
             <div class="form-group has-feedback">
                 <h4 th:switch=" ${hotel.roomtype5} !=null">
-                    <h4 th:case="true">更改总统套房图片</h4>
+                    <h4 th:case="true" th:text="${hotel.roomtype5}+图片"></h4>
                     <h4 th:case="false">    无此类型    </h4>
                 </h4>
                 <input th:type="file" name="img5">
