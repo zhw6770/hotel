@@ -2,6 +2,7 @@ package cn.uestc.hotel.controller;
 
 import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.domain.Hotel;
+import cn.uestc.hotel.domain.HotelWithBLOBs;
 import cn.uestc.hotel.domain.Room;
 import cn.uestc.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,10 @@ public class CustomerController {
 
     @GetMapping("showHotelImg")
     public ResponseEntity<Resource> showHotelImg(@RequestParam("hotelid") String hotelid){
-        Hotel hotel=customerService.searchHotelByHotelID(hotelid);
+        Hotel hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
             return ResponseEntity.ok()
-                    .contentLength(hotel.getImglength())
-                    .contentType(MediaType.parseMediaType(hotel.getImgtype()))
-                    .body(new ByteArrayResource(hotel.getImg()));
+                    .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
+                    .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getImg()));
 
 
     }

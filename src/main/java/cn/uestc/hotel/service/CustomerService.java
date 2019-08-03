@@ -24,7 +24,13 @@ public class CustomerService {
 
     public Boolean updateHotel(Hotel hotel) {
 
-        hotelMapper.updateByPrimaryKeySelective(hotel);
+        hotelMapper.updateByPrimaryKey(hotel);
+        return true;
+    }
+
+    public Boolean updateHotelWithBolb(HotelWithBLOBs hotelWithBLOBs) {
+
+        hotelMapper.updateByPrimaryKeySelective(hotelWithBLOBs);
         return true;
     }
 
@@ -90,6 +96,8 @@ public class CustomerService {
     public Hotel searchHotelByHotelID(String hotelid) {
         return hotelMapper.selectByPrimaryKey(hotelid);
     }
+
+    public HotelWithBLOBs searchHotelWithBlobByHotelID(String hotelid) { return hotelMapper.selectByPrimaryKey(hotelid); }
 
     public Room searchRoomImformationByHotelIDAndType(String hotelid, String type) {
     try{
