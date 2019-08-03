@@ -41,7 +41,6 @@ public class AdminController {
         customerService.updateHotel(hotel);
         HotelWithBLOBs hotelwithblobs = customerService.searchHotelWithBlobByHotelID(hotelid);
         if (file.getSize()!=0) {
-            System.out.println("111");
             hotelwithblobs.setImg(file.getBytes());
             hotelwithblobs.setImgname(file.getOriginalFilename());
 
