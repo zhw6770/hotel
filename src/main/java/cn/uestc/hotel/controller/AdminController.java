@@ -34,9 +34,9 @@ public class AdminController {
     }
 
     @PostMapping("hotelList")
-    public String addImg(Model model, @RequestParam("img") MultipartFile file, @RequestParam("hotelid") String hotelid,@RequestParam("name") String name,@RequestParam("tel") String tel) throws IOException {
+    public String addImg(Model model, @RequestParam("img") MultipartFile file, @RequestParam("img1") MultipartFile file1, @RequestParam("img2") MultipartFile file2, @RequestParam("img3") MultipartFile file3, @RequestParam("img4") MultipartFile file4, @RequestParam("img5") MultipartFile file5, @RequestParam("hotelid") String hotelid, @RequestParam("name") String name, @RequestParam("tel") String tel) throws IOException {
         Hotel hotel = customerService.searchHotelByHotelID(hotelid);
-        HotelWithBLOBs hotelwithblobs=customerService.searchHotelWithBlobByHotelID(hotelid);
+        HotelWithBLOBs hotelwithblobs = customerService.searchHotelWithBlobByHotelID(hotelid);
         if (file != null) {
             hotelwithblobs.setImg(file.getBytes());
             hotelwithblobs.setImgname(file.getOriginalFilename());
@@ -44,6 +44,31 @@ public class AdminController {
             hotel.setTel(tel);
             customerService.updateHotel(hotel);
             customerService.updateHotelWithBolb(hotelwithblobs);
+            if (file1 != null) {
+                hotelwithblobs.setTypeimg1(file1.getBytes());
+                hotelwithblobs.setTypeimgname1(file1.getOriginalFilename());
+                customerService.updateHotelWithBolb(hotelwithblobs);
+            }
+            if (file2 != null) {
+                hotelwithblobs.setTypeimg2(file2.getBytes());
+                hotelwithblobs.setTypeimgname2(file2.getOriginalFilename());
+                customerService.updateHotelWithBolb(hotelwithblobs);
+            }
+            if (file3 != null) {
+                hotelwithblobs.setTypeimg3(file3.getBytes());
+                hotelwithblobs.setTypeimgname3(file3.getOriginalFilename());
+                customerService.updateHotelWithBolb(hotelwithblobs);
+            }
+            if (file4 != null) {
+                hotelwithblobs.setTypeimg4(file4.getBytes());
+                hotelwithblobs.setTypeimgname4(file4.getOriginalFilename());
+                customerService.updateHotelWithBolb(hotelwithblobs);
+            }
+            if (file5 != null) {
+                hotelwithblobs.setTypeimg5(file5.getBytes());
+                hotelwithblobs.setTypeimgname5(file5.getOriginalFilename());
+                customerService.updateHotelWithBolb(hotelwithblobs);
+            }
         }
         model.addAttribute("hotels", customerService.findAllHotel());
         return "hotelList";
@@ -60,7 +85,7 @@ public class AdminController {
     @GetMapping("roomList")
     public String getRoomListPage(Model model, @RequestParam("hotelid") String hotelid) {
 
-      List<Room> rooms=customerService.findAllRoom(hotelid);
+        List<Room> rooms = customerService.findAllRoom(hotelid);
         model.addAttribute("rooms", rooms);
         return "roomList";
     }
@@ -68,7 +93,7 @@ public class AdminController {
     @GetMapping("roomEdit")
     public String roomEdit(Model model, @RequestParam("roomid") String roomid) {
 
-        Room room=customerService.searchRoomByRoomID(roomid);
+        Room room = customerService.searchRoomByRoomID(roomid);
         model.addAttribute("room", room);
         return "roomEdit";
     }
