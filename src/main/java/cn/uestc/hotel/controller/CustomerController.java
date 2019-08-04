@@ -193,9 +193,12 @@ public class CustomerController {
 
 
     @PostMapping("hotelResult")
-    public String searchHotel(@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where) {
+    public String searchHotel(@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where,@RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime,@RequestParam("roomNum") String num) {
         List<Hotel> hotels = customerService.searchHotelByConditions(word, where, hotelclass);
         model.addAttribute("hotels", hotels);
+        model.addAttribute("arrivetime",arrivetime);
+        model.addAttribute("lefttime",lefttime);
+        model.addAttribute("num",num);
         return "hotelResult";
 
     }
