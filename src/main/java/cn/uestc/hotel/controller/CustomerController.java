@@ -33,34 +33,23 @@ public class CustomerController {
     private BasicService basicService;
 
     @GetMapping("IP")
-    @ResponseBody
-    public Boolean showIP() throws Exception {
-
+    public String localtion(Model model) {
         try {
-            String ip = basicService.getV4IP();//获得本机IP
-            while (ip == null) {
-                ip = basicService.getV4IP();
+            String location = basicService.showIP();
+            while (location.equals("false")) {
+                location = basicService.showIP();
             }
-            String address = "";
-            try {
-                address = basicService.getAddresses("ip=" + ip, "utf-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            JSONObject jsonObject = new JSONObject(address);
-            jsonObject = jsonObject.getJSONObject("data");
-            //通过相应的get方法,获取相应的属性
-            String county = jsonObject.getString("country_id");//国家
-            String region = jsonObject.getString("region");//省份
-            String city = jsonObject.getString("city");//城市
-            String telecom = jsonObject.getString("isp");//运营商
-            System.out.println("解析得到的地址为：" + county + "," + region + "省;" + city + "市," + telecom);
-            return true;
+
+            String word = "";
+            String where = "";
+            String hotelclass = "0";
+            List<Hotel> hotels = customerService.searchHotelByConditions(word, where, hotelclass);
+            model.addAttribute("hotels", hotels);
+
         } catch (Exception e) {
-            return false;
+        } finally {
+            return "hotelResult";
         }
-
-
 
     }
 

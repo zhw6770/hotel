@@ -4,12 +4,12 @@ import cn.uestc.hotel.mapper.CustomerMapper;
 import cn.uestc.hotel.mapper.HotelMapper;
 import cn.uestc.hotel.mapper.OrderFormMapper;
 import cn.uestc.hotel.mapper.RoomMapper;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
 import java.util.Date;
-
 
 
 import java.io.BufferedReader;
@@ -51,7 +51,7 @@ public class BasicService {
 
     }
 
-    public  String getAddresses(String content, String encodingString)
+    public String getAddresses(String content, String encodingString)
             throws UnsupportedEncodingException {
         try {
             // 这里调用淘宝API
@@ -69,13 +69,13 @@ public class BasicService {
                 }
                 return returnStr;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
         return null;
     }
 
-    private  String getResult(String urlStr, String content, String encoding) {
+    private String getResult(String urlStr, String content, String encoding) {
         URL url = null;
         HttpURLConnection connection = null;
         try {
@@ -94,9 +94,9 @@ public class BasicService {
             out.flush();// 刷新
             out.close();// 关闭输出流
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(
-                        connection.getInputStream(), encoding));// 往对端写完数据对端服务器返回数据
-                // ,以BufferedReader流来读取
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    connection.getInputStream(), encoding));// 往对端写完数据对端服务器返回数据
+            // ,以BufferedReader流来读取
 
 
             StringBuffer buffer = new StringBuffer();
@@ -106,11 +106,9 @@ public class BasicService {
             }
             reader.close();
             return buffer.toString();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
 
-        }
-        finally {
+        } finally {
             if (connection != null) {
                 connection.disconnect();// 关闭连接
             }
@@ -118,7 +116,7 @@ public class BasicService {
         return null;
     }
 
-    public  String decodeUnicode(String theString) {
+    public String decodeUnicode(String theString) {
         char aChar;
         int len = theString.length();
         StringBuffer outBuffer = new StringBuffer(len);
@@ -165,32 +163,26 @@ public class BasicService {
                         }
                     }
                     outBuffer.append((char) value);
-                }
-                else {
+                } else {
                     if (aChar == 't') {
                         aChar = '\t';
-                    }
-                    else if (aChar == 'r') {
+                    } else if (aChar == 'r') {
                         aChar = '\r';
-                    }
-                    else if (aChar == 'n') {
+                    } else if (aChar == 'n') {
                         aChar = '\n';
-                    }
-                    else if (aChar == 'f') {
+                    } else if (aChar == 'f') {
                         aChar = '\f';
                     }
                     outBuffer.append(aChar);
                 }
-            }
-            else {
+            } else {
                 outBuffer.append(aChar);
             }
         }
         return outBuffer.toString();
     }
 
-
-    public  String getV4IP() {
+    public String getV4IP() {
         String ip = "";
         String chinaz = "http://ip.chinaz.com";
 
@@ -233,6 +225,34 @@ public class BasicService {
         return ip;
     }
 
+    public String showIP() throws Exception {
+
+        try {
+            String ip = this.getV4IP();//获得本机IP
+            while (ip == null) {
+                ip = this.getV4IP();
+            }
+            String address = "";
+            try {
+                address = this.getAddresses("ip=" + ip, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            JSONObject jsonObject = new JSONObject(address);
+            jsonObject = jsonObject.getJSONObject("data");
+            //通过相应的get方法,获取相应的属性
+            String county = jsonObject.getString("country_id");//国家
+            String region = jsonObject.getString("region");//省份
+            String city = jsonObject.getString("city");//城市
+            String telecom = jsonObject.getString("isp");//运营商
+            return city;
+        } catch (Exception e) {
+            return "false";
+        }
+
+
+
+    }
 
 
 }
