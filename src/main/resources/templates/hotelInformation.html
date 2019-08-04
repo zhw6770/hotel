@@ -122,35 +122,35 @@
                     <td th:text="${hotel.roomtype1}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;font-size:15px;vertical-align: middle" th:text="${roomType1.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType1.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelname=${hotel.hotelname},roomtype=${roomType1.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType1.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType1.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType1.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype2} !=null">
                     <td> <img th:src="@{/showRoomImg2(hotelid=${hotel.hotelid})}" th:if="${hotel.typeimgname2}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype2}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType2.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType2.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelname=${hotel.hotelname},roomtype=${roomType2.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType2.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType2.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType2.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype3} !=null">
                     <td><img th:src="@{/showRoomImg3(hotelid=${hotel.hotelid})}" th:if="${hotel.typeimgname3}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype3}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType3.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType3.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelname=${hotel.hotelname},roomtype=${roomType3.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType3.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType3.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType3.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype4} !=null">
                     <td><img th:src="@{/showRoomImg4(hotelid=${hotel.hotelid})}"  th:if="${hotel.typeimgname4}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype4}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType4.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType4.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelname=${hotel.hotelname},roomtype=${roomType4.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType4.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType4.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType4.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype5} !=null">
                     <td><img th:src="@{/showRoomImg5(hotelid=${hotel.hotelid})}" th:if="${hotel.typeimgname5}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype5}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType5.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType5.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelname=${hotel.hotelname},roomtype=${roomType5.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType5.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType5.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType5.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
                 </tr>
 
                 <!--<td th:text="'￥'+${room.dailyprice}"></td>-->

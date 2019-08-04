@@ -41,7 +41,7 @@
         <span style="color: crimson;font-size: 15px" th:text="${dailyprice}">180</span>
         <span style="color: crimson;font-size: 15px">元</span>
 
-        <form action="" class="am-form" id="doc-vld-msg">
+        <form th:action="orderview" class="am-form" id="doc-vld-msg" method="post" th:object="${order}">
             <div class="tr_rechbox">
                 <div class="tr_rechnum">
                     <span></span>

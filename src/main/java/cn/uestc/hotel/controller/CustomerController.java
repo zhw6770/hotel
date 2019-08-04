@@ -1,10 +1,7 @@
 package cn.uestc.hotel.controller;
 
 
-import cn.uestc.hotel.domain.Customer;
-import cn.uestc.hotel.domain.Hotel;
-import cn.uestc.hotel.domain.HotelWithBLOBs;
-import cn.uestc.hotel.domain.Room;
+import cn.uestc.hotel.domain.*;
 import cn.uestc.hotel.service.BasicService;
 import cn.uestc.hotel.service.CustomerService;
 
@@ -173,10 +170,11 @@ public class CustomerController {
     }
 
     @GetMapping("orderConfirm")
-    public String orderConfirm(Model model, @RequestParam("roomtype") String roomtype, @RequestParam("hotelname") String hotelname, @RequestParam("dailyprice") String dailyprice, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("num") String num) {
+    public String orderConfirm(Model model, @RequestParam("hotelid") String hotelid, @RequestParam("roomtype") String roomtype, @RequestParam("hotelname") String hotelname, @RequestParam("dailyprice") String dailyprice, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("num") String num) {
         model.addAttribute("arrivetime", arrivetime);
         model.addAttribute("lefttime", lefttime);
         model.addAttribute("num", num);
+        model.addAttribute("hotelid", hotelid);
         model.addAttribute("hotelname", hotelname);
         model.addAttribute("dailyprice", dailyprice);
         model.addAttribute("roomtype", roomtype);
@@ -200,6 +198,29 @@ public class CustomerController {
         }
         String customerid = customerService.searchCustomerByRequest(request).getCustomerid();
         model.addAttribute("orderForms", customerService.selectOrderFormByCustomerID(customerid));
+        return "orderview";//查看订单页面
+    }
+
+    @PostMapping("orderview")
+    public String createOrder(Model model, Customer customer, HttpServletRequest request,OrderForm order) {
+        if (customerService.searchCustomerByRequest(request) == null) {
+            Customer customer1 = new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
+        } else {
+
+            customer = customerService.searchCustomerByRequest(request);
+            model.addAttribute("customer", customer);
+        }
+
+
+        System.out.println(order.getArrivetime());
+        String customerid = customerService.searchCustomerByRequest(request).getCustomerid();
+        model.addAttribute("orderForms", customerService.selectOrderFormByCustomerID(customerid));
+
+
+
+
         return "orderview";//查看订单页面
     }
 
