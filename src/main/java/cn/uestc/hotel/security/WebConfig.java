@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/adminlte/**", "/index/**", "/login","/", "//index", "/register","/hotelResult", "/hotelInformation","/showHotelImg","/showRoomImg1","/showRoomImg2","/showRoomImg3","/showRoomImg4","/showRoomImg5");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/adminlte/**", "/index/**", "/login","/", "//index", "/register","/hotelResult", "/hotelInformation","/showHotelImg","/showRoomImg1","/showRoomImg2","/showRoomImg3","/showRoomImg4","/showRoomImg5","/IP");
     }
 }

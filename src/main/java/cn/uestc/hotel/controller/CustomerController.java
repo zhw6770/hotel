@@ -1,10 +1,13 @@
 package cn.uestc.hotel.controller;
 
+
 import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.domain.Hotel;
 import cn.uestc.hotel.domain.HotelWithBLOBs;
 import cn.uestc.hotel.domain.Room;
+import cn.uestc.hotel.service.BasicService;
 import cn.uestc.hotel.service.CustomerService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
 import java.util.List;
 
 
@@ -23,10 +29,45 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private BasicService basicService;
+
+    @GetMapping("IP")
+    @ResponseBody
+    public Boolean showIP() throws Exception {
+
+        try {
+            String ip = basicService.getV4IP();//获得本机IP
+            while (ip == null) {
+                ip = basicService.getV4IP();
+            }
+            String address = "";
+            try {
+                address = basicService.getAddresses("ip=" + ip, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            JSONObject jsonObject = new JSONObject(address);
+            jsonObject = jsonObject.getJSONObject("data");
+            //通过相应的get方法,获取相应的属性
+            String county = jsonObject.getString("country_id");//国家
+            String region = jsonObject.getString("region");//省份
+            String city = jsonObject.getString("city");//城市
+            String telecom = jsonObject.getString("isp");//运营商
+            System.out.println("解析得到的地址为：" + county + "," + region + "省;" + city + "市," + telecom);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+
+
+    }
+
 
     @GetMapping("showHotelImg")
-    public ResponseEntity<Resource> showHotelImg(@RequestParam("hotelid") String hotelid){
-        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+    public ResponseEntity<Resource> showHotelImg(@RequestParam("hotelid") String hotelid) {
+        HotelWithBLOBs hotelWithBLOBs = customerService.searchHotelWithBlobByHotelID(hotelid);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
                 .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getImg()));
@@ -35,46 +76,45 @@ public class CustomerController {
     }
 
 
-
     @GetMapping("showRoomImg1")
-    public ResponseEntity<Resource> showRoom1Img1(@RequestParam("hotelid") String hotelid){
-        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+    public ResponseEntity<Resource> showRoom1Img1(@RequestParam("hotelid") String hotelid) {
+        HotelWithBLOBs hotelWithBLOBs = customerService.searchHotelWithBlobByHotelID(hotelid);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
                 .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg1()));
     }
+
     @GetMapping("showRoomImg2")
-    public ResponseEntity<Resource> showRoom1Img2(@RequestParam("hotelid") String hotelid){
-        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+    public ResponseEntity<Resource> showRoom1Img2(@RequestParam("hotelid") String hotelid) {
+        HotelWithBLOBs hotelWithBLOBs = customerService.searchHotelWithBlobByHotelID(hotelid);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
                 .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg2()));
     }
+
     @GetMapping("showRoomImg3")
-    public ResponseEntity<Resource> showRoom1Img3(@RequestParam("hotelid") String hotelid){
-        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+    public ResponseEntity<Resource> showRoom1Img3(@RequestParam("hotelid") String hotelid) {
+        HotelWithBLOBs hotelWithBLOBs = customerService.searchHotelWithBlobByHotelID(hotelid);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
                 .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg3()));
     }
+
     @GetMapping("showRoomImg4")
-    public ResponseEntity<Resource> showRoom1Img4(@RequestParam("hotelid") String hotelid){
-        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+    public ResponseEntity<Resource> showRoom1Img4(@RequestParam("hotelid") String hotelid) {
+        HotelWithBLOBs hotelWithBLOBs = customerService.searchHotelWithBlobByHotelID(hotelid);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
                 .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg4()));
     }
+
     @GetMapping("showRoomImg5")
-    public ResponseEntity<Resource> showRoom1Img5(@RequestParam("hotelid") String hotelid){
-        HotelWithBLOBs hotelWithBLOBs=customerService.searchHotelWithBlobByHotelID(hotelid);
+    public ResponseEntity<Resource> showRoom1Img5(@RequestParam("hotelid") String hotelid) {
+        HotelWithBLOBs hotelWithBLOBs = customerService.searchHotelWithBlobByHotelID(hotelid);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(hotelWithBLOBs.getImgtype()))
                 .body(new ByteArrayResource(((HotelWithBLOBs) hotelWithBLOBs).getTypeimg5()));
     }
-
-
-
-
 
 
     @GetMapping("/login")
@@ -175,17 +215,37 @@ public class CustomerController {
     @GetMapping("hotelInformation")
     public String getroomInformation(Model model, @RequestParam("hotelid") String hotelid) {
         Hotel hotel = customerService.searchHotelByHotelID(hotelid);
-        Room roomType1=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype1());
-        Room roomType2=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype2());
-        Room roomType3=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype3());
-        Room roomType4=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype4());
-        Room roomType5=customerService.searchRoomImformationByHotelIDAndType(hotelid,hotel.getRoomtype5());
+        Room roomType1 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype1());
+        Room roomType2 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype2());
+        Room roomType3 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype3());
+        Room roomType4 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype4());
+        Room roomType5 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype5());
         model.addAttribute("hotel", hotel);
-        if(roomType1!=null){model.addAttribute("roomType1",roomType1);}else {model.addAttribute("roomType1",new Room());}
-        if(roomType2!=null){model.addAttribute("roomType2",roomType2);}else {model.addAttribute("roomType2",new Room());}
-        if(roomType3!=null){model.addAttribute("roomType3",roomType3);}else {model.addAttribute("roomType3",new Room());}
-        if(roomType4!=null){model.addAttribute("roomType4",roomType4);}else {model.addAttribute("roomType4",new Room());}
-        if(roomType5!=null){model.addAttribute("roomType5",roomType5);}else {model.addAttribute("roomType5",new Room());}
+        if (roomType1 != null) {
+            model.addAttribute("roomType1", roomType1);
+        } else {
+            model.addAttribute("roomType1", new Room());
+        }
+        if (roomType2 != null) {
+            model.addAttribute("roomType2", roomType2);
+        } else {
+            model.addAttribute("roomType2", new Room());
+        }
+        if (roomType3 != null) {
+            model.addAttribute("roomType3", roomType3);
+        } else {
+            model.addAttribute("roomType3", new Room());
+        }
+        if (roomType4 != null) {
+            model.addAttribute("roomType4", roomType4);
+        } else {
+            model.addAttribute("roomType4", new Room());
+        }
+        if (roomType5 != null) {
+            model.addAttribute("roomType5", roomType5);
+        } else {
+            model.addAttribute("roomType5", new Room());
+        }
         return "hotelInformation";
     }
 

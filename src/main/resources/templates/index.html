@@ -225,5 +225,16 @@
 <script type="text/javascript">
     $('.select-time').hotelDate();
 </script>
+
+显示IP地址为 118.114.231.164 的位置信息,<span id="idJsShow"></span>
+<script>
+    function jsShow(location){
+        document.getElementById("idJsShow").innerHTML = location;
+    }
+</script>
+<script src="/index/js/jsFunction.jsp?callback=jsShow&ip=125.10.10.10"></script>
 </body>
 </html>
+
+
+
