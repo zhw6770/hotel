@@ -20,7 +20,7 @@
           href="https://translate.googleapis.com/translate_static/css/translateelement.css">
     <style>
         #searchbox {
-            border: 15px solid rgba(0, 0, 0, 0.274);
+            /*border: 15px solid rgba(0, 0, 0, 0.274);*/
             background: rgba(255, 255, 255, 0.685);
             border-radius: 8px 8px 8px 8px;
             width: 500px;
@@ -151,7 +151,11 @@
 <div align="left" style="font-family: 微软雅黑">
         <form action="hotelResult" method="post" th:object="${orderform}">
             <div id="searchbox"  align="left" style="width: auto;height: auto">
-                <div style="background: #27aed4"><b style="font-size: 20px;color: #fff"><div style="margin-left: 10px;padding-top: 10px;padding-bottom: 5px">&nbsp酒店搜索</div></b></div>
+                <div style="background: #27aed4">
+                    <b style="font-size: 20px;color: #fff">
+                        <div style="margin-left: 10px;padding-top: 10px;padding-bottom: 5px">&nbsp酒店搜索</div>
+                    </b>
+                </div>
                 <div>
                     <br>
                     <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp目的地</span>
