@@ -53,18 +53,24 @@ public class BasicService {
 
     public  String getAddresses(String content, String encodingString)
             throws UnsupportedEncodingException {
-        // 这里调用淘宝API
-        String urlStr = "http://ip.taobao.com/service/getIpInfo.php";
-        // 从http://whois.pconline.com.cn取得IP所在的省市区信息
-        String returnStr = getResult(urlStr, content, encodingString);
-        if (returnStr != null) {
-            // 处理返回的省市区信息
-            returnStr = decodeUnicode(returnStr);
-            String[] temp = returnStr.split(",");
-            if (temp.length < 3) {
-                return "0";//无效IP，局域网测试
+        try {
+            // 这里调用淘宝API
+            String urlStr = "http://ip.taobao.com/service/getIpInfo.php";
+            // 从http://whois.pconline.com.cn取得IP所在的省市区信息
+            String returnStr = getResult(urlStr, content, encodingString);
+
+
+            if (returnStr != null) {
+                // 处理返回的省市区信息
+                returnStr = decodeUnicode(returnStr);
+                String[] temp = returnStr.split(",");
+                if (temp.length < 3) {
+                    return "0";//无效IP，局域网测试
+                }
+                return returnStr;
             }
-            return returnStr;
+        }catch(Exception e){
+
         }
         return null;
     }
@@ -87,9 +93,12 @@ public class BasicService {
             out.writeBytes(content);// 写数据,也就是提交你的表单 name=xxx&pwd=xxx
             out.flush();// 刷新
             out.close();// 关闭输出流
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream(), encoding));// 往对端写完数据对端服务器返回数据
-            // ,以BufferedReader流来读取
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(
+                        connection.getInputStream(), encoding));// 往对端写完数据对端服务器返回数据
+                // ,以BufferedReader流来读取
+
+
             StringBuffer buffer = new StringBuffer();
             String line = "";
             while ((line = reader.readLine()) != null) {
@@ -98,8 +107,8 @@ public class BasicService {
             reader.close();
             return buffer.toString();
         }
-        catch (IOException e) {
-            e.printStackTrace();
+        catch (Exception e) {
+
         }
         finally {
             if (connection != null) {
