@@ -24,24 +24,20 @@
         </div>
 
 
-        <span style="font-size: 15px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp房间信息：</span>
+        <span style="font-size: 15px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp房间类型：</span>
         <span style="font-size: 15px" th:text="${roomtype}">房型</span><br><br>
 
         <span style="font-size: 15px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp入离时间：</span>
         <span style="font-size: 15px" th:text="${arrivetime}+'——'+${lefttime}">yyyy-mm-dd——yyyy-mm-dd</span><br><br>
 
-        <span style="font-size: 15px" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp入住信息：</span>
-        <span style="font-size: 15px"></span>
-        <span style="font-size: 15px">名成人</span><br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <span style="font-size: 15px"></span>
-        <span style="font-size: 15px" th:text="${num}">天</span><br><br>
+        <span style="font-size: 15px" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp房间数 ：</span>
+        <span style="font-size: 15px" th:text="${num}+间"></span><br><br>
 
         <span style="font-size: 15px" class="tr_rechnum">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每日价格：</span>
-        <span style="color: crimson;font-size: 15px" th:text="${dailyprice}">180</span>
+        <span style="color: crimson;font-size: 15px" th:text="${dailyprice}"></span>
         <span style="color: crimson;font-size: 15px">元</span>
 
-        <form th:action="orderview" class="am-form" id="doc-vld-msg" method="post" th:object="${order}">
+
             <div class="tr_rechbox">
                 <div class="tr_rechnum">
                     <span></span>
@@ -51,9 +47,10 @@
                 </div>
             </div>
             <div class="tr_paybox">
-                <input type="submit" value="立即预订" class="tr_pay am-btn" />
+                <a href="orderview" class="shadow">
+                    <input type="submit" value="立即预订" class="tr_pay am-btn" />
+                </a>
             </div>
-        </form>
     </div>
 </div>
 
