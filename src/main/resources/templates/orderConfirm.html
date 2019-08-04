@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单确认</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" th:href="@{/index/css/calendar.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/index/css/amazeui.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/index/css/main.css}" />
+
+</head>
+<body>
+<div class="pay">
+    <!--主内容开始编辑-->
+    <div class="tr_recharge">
+        <div class="tr_rechtext">
+            <p class="te_retit"><img th:src="@{/index/images/orderconfirm.png}" alt="" width="120" height="120"/>订单创建</p>
+            <p style="font-size: 15px">· 预订后将立即锁定房源</p>
+
+            <p style="font-size: 15px">· 预订成功后房间将为您整晚保留</p>
+
+            <p style="font-size: 15px">· 一诺千金，确保您入住无忧</p>
+        </div>
+
+
+        <span style="font-size: 15px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp房间信息：</span>
+        <span style="font-size: 15px" th:text="${room.type}">房型</span><br><br>
+
+        <span style="font-size: 15px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp入离时间：</span>
+        <span style="font-size: 15px" th:text="${order.arrivetime}+'——'+${order.lefttime}">yyyy-mm-dd——yyyy-mm-dd</span><br><br>
+
+        <span style="font-size: 15px" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp入住信息：</span>
+        <span style="font-size: 15px"></span>
+        <span style="font-size: 15px">名成人</span><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <span style="font-size: 15px"></span>
+        <span style="font-size: 15px">名儿童</span><br><br>
+
+        <span style="font-size: 15px" class="tr_rechnum">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每日价格：</span>
+        <span style="color: crimson;font-size: 15px" th:text="${room.dailyprice}">180</span>
+        <span style="color: crimson;font-size: 15px">元</span>
+
+        <form action="" class="am-form" id="doc-vld-msg">
+            <div class="tr_rechbox">
+                <div class="tr_rechnum">
+                    <span></span>
+                    <span style="font-size: 15px">应付金额：</span>
+                    <span style="color: crimson;font-size: 30px" th:text="${order.price}">180</span>
+                    <span style="color: crimson;font-size: 15px">元</span>
+                </div>
+            </div>
+            <div class="tr_paybox">
+                <input type="submit" value="立即预订" class="tr_pay am-btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/ui-choose.js"></script>
+<script type="text/javascript" src="js/date.js"></script>
+<script type="text/javascript">
+</script>
+
+</body>
+</html>
