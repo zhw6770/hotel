@@ -148,88 +148,63 @@
                 </div>
             </div>
         </div>
+<div align="left" style="font-family: 微软雅黑">
+        <form action="hotelResult" method="post" th:object="${orderform}">
+            <div id="searchbox"  align="left" style="width: auto;height: auto">
+                <div style="background: #27aed4"><b style="font-size: 20px;color: #fff"><div style="margin-left: 10px;padding-top: 10px;padding-bottom: 5px">&nbsp酒店搜索</div></b></div>
+                <div>
+                    <br>
+                    <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp目的地</span>
+                    <input type="text" name="where" style="width: 336px;color: #555;margin-right: 30px">
+                </div>
+                <br>
+                <div>
+                    <span style="font-size: 15px;color: #333;padding-left: 5px">入住时间</span>
+                    <input type="date" th:field="${orderform.arrivetime}" style="color: #555">
+                    <span style="font-size: 15px;color: #333">退房时间</span>
+                    <input type="date" th:field="${orderform.lefttime}" style="color: #555;margin-right: 30px">
+                </div>
+                <br>
+                <div>
+                    <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp房间数</span>
+                    <span>
+                        <select size="1" name="roomNum" style="width: 61px;color: #555">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </span>
+                    <span style="font-size: 15px;color: #333">酒店星级</span>
+                    <span>
+                        <select size="1" name="hotelclass" style="width: 61px;color: #555;margin-right: 30px">
+                            <option value="0">不限</option>
+                            <option value="5">五星级</option>
+                            <option value="4">四星级</option>
+                            <option value="3">三星级</option>
+                            <option value="2">二星级</option>
+                            <option value="1">一星级</option>
+                        </select>
+                    </span>
+                </div>
+                <br>
+                <div>
+                        <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp关键词</span>
+                        <input type="text" name="word" style="width: 336px;color: #555;margin-right: 30px">
+
+                </div>
+
+                <br>
+
+                <div align="right" style="margin-bottom: 20px;margin-right: 30px">
+                    <button type="submit" class="btn btn-warning btn-flat" style="width: 80px">确认</button>
+                </div>
+            </div>
+        </form>
+</div>
     </div>
 </section>
-<form action="hotelResult" method="post" th:object="${orderform}">
-    <div id="searchbox">
-        <br>
-        <tr>
-            <th>目的城市</th>
-            <input type="text" name="where">
-        </tr>
-        <br>
-        <br>
-
-        <tr>
-            <th>入住时间</th>
-            <input type="date" th:field="${orderform.arrivetime}">
-        </tr>
-
-        <tr>
-            <th>离开时间</th>
-            <input type="date" th:field="${orderform.lefttime}">
-        </tr>
-        <br>
-
-        <tr>
-            <th><h3 align="center">住客数</h3></th>
-            <td>
-                <ul>
-                    <li>
-                        <h5>成年人人数</h5>
-                        <input type="number" min="0">
-                    </li>
-                    <li>
-                        <h5>儿童人数</h5>
-                        <input type="number" min="0">
-                    </li>
-                </ul>
-            </td>
-
-        </tr>
-        <br>
-
-        <tr align="center">
-            <th>房间数</th>
-            <td>
-                <select size="1" name="roomNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </td>
-        </tr>
-        <tr align="center">
-            <th>酒店星级</th>
-            <td>
-                <select size="1" name="hotelclass">
-                    <option value="0">不限</option>
-                    <option value="5">五星级</option>
-                    <option value="4">四星级</option>
-                    <option value="3">三星级</option>
-                    <option value="2">二星级</option>
-                    <option value="1">一星级</option>
-                </select>
-            </td>
-        </tr>
-        <br>
-        <br>
-        <tr>
-            <h4 align="center">
-                <th>关键词</th>
-                <input type="text" name="word">
-            </h4>
-        </tr>
-
-        <br>
-        <br>
-
-
-        <button type="submit" class="btn btn-primary btn-block btn-flat">确认</button>
-    </div>
-</form>
 
 
 <script th:src="@{/index/js/jquery-latest.min.js}"></script>
