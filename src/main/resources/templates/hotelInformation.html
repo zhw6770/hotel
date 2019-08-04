@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- Bootstrap 3.3.7 -->
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -16,7 +14,7 @@
     <link th:href="@{/index/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all" />
     <link th:href="@{/index/css/style1.css}" rel="stylesheet" type="text/css" media="all" />
     <link th:href="@{/index/css/bootstrap1.css}" rel="stylesheet" type="text/css" media="all" />
-
+    <link th:href="@{/index/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <link th:href="@{/index/css/mob.css}" rel="stylesheet" type="text/css" media="all" />
     <link th:href="@{/index/css/animate.css}" rel="stylesheet" type="text/css" media="all" />
     <!-- Google Font -->
@@ -29,7 +27,7 @@
     <title>搜索结果</title>
     <style type="text/css">
         .picture img{
-            width:160px;
+            width:260px;
             margin-left:6px;
             position:relative;
             top:6px;
@@ -51,30 +49,30 @@
             <div class="carousel-inner" role="listbox">
 
                 <div class="item">
-                    <img th:src="@{/index/images/sxc.jpg}" alt="Chania" width="460" height="345">
+                    <img th:src="@{/index/images/sxc.png}" alt="Chania" width="460" height="345">
                     <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">你以为那么多女孩子喜欢我是因为什么 &amp; 是因为我这张批脸吗？</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">我自己心里没点批数吗，还不是因为我儒雅</p>
-                        <!--<a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">快来拯救你妈!</a>-->
+                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">无论天涯海角 &amp; 始终伴您左右</h1>
+                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">总能满足您的需求</p>
+                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
 
                     </div>
                 </div>
 
                 <div class="item">
-                    <img th:src="@{/index/images/sxc.jpg}" alt="Chania" width="460" height="345">
+                    <img th:src="@{/index/images/sxc.png}" alt="Chania" width="460" height="345">
                     <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">带明星 &amp;带个锤子的明星</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">你见过一个月拿3500的带明星?</p>
-                        <!--<a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">快来拯救你妈!</a>-->
+                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">完美景致 &amp; 迷人魅力 &amp; 极致享受</h1>
+                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">让您的旅途尽享优悦</p>
+                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
                     </div>
                 </div>
 
                 <div class="item active">
-                    <img th:src="@{/index/images/sxc.jpg}" alt="Chania" width="460" height="345">
+                    <img th:src="@{/index/images/sxc.png}" alt="Chania" width="460" height="345">
                     <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">开会司马脸，上班司马脸 &amp; 牛批，辣真的牛批</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">是不是对着你妈的遗像笑才有节目效果啊</p>
-                        <!--<a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">快来拯救你妈!</a>-->
+                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">精英会员尊享 &amp; "非凡礼御"</h1>
+                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">周末更可低至七折</p>
+                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
                     </div>
                 </div>
             </div>
@@ -122,35 +120,35 @@
                     <td th:text="${hotel.roomtype1}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;font-size:15px;vertical-align: middle" th:text="${roomType1.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType1.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType1.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType1.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td style="vertical-align: middle"> <a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType1.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType1.dailyprice})}" target="_blank">点我预订</a></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype2} !=null">
                     <td> <img th:src="@{/showRoomImg2(hotelid=${hotel.hotelid})}" th:if="${hotel.typeimgname2}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype2}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType2.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType2.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType2.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType2.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td style="vertical-align: middle"> <a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType2.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType2.dailyprice})}" target="_blank">点我预订</a></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype3} !=null">
                     <td><img th:src="@{/showRoomImg3(hotelid=${hotel.hotelid})}" th:if="${hotel.typeimgname3}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype3}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType3.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType3.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType3.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType3.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td style="vertical-align: middle"> <a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType3.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType3.dailyprice})}" target="_blank">点我预订</a></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype4} !=null">
                     <td><img th:src="@{/showRoomImg4(hotelid=${hotel.hotelid})}"  th:if="${hotel.typeimgname4}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype4}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType4.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType4.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType4.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType4.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td style="vertical-align: middle"> <a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType4.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType4.dailyprice})}" target="_blank">点我预订</a></td>
                 </tr>
                 <tr th:if=" ${hotel.roomtype5} !=null">
                     <td><img th:src="@{/showRoomImg5(hotelid=${hotel.hotelid})}" th:if="${hotel.typeimgname5}!=null" alt=""></td><!--img-->
                     <td th:text="${hotel.roomtype5}" style="vertical-align: middle"></td>
                     <td style="color: #fd6601;;font-size:15px;vertical-align: middle" th:text="${roomType5.dailyprice}"></td>
                     <td style="color: #10a101;font-size:15px;vertical-align: middle" th:text="${roomType5.breakfast}"></td>
-                    <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType5.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType5.dailyprice})}" target="_blank"><br>点我预订</a></div></td>
+                    <td style="vertical-align: middle"> <a th:href ="@{/orderConfirm(hotelid=${hotel.hotelid},hotelname=${hotel.hotelname},roomtype=${roomType5.type},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},dailyprice=${roomType5.dailyprice})}" target="_blank">点我预订</a></td>
                 </tr>
 
                 <!--<td th:text="'￥'+${room.dailyprice}"></td>-->
@@ -172,28 +170,28 @@
                 <div class="tl-2"></div>
                 <div class="tl-3"></div>
             </div>
-            <p>全球领先的坟地预订网站，全球超过30000个套餐。预订入坟套餐，享受与众不同的司马体验</p>
+            <p>全球领先的酒店预订网站，全球超过30000个套餐。预订酒店入住套餐，享受与众不同的住宿体验</p>
         </div>
         <div class="popu-places-home">
             <!-- POPULAR PLACES 1 -->
             <div class="col-md-6 col-sm-6 col-xs-12 place">
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <img th:src="@{/index/images/sxc.jpg}" alt="">
+                    <img th:src="@{/index/images/戛纳.jpg}" alt="">
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <h3><span>蜜月套餐</span> 70年 / 60年</h3>
-                    <p>单人棺材 夫妻棺材 </p>
+                    <h3><span>蜜月套餐</span> 6 / 7 天</h3>
+                    <p>单人房间 夫妻小屋 </p>
                     <a href="/index" class="link-btn">more info</a>
                 </div>
             </div>
             <!-- POPULAR PLACES 2 -->
             <div class="col-md-6 col-sm-6 col-xs-12 place">
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <img th:src="@{/index/images/sxc.jpg}" alt="">
+                    <img th:src="@{/index/images/华欣.jpg}" alt="">
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <h3><span>Family package</span> 14 Days / 13 Nights</h3>
-                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p>
+                    <h3><span>家庭套餐</span> 13 / 14 天</h3>
+                    <p>家庭套房 琳琅隔间 6-8人豪华享受 更有机会让亲朋好友一起来!</p>
                     <a href="/index" class="link-btn">more info</a>
                 </div>
             </div>
@@ -202,22 +200,22 @@
             <!-- POPULAR PLACES 3 -->
             <div class="col-md-6 col-sm-6 col-xs-12 place">
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <img th:src="@{/index/images/sxc.jpg}" alt="">
+                    <img th:src="@{/index/images/海滩.jpg}" alt="">
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <h3><span>Weekend Package </span> 3 Days / 2 Nights</h3>
-                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p>
+                    <h3><span>假日套餐 </span> 2 / 3 天</h3>
+                    <p>尊享假日套房 让您逃脱琐俗的都市生活 在美妙的闲暇之余也能享受生活</p>
                     <a href="/index" class="link-btn">more info</a>
                 </div>
             </div>
             <!-- POPULAR PLACES 4 -->
             <div class="col-md-6 col-sm-6 col-xs-12 place">
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <img th:src="@{/index/images/sxc.jpg}" alt="">
+                    <img th:src="@{/index/images/茶居.jpg}" alt="">
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <h3><span>Group Package</span> 10 Days / 9 Nights</h3>
-                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p>
+                    <h3><span>自由组团</span> 8 / 9 天</h3>
+                    <p>自由组成3 - 5人团 叫上亲朋好友一起来 更有多重组团好礼</p>
                     <a href="/index" class="link-btn">more info</a>
                 </div>
             </div>
