@@ -175,6 +175,18 @@ public class CustomerController {
         return "redirect:index";
     }
 
+    @GetMapping("orderConfirm")
+    public String orderConfirm(Model model, @RequestParam("roomtype") String roomtype,@RequestParam("hotelname") String hotelname,@RequestParam("dailyprice") String dailyprice,@RequestParam("arrivetime") String arrivetime,@RequestParam("lefttime") String lefttime,@RequestParam("num") String num) {
+        model.addAttribute("arrivetime",arrivetime);
+        model.addAttribute("lefttime",lefttime);
+        model.addAttribute("num",num);
+        model.addAttribute("hotelname",hotelname);
+        model.addAttribute("dailyprice",dailyprice);
+        model.addAttribute("roomtype",roomtype);
+        return "orderConfirm";//查看订单页面
+    }
+
+
     @GetMapping("orderview")
     public String orderview(Model model, Customer customer, HttpServletRequest request) {
         if (customerService.searchCustomerByRequest(request) == null) {
@@ -205,8 +217,11 @@ public class CustomerController {
 
 
     @GetMapping("hotelInformation")
-    public String getroomInformation(Model model, @RequestParam("hotelid") String hotelid) {
+    public String getroomInformation(Model model, @RequestParam("hotelid") String hotelid,@RequestParam("arrivetime") String arrivetime,@RequestParam("lefttime") String lefttime,@RequestParam("num") String num) {
         Hotel hotel = customerService.searchHotelByHotelID(hotelid);
+        model.addAttribute("arrivetime",arrivetime);
+        model.addAttribute("lefttime",lefttime);
+        model.addAttribute("num",num);
         Room roomType1 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype1());
         Room roomType2 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype2());
         Room roomType3 = customerService.searchRoomImformationByHotelIDAndType(hotelid, hotel.getRoomtype3());
@@ -238,6 +253,10 @@ public class CustomerController {
         } else {
             model.addAttribute("roomType5", new Room());
         }
+
+
+
+
         return "hotelInformation";
     }
 
