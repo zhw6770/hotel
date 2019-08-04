@@ -19,6 +19,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -253,6 +254,21 @@ public class BasicService {
 
 
     }
+
+
+    public  String getRandString(int length)
+    {
+        String charList = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        String rev = "";
+        Random f = new Random();
+        for(int i=0;i<length;i++)
+        {
+            rev += charList.charAt(Math.abs(f.nextInt())%charList.length());
+        }
+        return rev;
+    }
+
+
 
 
 }

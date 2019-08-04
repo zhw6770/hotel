@@ -40,6 +40,11 @@ public class CustomerService {
         return true;
     }
 
+    public Boolean insertOrderForm(OrderForm orderForm){
+        orderFormMapper.insert(orderForm);
+        return true;
+    }
+
     public Boolean insertCustomer(Customer customer) {
         if (customer != null) {
             customerMapper.insert(customer);

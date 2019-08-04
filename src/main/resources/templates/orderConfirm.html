@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="tr_paybox">
-                <a href="orderview" class="shadow">
+                <a th:href="@{pay(price=${price},hotelid=${hotelid},arrivetime=${arrivetime},lefttime=${lefttime},num=${num},type=${roomtype})}" class="shadow" >
                     <input type="submit" value="立即预订" class="tr_pay am-btn" />
                 </a>
             </div>
