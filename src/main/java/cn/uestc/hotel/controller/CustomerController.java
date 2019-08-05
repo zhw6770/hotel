@@ -5,6 +5,7 @@ import cn.uestc.hotel.domain.*;
 import cn.uestc.hotel.service.BasicService;
 import cn.uestc.hotel.service.CustomerService;
 
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -203,7 +204,23 @@ public class CustomerController {
 
 
     @PostMapping("hotelResult")
-    public String searchHotel(@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("roomNum") String num) {
+    public String searchHotel(Customer customer, HttpServletRequest request, OrderForm orderform,@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("roomNum") String num) {
+        if (arrivetime.equals("") || lefttime.equals("")) {
+
+            if (customerService.searchCustomerByRequest(request) == null) {
+                Customer customer1 = new Customer();
+                customer1.setCustomername("登录");
+                model.addAttribute("customer", customer1);
+            } else {
+                customer = customerService.searchCustomerByRequest(request);
+                model.addAttribute("customer", customer);
+            }
+            model.addAttribute("orderform", orderform);
+model.addAttribute("msg","0");
+            return "index";
+        }
+
+
         List<Hotel> hotels = customerService.searchHotelByConditions(word, where, hotelclass);
         model.addAttribute("hotels", hotels);
         model.addAttribute("arrivetime", arrivetime);
@@ -258,12 +275,9 @@ public class CustomerController {
 
 
     @GetMapping("/pay")
-    public String getOrderRoom(HttpServletRequest request,Model model, @RequestParam("price") String price, @RequestParam("hotelid") String hotelid, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("num") String num, String type) {
+    public String getOrderRoom(HttpServletRequest request, Model model, @RequestParam("price") String price, @RequestParam("hotelid") String hotelid, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("num") String num, String type) {
         List<Room> rooms = customerService.searchRoomByCondition(hotelid, arrivetime, lefttime, num, type);
         if (rooms != null) {
-            System.out.println("找到");
-
-
             OrderForm orderform = new OrderForm();
             orderform.setOrderformid(basicService.getRandString(1));//生成1段的随机数作为订单号！
             orderform.setLefttime(lefttime);
@@ -273,42 +287,36 @@ public class CustomerController {
             orderform.setRoomnum(num);
             orderform.setCustomerid(customerService.searchCustomerByRequest(request).getCustomerid());
             int number = rooms.size();//房间数目
-            if(number>0){
+            if (number > 0) {
                 orderform.setRoomid1(rooms.get(0).getRoomid());
                 number--;
             }
-            if(number>0){
+            if (number > 0) {
                 orderform.setRoomid2(rooms.get(0).getRoomid());
                 number--;
             }
 
-            if(number>0){
+            if (number > 0) {
                 orderform.setRoomid3(rooms.get(0).getRoomid());
                 number--;
             }
 
-            if(number>0){
+            if (number > 0) {
                 orderform.setRoomid4(rooms.get(0).getRoomid());
                 number--;
             }
 
-            if(number>0){
+            if (number > 0) {
                 orderform.setRoomid5(rooms.get(0).getRoomid());
                 number--;
             }
 
 
-
             customerService.insertOrderForm(orderform);
-            System.out.println("11");
 
         } else {
-            System.out.println("没找到");
+            return "订单失败";
         }
-
-
-
-
 
 
         return "redirect:orderview";

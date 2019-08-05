@@ -40,32 +40,32 @@ public class AdminController {
         hotel.setTel(tel);
         customerService.updateHotel(hotel);
         HotelWithBLOBs hotelwithblobs = customerService.searchHotelWithBlobByHotelID(hotelid);
-        if (file.getSize()!=0) {
+        if (file.getSize() != 0) {
             hotelwithblobs.setImg(file.getBytes());
             hotelwithblobs.setImgname(file.getOriginalFilename());
 
             customerService.updateHotelWithBolb(hotelwithblobs);
-            if (file1.getSize()!=0) {
+            if (file1.getSize() != 0) {
                 hotelwithblobs.setTypeimg1(file1.getBytes());
                 hotelwithblobs.setTypeimgname1(file1.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file2.getSize()!=0) {
+            if (file2.getSize() != 0) {
                 hotelwithblobs.setTypeimg2(file2.getBytes());
                 hotelwithblobs.setTypeimgname2(file2.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file3.getSize()!=0) {
+            if (file3.getSize() != 0) {
                 hotelwithblobs.setTypeimg3(file3.getBytes());
                 hotelwithblobs.setTypeimgname3(file3.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file4.getSize()!=0) {
+            if (file4.getSize() != 0) {
                 hotelwithblobs.setTypeimg4(file4.getBytes());
                 hotelwithblobs.setTypeimgname4(file4.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
             }
-            if (file5.getSize()!=0) {
+            if (file5.getSize() != 0) {
                 hotelwithblobs.setTypeimg5(file5.getBytes());
                 hotelwithblobs.setTypeimgname5(file5.getOriginalFilename());
                 customerService.updateHotelWithBolb(hotelwithblobs);
@@ -106,18 +106,33 @@ public class AdminController {
         return true;
     }
 
+    @GetMapping("/changeCustomer")
+    public String changeCustomer(@RequestParam("id") String id) {
+        customerService.changeCustomerStateByid(id);
+        return "redirect:customerList";
+    }
+
+    @GetMapping("grant")
+    public String grant(@RequestParam("id") String id) {
+        customerService.grant(id);
+        return "redirect:customerList";
+
+    }
+
+
+
     @GetMapping("/deleteHotel")
-    public String  deleteUser(@RequestParam("id") String id) {
+    public String deleteUser(@RequestParam("id") String id) {
         customerService.deleteHotelByid(id);
         return "redirect:hotelList";
     }
 
 
-    @GetMapping("grant")
-    public String grant(@RequestParam("id") String id) {
-       customerService.grant(id);
-         return "redirect:customerList";
-
+    @GetMapping("/changeHotel")
+    public String changeHotel(@RequestParam("id") String id) {
+        customerService.changeHotelStateByid(id);
+        return "redirect:hotelList";
     }
+
 
 }

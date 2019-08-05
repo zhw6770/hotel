@@ -168,6 +168,7 @@
                     <span style="font-size: 15px;color: #333">退房时间</span>
                     <input type="date" th:field="${orderform.lefttime}" style="color: #555;margin-right: 30px">
                 </div>
+                <sapn th:if="${msg} eq 0" >错误！</sapn>
                 <br>
                 <div>
                     <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp房间数</span>

@@ -78,6 +78,10 @@
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">
+                                    停用
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">
                                     Delete
                                 </th>
 
@@ -98,9 +102,14 @@
                                     <div class="feedback-btn"><a th:href="@{/roomList(hotelid=${hotel.hotelid})}"
                                                                  >管理房间</a></div>
                                 </td>
+                                <td> <div th:switch="${hotel.isavailable}==1">
+                                    <span th:case="true">可用</span>
+                                    <span th:case="false">已停用</span>
+                                </div> <div class="feedback-btn"><a th:href ="@{/changeHotel(id=${hotel.hotelid})}" >更改</a></div>
+                                </td>
                                 <td>
-                                    <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a
-                                            th:href="@{/deleteHotel(id=${hotel.hotelid})}" target="_blank"><br>点我删除</a>
+                                    <div class="feedback-btn"><a
+                                            th:href="@{/deleteHotel(id=${hotel.hotelid})}" >删除</a>
                                     </div>
                                 </td>
 

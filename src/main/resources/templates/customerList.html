@@ -52,6 +52,7 @@
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">性别</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">联系电话</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">权限更改</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">状态</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">删除</th>
             </tr>
             </thead>
@@ -65,6 +66,10 @@
                     <span th:case="true">管理员</span>
                     <span th:case="false">用户</span>
                 </div> <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/grant(id=${customer.customerid})}" >点我更改</a></div></td>
+                <td> <div th:switch="${customer.isavailable}=='1'">
+                    <span th:case="true">可用</span>
+                    <span th:case="false">已停用</span>
+                </div> <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/changeCustomer(id=${customer.customerid})}" >点我更改</a></div></td>
                 <td>  <div class="feedback-btn"><img th:src="@{/index/images/33.png}"><a th:href ="@{/deleteCustomer(id=${customer.customerid})}" target="_blank">点我删除</a></div></td>
 
             </tbody>
@@ -75,6 +80,7 @@
                 <th rowspan="1" colspan="1">性别</th>
                 <th rowspan="1" colspan="1">联系电话</th>
                 <th rowspan="1" colspan="1">权限更改</th>
+                <th rowspan="1" colspan="1">状态</th>
                 <th rowspan="1" colspan="1">删除</th>
             </tr>
             </tfoot>

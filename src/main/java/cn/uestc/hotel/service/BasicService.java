@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.util.Date;
 
 
@@ -201,10 +202,13 @@ public class BasicService {
             }
             //System.out.println(inputLine.toString());
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+//         e.printStackTrace();
+
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+//           e.printStackTrace();
+
+        }
+        finally {
             if (in != null) {
                 try {
                     in.close();

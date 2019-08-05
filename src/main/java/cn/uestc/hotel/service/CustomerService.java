@@ -59,6 +59,31 @@ public class CustomerService {
         return true;
     }
 
+    public Boolean changeCustomerStateByid(String customerid) {
+        Customer customer=customerMapper.selectByPrimaryKey(customerid);
+        if(customer.getIsavailable().equals("1")){
+            customer.setIsavailable("0");
+            customerMapper.updateByPrimaryKeySelective(customer);
+        }else{
+            customer.setIsavailable("1");
+            customerMapper.updateByPrimaryKeySelective(customer);
+        }
+        return true;
+    }
+
+    public Boolean changeHotelStateByid(String hotelid) {
+
+        HotelWithBLOBs hotel=hotelMapper.selectByPrimaryKey(hotelid);
+        if(hotel.getIsavailable()==1){
+            hotel.setIsavailable(0);
+            hotelMapper.updateByPrimaryKeySelective(hotel);//有问题！！！！！！！！！！！！
+        }else{
+            hotel.setIsavailable(1);
+            hotelMapper.updateByPrimaryKeySelective(hotel);
+        }
+        return true;
+    }
+
     public Boolean grant(String customerid) {
         Customer customer = this.searchCustomerByCustomerID(customerid);
         System.out.println("11");
@@ -79,7 +104,7 @@ public class CustomerService {
 
     public Customer checkCustomer(Customer customer) {
         CustomerExample ex = new CustomerExample();
-        ex.createCriteria().andCustomeridEqualTo(customer.getCustomerid()).andCustomerpasswordEqualTo(customer.getCustomerpassword());
+        ex.createCriteria().andCustomeridEqualTo(customer.getCustomerid()).andCustomerpasswordEqualTo(customer.getCustomerpassword()).andIsavailableEqualTo("1");
         List<Customer> customers = customerMapper.selectByExample(ex);
         return customers.size() > 0 ? customers.get(0) : null;
 
@@ -152,23 +177,23 @@ public class CustomerService {
         if (hotelclass.equals("0")) {
 
             HotelExample.Criteria criteria1 = ex.createCriteria();
-            criteria1.andHotelnameLike("%" + word + "%").andCityLike("%" + where + "%");
+            criteria1.andHotelnameLike("%" + word + "%").andCityLike("%" + where + "%").andIsavailableEqualTo(1);
             HotelExample.Criteria criteria2 = ex.createCriteria();
-            criteria2.andAddressLike("%" + word + "%").andCityLike("%" + where + "%");
+            criteria2.andAddressLike("%" + word + "%").andCityLike("%" + where + "%").andIsavailableEqualTo(1);
             ex.or(criteria2);
             HotelExample.Criteria criteria3 = ex.createCriteria();
-            criteria3.andCountryLike("%" + word + "%").andCityLike("%" + where + "%");
+            criteria3.andCountryLike("%" + word + "%").andCityLike("%" + where + "%").andIsavailableEqualTo(1);
             ex.or(criteria3);
 
         } else {
 
             HotelExample.Criteria criteria1 = ex.createCriteria();
-            criteria1.andHotelnameLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%");
+            criteria1.andHotelnameLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%").andIsavailableEqualTo(1);
             HotelExample.Criteria criteria2 = ex.createCriteria();
-            criteria2.andAddressLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%");
+            criteria2.andAddressLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%").andIsavailableEqualTo(1);
             ex.or(criteria2);
             HotelExample.Criteria criteria3 = ex.createCriteria();
-            criteria3.andCountryLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%");
+            criteria3.andCountryLike("%" + word + "%").andHotelclassEqualTo(hotelclass).andCityLike("%" + where + "%").andIsavailableEqualTo(1);
             ex.or(criteria3);
 
         }
