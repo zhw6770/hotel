@@ -1547,9 +1547,9 @@ a {
     left: 0px;
 }
 
-#myTable tr[class~=header] {
+/*#myTable tr[class~=header] {
     background-color: #f1f1f1;
-}
+}*/
 
 [class~=events] table tr {
     border-bottom-width: .0625pc;

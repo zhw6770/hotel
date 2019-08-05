@@ -1,5 +1,6 @@
 package cn.uestc.hotel.controller;
 
+import cn.uestc.hotel.domain.Customer;
 import cn.uestc.hotel.domain.Hotel;
 import cn.uestc.hotel.domain.HotelWithBLOBs;
 import cn.uestc.hotel.domain.Room;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,15 +22,30 @@ public class AdminController {
 
 
     @GetMapping("customerList")
-    public String getCustomerListPage(Model model) {
-
+    public String getCustomerListPage(Model model,Customer customer, HttpServletRequest request) {
+        if (customerService.searchCustomerByRequest(request) == null) {
+            Customer customer1 = new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
+        } else {
+            customer = customerService.searchCustomerByRequest(request);
+            model.addAttribute("customer", customer);
+        }
         model.addAttribute("customers", customerService.findAllCustomer());
         return "customerList";
     }
 
     @GetMapping("hotelList")
-    public String getHotelListPage(Model model) {
+    public String getHotelListPage(Model model, Customer customer, HttpServletRequest request) {
 
+        if (customerService.searchCustomerByRequest(request) == null) {
+            Customer customer1 = new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
+        } else {
+            customer = customerService.searchCustomerByRequest(request);
+            model.addAttribute("customer", customer);
+        }
         model.addAttribute("hotels", customerService.findAllHotel());
         return "hotelList";
     }

@@ -291,7 +291,7 @@ public class CustomerService {
 
     public List<OrderForm> selectOrderFormByCustomerID(String customerID) {
         OrderFormExample ex = new OrderFormExample();
-        ex.createCriteria().andCustomeridEqualTo(customerID);
+        ex.createCriteria().andCustomeridEqualTo(customerID).andIsavailableEqualTo("1");
         return orderFormMapper.selectByExample(ex);
     }
 

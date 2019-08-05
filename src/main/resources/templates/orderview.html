@@ -1,15 +1,37 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>酒店预约</title>
-    <link th:href="@{/index/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
-    <link th:href="@{/index/css/style.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/index/css/style-customer.css}" rel="stylesheet" type="text/css" media="all" />
+    <title>订单信息</title>
+    <link th:href="@{/index/css/bootstrap1.css}" href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!---css--->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="" />
-    <script th:src="@{http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{/index/js/bootstrap.js}"></script>
+    <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script
+            type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!---js--->
+    <script th:src="@{/index/js/jquery-1.11.1.min.js}" src="js/jquery-1.11.1.min.js"></script>
+    <script th:src="@{/index/js/bootstrap.js}" src="js/bootstrap.js"></script>
+    <!---js--->
+    <!---fonts-->
+    <link
+            href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+            rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link th:href="@{/index/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/index/css/style1.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/index/css/bootstrap1.css}" rel="stylesheet" type="text/css" media="all" />
+
+    <link th:href="@{/index/css/mob.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/index/css/animate.css}" rel="stylesheet" type="text/css" media="all" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700%7CMontserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+    <link th:href="@{/index/css/owl.carousel.css}" href="css/owl.carousel.css" rel="stylesheet">
     <script th:src="@{/index/js/responsiveslides.min.js}"></script>
     <style type="text/css">
         .shadow {
@@ -57,6 +79,19 @@
                                     font-size: 50px;
                                 }
     </style>
+    <script th:src="@{/index/js/owl.carousel.js}" src="js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                items: 1,
+                lazyLoad: true,
+                autoPlay: true,
+                navigation: false,
+                navigationText: false,
+                pagination: true,
+            });
+        });
+    </script>
 
 
 
@@ -64,69 +99,78 @@
 
 </head>
 <body>
-
-
-
 <!--header-->
-<div class="orderview">
-    <div class="container">
-        <div class="header-top">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <div class="navbar-brand">
-                            <h1><a href="/index" ><i class="shadow">酒店预约</i></a></h1>
-                        </div>
-                    </div>
+<div class="hellhead">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li ><a href="index" class="div-inlineinline" style="color: #ffffff">主页<span class="sr-only"></span></a></li>
+            <li><a href="IP" class="div-inlineinline" style="color: #ffffff">附近</a></li>
+            <li><a href="customerList" class="div-inlineinline" style="color: #ffffff">用户管理</a></li>
+            <li><a href="hotelList" style="color: #ffffff">酒店管理</a></li>
+            <li><a href="login" th:if="${customer.customername}=='登录'" style="color: #ffffff">登录</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false"  th:if="${customer.customername}!='登录'"
+                   th:text="${customer.customername}"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="orderview" style="color: #0a0a0a" >订单查看</a></li>
+                    <li><a href="customerInformationEdit" style="color: #0a0a0a">用户信息修改</a></li>
+                    <li><a href="customerPasswordEdit" style="color: #0a0a0a">用户密码修改</a></li>
+                    <li><a href="logout" style="color: #0a0a0a">注销</a></li>
+                </ul>
+            </li>
+        </ul>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li ><a href="index" class="shadow">主页 <span class="sr-only">(current)</span></a></li>
-                            <li><a href="search" class="shadow">搜索</a></li>
-                            <li><a href="register" class="shadow" th:if=" ${customer.customername} =='登录'">注册</a></li>
-                            <li tclass="dropdown" class="active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  th:text="${customer.customername}" ><span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="customerInformation" th:if=" ${customer.customername} !='登录'" >我的信息</a></li>
-                                    <li><a href="customerList" th:if=" ${customer.roleid} =='1'">用户管理</a></li>
-                                    <li><a href="hotelList" th:if=" ${customer.roleid} =='1'">酒店管理</a></li>
-                                    <li><a href="/logout" th:if=" ${customer.customername} !='登录'">注销</a></li>
-                                </ul>
-                            </li>
-
-
-                        </ul>
-
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
-            <div id="whole">
-                <br>
-                <br>
-                <br>
-                <div class="middiv">
-                    <h1>您的订单</h1>
-
-                </div>
-                <div class="midbig">
-                    <h2>
-                        <table border="1" cellspacing="10">
-                            <tr>
-                                <td>订单号</td>
-                                <td>酒店编号</td>
-                                <td>客户姓名</td>
-                                <td>入住时间</td>
-                                <td>离开时间</td>
-                                <td>价格</td>
+        <div class="clearfix" align="right"></div>
+    </div>
+</div>
+<!--header-->
+<div class="room">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">订单信息</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                               aria-describedby="example1_info">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Rendering engine: activate to sort column ascending"
+                                    style="width: 217px;">订单号
+                                </th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Browser: activate to sort column descending" style="width: 266.6px;"
+                                    aria-sort="ascending">酒店编号
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
+                                    客户姓名
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
+                                    入住时间
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
+                                    离开时间
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
+                                    价格
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
+                                    取消订单
+                                </th>
                             </tr>
+                            </thead>
+                            <tbody>
+
                             <tr th:each="order: ${orderForms}">
                                 <td th:text="${order.orderformid}">OrderID</td>
                                 <td th:text="${order.hotelid}">HotelID</td>
@@ -134,24 +178,60 @@
                                 <td th:text="${order.arrivetime}">ArriveTime</td>
                                 <td th:text="${order.lefttime}">LeftTime</td>
                                 <td th:text="${order.price}">Price</td>
+                                <td>
+                                    <div class="feedback-btn"><a
+                                            th:href="@{/cancel(orderformid=${order.orderformid})}" >取消订单</a>
+                                    </div>
+                                </td>
+
                             </tr>
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th rowspan="1" colspan="1">订单号</th>
+                                <th rowspan="1" colspan="1">酒店编号</th>
+                                <th rowspan="1" colspan="1">客户姓名</th>
+                                <th rowspan="1" colspan="1">入住时间</th>
+                                <th rowspan="1" colspan="1">离开时间</th>
+                                <th rowspan="1" colspan="1">价格</th>
+                                <th rowspan="1" colspan="1">取消订单</th>
+
+                            </tr>
+                            </tfoot>
                         </table>
-                    </h2>
+                    </div>
                 </div>
-
-
-
             </div>
         </div>
-
-
-
-
+        <!-- /.box-body -->
     </div>
 </div>
-</div>
-<!--header-->
-
+<!-- DataTables -->
+<script th:src="@{/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+<!-- SlimScroll -->
+<script th:src="@{/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/adminlte/bower_components/fastclick/lib/fastclick.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/adminlte/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/adminlte/dist/js/demo.js}"></script>
+<!-- page script -->
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+</script>
 
 </body>
 </html>

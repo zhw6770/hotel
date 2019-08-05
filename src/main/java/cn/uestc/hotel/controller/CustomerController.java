@@ -28,7 +28,17 @@ public class CustomerController {
     private BasicService basicService;
 
     @GetMapping("IP")
-    public String localtion(Model model) {
+    public String localtion(Model model,Customer customer, HttpServletRequest request) {
+        if (customerService.searchCustomerByRequest(request) == null) {
+            Customer customer1 = new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
+        } else {
+            customer = customerService.searchCustomerByRequest(request);
+            model.addAttribute("customer", customer);
+        }
+
+
         try {
             String location = basicService.showIP();
             while (location.equals("false")) {
@@ -329,7 +339,7 @@ model.addAttribute("msg","0");
 @GetMapping("/cancel")
     public String cancelOrderForm(@RequestParam("orderformid") String orderformid){
         customerService.cancelOrder(orderformid);
-        return "redirect:index";
+        return "redirect:orderview";
 }
 
 
