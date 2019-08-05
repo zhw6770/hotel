@@ -1,221 +1,203 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>酒店预约</title>
-    <link th:href="@{/index/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all"/>
-    <link th:href="@{/index/css/style1.css}" rel="stylesheet" type="text/css" media="all"/>
-    <link th:href="@{/index/css/bootstrap1.css}" rel="stylesheet" type="text/css" media="all"/>
-    <link th:href="@{/index/css/mob.css}" rel="stylesheet" type="text/css" media="all"/>
-    <link th:href="@{/index/css/animate.css}" rel="stylesheet" type="text/css" media="all">
-    <link th:href="@{/index/css/normalize.css}" rel="stylesheet" type="text/css" href="css/normalize.css"/>
-    <link th:href="@{/index/css/htmleaf-demo.css}" rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
-    <link th:href="@{/index/css/style-index.css}" rel="stylesheet" href="css/style-index.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700%7CMontserrat:400,700" rel="stylesheet">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <link type="text/css" rel="stylesheet" charset="UTF-8"
-          href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+    <title>Home</title>
+    <!---css--->
+    <link th:href="@{/index/css/bootstrap.css}" href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link th:href="@{/index/css/indexstyle.css}" href="css/indexstyle.css" rel='stylesheet' type='text/css' />
+    <!---css--->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script
+            type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!---js--->
+    <script th:src="@{/index/js/jquery-1.11.1.min.js}" src="js/jquery-1.11.1.min.js"></script>
+    <script th:src="@{/index/js/bootstrap.js}" src="js/bootstrap.js"></script>
+    <!---js--->
+    <!---fonts-->
+    <link
+            href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+            rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <!---fonts-->
+    <script th:src="@{/index/js/responsiveslides.min.js}" src="js/responsiveslides.min.js"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <link th:href="@{/index/css/owl.carousel.css}" href="css/owl.carousel.css" rel="stylesheet">
+    <script th:src="@{/index/js/owl.carousel.js}" src="js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                items: 1,
+                lazyLoad: true,
+                autoPlay: true,
+                navigation: false,
+                navigationText: false,
+                pagination: true,
+            });
+        });
+    </script>
     <style>
         #searchbox {
-            /*border: 15px solid rgba(0, 0, 0, 0.274);*/
-            background: rgba(255, 255, 255, 0.685);
-            border-radius: 8px 8px 8px 8px;
-            width: 500px;
-            height: 500px;
             position: absolute;
-            top: 30%;
+            z-index: 9999;
+            top: 20%;
             left: 60%;
             margin: 0 0 0 0;
-
-        }
-
-    </style>
-    <style type="text/css">
-        .picture img {
-            width: 160px;
-            margin-left: 6px;
-            position: relative;
-            top: 6px;
-            vertical-align: baseline
         }
     </style>
+
 </head>
 
 <body>
-<div class="htmleaf-container">
-    <nav>
-        <ul class="container ul-reset" align="right">
-            <li><a href="index">主页</a></li>
-            <li><a th:if=" ${customer.roleid} =='1'" href='hotelList'>酒店管理</a></li>
-            <li><a th:if=" ${customer.roleid} =='1'" href='customerList'>用户管理</a></li>
-            <li><a href="IP">附近</a></li>
-            <li class="droppable">
-                <!--<a href="login" th:if="${customer.customername}=='登录'">登录</a>-->
-                <a href='#' th:text="${customer.customername}"></a>
-                <div class='mega-menu'>
-                    <div class="container cf">
-                        <ul class="ul-reset">
-                        </ul><!-- .ul-reset -->
-                        <ul class="ul-reset">
-                        </ul><!-- .ul-reset -->
-                        <ul class="ul-reset">
-                        </ul><!-- .ul-reset -->
-                        <ul class="ul-reset">
-                            <li><a align="right" href='customerInformationEdit'>信息修改</a></li>
-                            <li><a align="right" href='customerPasswordEdit'>密码修改</a></li>
-                            <li><a align="right" href='logout'>注销</a></li>
-                        </ul>
-                    </div><!-- .container -->
-                </div><!-- .mega-menu -->
-            </li>
-            <!--.droppable -->
 
-        </ul><!-- .container .ul-reset -->
-    </nav>
-</div>
-<section class="c3 c3-slider">
+<!---header--->
+<div class="header-section">
     <div class="container">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-                <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-                <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item">
-                    <img th:src="@{/index/images/sxc2.png}" alt="Chania" width="460" height="145">
-                    <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s"
-                            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
-                            安歇良处<br>
-                            舒适的感觉<br>
-                            带给您<br>
-                            家一样的感觉</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s"
-                           style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">
-                            酒店带有详细的房间环境图片与介绍
-                            <br>
-                            <br>
-                            <br>
-                            <br></p>
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img th:src="@{/index/images/sxc2.png}" alt="Chania" width="460" height="145">
-                    <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s"
-                            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
-                            精选酒店<br>
-                            上等服务<br>
-                            在这里<br>
-                        您都能找到</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s"
-                           style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">
-                            我们与众多优秀的酒店公司合作
-                            <br>
-                            <br>
-                            <br>
-                            <br></p>
-                    </div>
-                </div>
-
-                <div class="item active">
-                    <img th:src="@{/index/images/sxc2.png}" alt="Chania" width="460" height="145">
-                    <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s"
-                            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
-                            理想折扣<br>
-                            这里您能找到预期相符的酒店<br>
-                            和大力度的折扣
-                        </h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s"
-                           style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">
-                            为你带来真正奢华旅行体验
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                        </p>
-                    </div>
+        <nav class="navbar navbar-default">
+            <!---Brand and toggle get grouped for better mobile display--->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <h1><a href="index"><span>酒店</span>预约</a></h1>
                 </div>
             </div>
-        </div>
-<div align="left" style="font-family: 微软雅黑">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">主页<span class="sr-only">(current)</span></a></li>
+                    <li><a href="customerList">用户管理</a></li>
+                    <li><a href="hotelList">酒店管理</a></li>
+                    <li><a href="login" th:if="${customer.customername}=='登录'">登录</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false" th:if="${customer.customername}!='登录'" th:text="${customer.customername}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="orderview">订单查看</a></li>
+                            <li><a href="customerInformationEdit">用户信息修改</a></li>
+                            <li><a href="customerPasswordEdit">用户密码修改</a></li>
+                            <li><a href="logout">注销</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clearfix" align="right"></div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!---header--->
+<!---banner--->
+
+<div class="slider">
+
+    <div class="callbacks_container">
+        <ul class="rslides" id="slider">
+            <div class="slid banner1">
+                <div class="caption">
+                    <h3>理想折扣</h3>
+                    <p>我们与多家平台合作为您谋取最低价格</p>
+                </div>
+            </div>
+            <div class="slid banner2">
+                <div class="caption">
+                    <h3>安歇良处</h3>
+                    <p>舒适的环境给您带来家的感觉</p>
+                </div>
+            </div>
+            <div class="slid banner3">
+                <div class="caption">
+                    <h3>精选酒店</h3>
+                    <p>精心挑选的推荐酒店</p>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div align="left"  class="callbacks_container"  >
         <form action="hotelResult" method="post" th:object="${orderform}">
-            <div id="searchbox"  align="left" style="width: auto;height: auto">
+            <div id="searchbox" align="left" style="background: #ffffff7c" >
                 <div style="background: #27aed4">
                     <b style="font-size: 20px;color: #fff">
                         <div style="margin-left: 10px;padding-top: 10px;padding-bottom: 5px">&nbsp酒店搜索</div>
                     </b>
                 </div>
-                <div>
-                    <br>
-                    <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp目的地</span>
+                <div >
+                    <br >
+                    <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp目的城市</span>
                     <input type="text" name="where" style="width: 336px;color: #555;margin-right: 30px">
                 </div>
-                <br>
-                <div>
+                <br >
+                <div >
                     <span style="font-size: 15px;color: #333;padding-left: 5px">入住时间</span>
                     <input type="date" th:field="${orderform.arrivetime}" style="color: #555">
                     <span style="font-size: 15px;color: #333">退房时间</span>
                     <input type="date" th:field="${orderform.lefttime}" style="color: #555;margin-right: 30px">
                 </div>
                 <sapn th:if="${msg} eq 0" >错误！</sapn>
-                <br>
-                <div>
+                <br >
+                <div >
                     <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp房间数</span>
                     <span>
-                        <select size="1" name="roomNum" style="width: 61px;color: #555">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </span>
+							<select size="1" name="roomNum" style="width: 61px;color: #555">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</span>
                     <span style="font-size: 15px;color: #333">酒店星级</span>
                     <span>
-                        <select size="1" name="hotelclass" style="width: 61px;color: #555;margin-right: 30px">
-                            <option value="0">不限</option>
-                            <option value="5">五星级</option>
-                            <option value="4">四星级</option>
-                            <option value="3">三星级</option>
-                            <option value="2">二星级</option>
-                            <option value="1">一星级</option>
-                        </select>
-                    </span>
+							<select size="1" name="hotelclass" style="width: 61px;color: #555;margin-right: 30px">
+								<option value="0">不限</option>
+								<option value="5">五星级</option>
+								<option value="4">四星级</option>
+								<option value="3">三星级</option>
+								<option value="2">二星级</option>
+								<option value="1">一星级</option>
+							</select>
+						</span>
                 </div>
-                <br>
-                <div>
-                        <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp关键词</span>
-                        <input type="text" name="word" style="width: 336px;color: #555;margin-right: 30px">
+                <br >
+                <div >
+                    <span style="font-size: 15px;color: #333;padding-left: 5px">&nbsp&nbsp关键词</span>
+                    <input type="text" name="word" style="width: 336px;color: #555;margin-right: 30px">
 
                 </div>
 
-                <br>
+                <br >
 
-                <div align="right" style="margin-bottom: 20px;margin-right: 30px">
+                <div align="right" style="margin-bottom: 20px;margin-right: 30px" >
                     <button type="submit" class="btn btn-warning btn-flat" style="width: 80px">确认</button>
                 </div>
             </div>
         </form>
-</div>
     </div>
-</section>
+</div>
 
 
-<script th:src="@{/index/js/jquery-latest.min.js}"></script>
-<script th:src="@{/index/js/bootstrap1.js}"></script>
-<script th:src="@{/index/js/wow.min.js}"></script>
-<script th:src="@{/index/js/custom.js}"></script>
+
+
 </body>
 
-</html>
+</html>>
