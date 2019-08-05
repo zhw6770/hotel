@@ -2,7 +2,12 @@
 [class~=head_right] ul li a {
     font-size: .166666667in;
 }
-
+.hellhead{
+    height: 58.625px;
+    top: 0%;
+    background-color: #333d47;
+}
+.div-inline{ display:inline} 
 
 [class~=head_right] ul li:nth-child(2), [class~=spe-title-1] h2 span, [class~=head_right] ul li a i, [class~=head_left] img {
 }

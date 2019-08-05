@@ -205,17 +205,20 @@ public class CustomerController {
 
     @PostMapping("hotelResult")
     public String searchHotel(Customer customer, HttpServletRequest request, OrderForm orderform,@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("roomNum") String num) {
+        if (customerService.searchCustomerByRequest(request) == null) {
+            Customer customer1 = new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
+        } else {
+            customer = customerService.searchCustomerByRequest(request);
+            model.addAttribute("customer", customer);
+        }
+        model.addAttribute("orderform", orderform);
+
+
         if (arrivetime.equals("") || lefttime.equals("")) {
 
-            if (customerService.searchCustomerByRequest(request) == null) {
-                Customer customer1 = new Customer();
-                customer1.setCustomername("登录");
-                model.addAttribute("customer", customer1);
-            } else {
-                customer = customerService.searchCustomerByRequest(request);
-                model.addAttribute("customer", customer);
-            }
-            model.addAttribute("orderform", orderform);
+
 model.addAttribute("msg","0");
             return "index";
         }
