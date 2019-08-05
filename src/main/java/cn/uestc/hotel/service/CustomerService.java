@@ -22,6 +22,7 @@ public class CustomerService {
     @Autowired
     private RoomMapper roomMapper;
 
+
     public Boolean updateHotel(Hotel hotel) {
 
         hotelMapper.updateByPrimaryKey(hotel);
@@ -40,7 +41,7 @@ public class CustomerService {
         return true;
     }
 
-    public Boolean insertOrderForm(OrderForm orderForm){
+    public Boolean insertOrderForm(OrderForm orderForm) {
         orderFormMapper.insert(orderForm);
         return true;
     }
@@ -60,11 +61,11 @@ public class CustomerService {
     }
 
     public Boolean changeCustomerStateByid(String customerid) {
-        Customer customer=customerMapper.selectByPrimaryKey(customerid);
-        if(customer.getIsavailable().equals("1")){
+        Customer customer = customerMapper.selectByPrimaryKey(customerid);
+        if (customer.getIsavailable().equals("1")) {
             customer.setIsavailable("0");
             customerMapper.updateByPrimaryKeySelective(customer);
-        }else{
+        } else {
             customer.setIsavailable("1");
             customerMapper.updateByPrimaryKeySelective(customer);
         }
@@ -73,11 +74,11 @@ public class CustomerService {
 
     public Boolean changeHotelStateByid(String hotelid) {
 
-        HotelWithBLOBs hotel=hotelMapper.selectByPrimaryKey(hotelid);
-        if(hotel.getIsavailable()==1){
+        HotelWithBLOBs hotel = hotelMapper.selectByPrimaryKey(hotelid);
+        if (hotel.getIsavailable() == 1) {
             hotel.setIsavailable(0);
             hotelMapper.updateByPrimaryKeySelective(hotel);//有问题！！！！！！！！！！！！
-        }else{
+        } else {
             hotel.setIsavailable(1);
             hotelMapper.updateByPrimaryKeySelective(hotel);
         }
@@ -87,13 +88,93 @@ public class CustomerService {
     public Boolean grant(String customerid) {
         Customer customer = this.searchCustomerByCustomerID(customerid);
         System.out.println("11");
-        if (Integer.valueOf(customer.getRoleid())==1) {
+        if (Integer.valueOf(customer.getRoleid()) == 1) {
             customer.setRoleid("2");
             System.out.println("re");
         } else {
             customer.setRoleid("1");
         }
         customerMapper.updateByPrimaryKeySelective(customer);
+        return true;
+    }
+
+    public Boolean cancelOrder(String orderformid) {
+        OrderForm orderform = orderFormMapper.selectByPrimaryKey(orderformid);
+        orderform.setIsavailable("0");
+        orderFormMapper.updateByPrimaryKeySelective(orderform);//废弃订单
+        int num = Integer.valueOf(orderform.getRoomnum());
+        BasicService basicService = new BasicService();
+
+        if (num > 0) {
+            num--;
+            List<OrderForm> list1 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid1(), orderform.getHotelid());
+            String maxDate = "0000000000";
+            for (int i = 0; i < list1.size(); i++) {
+                if (basicService.getDays(maxDate, list1.get(i).getLefttime()) > 0) {
+                    maxDate = list1.get(i).getLefttime();
+
+                }
+            }
+            Room room1 = roomMapper.selectByPrimaryKey(orderform.getRoomid1());
+            room1.setEndtime(maxDate);
+            roomMapper.updateByPrimaryKeySelective(room1);
+        }
+        if (num > 0) {
+            num--;
+            List<OrderForm> list2 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid2(), orderform.getHotelid());
+            String maxDate = "0000000000";
+            for (int i = 0; i < list2.size(); i++) {
+                if (basicService.getDays(maxDate, list2.get(i).getLefttime()) > 0) {
+                    maxDate = list2.get(i).getLefttime();
+
+                }
+            }
+            Room room2 = roomMapper.selectByPrimaryKey(orderform.getRoomid2());
+            room2.setEndtime(maxDate);
+            roomMapper.updateByPrimaryKeySelective(room2);
+        }
+        if (num > 0) {
+            num--;
+            List<OrderForm> list3 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid3(), orderform.getHotelid());
+            String maxDate = "0000000000";
+            for (int i = 0; i < list3.size(); i++) {
+                if (basicService.getDays(maxDate, list3.get(i).getLefttime()) > 0) {
+                    maxDate = list3.get(i).getLefttime();
+
+                }
+            }
+            Room room3 = roomMapper.selectByPrimaryKey(orderform.getRoomid3());
+            room3.setEndtime(maxDate);
+            roomMapper.updateByPrimaryKeySelective(room3);
+        }
+        if (num > 0) {
+            num--;
+            List<OrderForm> list4 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid4(), orderform.getHotelid());
+            String maxDate = "0000000000";
+            for (int i = 0; i < list4.size(); i++) {
+                if (basicService.getDays(maxDate, list4.get(i).getLefttime()) > 0) {
+                    maxDate = list4.get(i).getLefttime();
+
+                }
+            }
+            Room room4 = roomMapper.selectByPrimaryKey(orderform.getRoomid4());
+            room4.setEndtime(maxDate);
+            roomMapper.updateByPrimaryKeySelective(room4);
+        }
+        if (num > 0) {
+            num--;
+            List<OrderForm> list5 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid5(), orderform.getHotelid());
+            String maxDate = "0000000000";
+            for (int i = 0; i < list5.size(); i++) {
+                if (basicService.getDays(maxDate, list5.get(i).getLefttime()) > 0) {
+                    maxDate = list5.get(i).getLefttime();
+
+                }
+            }
+            Room room5 = roomMapper.selectByPrimaryKey(orderform.getRoomid5());
+            room5.setEndtime(maxDate);
+            roomMapper.updateByPrimaryKeySelective(room5);
+        }
         return true;
     }
 
@@ -107,6 +188,28 @@ public class CustomerService {
         ex.createCriteria().andCustomeridEqualTo(customer.getCustomerid()).andCustomerpasswordEqualTo(customer.getCustomerpassword()).andIsavailableEqualTo("1");
         List<Customer> customers = customerMapper.selectByExample(ex);
         return customers.size() > 0 ? customers.get(0) : null;
+
+    }
+
+    public List<OrderForm> searchOrderFormByRoomIDAndHotelid(String roomid, String hotelid) {
+        OrderFormExample ex = new OrderFormExample();
+        OrderFormExample.Criteria criteria1 = ex.createCriteria();
+        criteria1.andRoomid1EqualTo(roomid).andHotelidEqualTo(hotelid).andIsavailableEqualTo("1");
+        OrderFormExample.Criteria criteria2 = ex.createCriteria();
+        criteria2.andRoomid1EqualTo(roomid).andHotelidEqualTo(hotelid).andIsavailableEqualTo("1");
+        ex.or(criteria2);
+        OrderFormExample.Criteria criteria3 = ex.createCriteria();
+        criteria3.andRoomid1EqualTo(roomid).andHotelidEqualTo(hotelid).andIsavailableEqualTo("1");
+        ex.or(criteria3);
+        OrderFormExample.Criteria criteria4 = ex.createCriteria();
+        criteria4.andRoomid1EqualTo(roomid).andHotelidEqualTo(hotelid).andIsavailableEqualTo("1");
+        ex.or(criteria4);
+        OrderFormExample.Criteria criteria5 = ex.createCriteria();
+        criteria5.andRoomid1EqualTo(roomid).andHotelidEqualTo(hotelid).andIsavailableEqualTo("1");
+        ex.or(criteria5);
+
+        return orderFormMapper.selectByExample(ex);
+
 
     }
 
@@ -218,6 +321,7 @@ public class CustomerService {
         } else {
             for (int i = 0; i < number; i++) {
                 rooms.get(i).setEndtime(lefttime);
+                roomMapper.updateByPrimaryKeySelective(rooms.get(i));
             }
             return rooms.subList(0, number);
         }

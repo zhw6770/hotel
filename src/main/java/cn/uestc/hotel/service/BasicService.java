@@ -202,10 +202,10 @@ public class BasicService {
             }
             //System.out.println(inputLine.toString());
         } catch (MalformedURLException e) {
-//         e.printStackTrace();
+         e.printStackTrace();
 
         } catch (IOException e) {
-//           e.printStackTrace();
+          e.printStackTrace();
 
         }
         finally {

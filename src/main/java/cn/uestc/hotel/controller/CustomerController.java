@@ -285,6 +285,7 @@ model.addAttribute("msg","0");
             orderform.setHotelid(hotelid);
             orderform.setPrice(Float.valueOf(price));
             orderform.setRoomnum(num);
+            orderform.setIsavailable("1");
             orderform.setCustomerid(customerService.searchCustomerByRequest(request).getCustomerid());
             int number = rooms.size();//房间数目
             if (number > 0) {
@@ -321,6 +322,13 @@ model.addAttribute("msg","0");
 
         return "redirect:orderview";
     }
+
+@GetMapping("/cancel")
+    public String cancelOrderForm(@RequestParam("orderformid") String orderformid){
+        customerService.cancelOrder(orderformid);
+        return "redirect:index";
+}
+
 
 
 }
