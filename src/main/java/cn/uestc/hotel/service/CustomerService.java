@@ -109,70 +109,90 @@ public class CustomerService {
             num--;
             List<OrderForm> list1 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid1(), orderform.getHotelid());
             String maxDate = "0000000000";
+            String minDate = "9999999999";
             for (int i = 0; i < list1.size(); i++) {
                 if (basicService.getDays(maxDate, list1.get(i).getLefttime()) > 0) {
                     maxDate = list1.get(i).getLefttime();
-
+                }
+                if (basicService.getDays(list1.get(i).getArrivetime(), minDate) > 0) {
+                    minDate = list1.get(i).getArrivetime();
                 }
             }
             Room room1 = roomMapper.selectByPrimaryKey(orderform.getRoomid1());
             room1.setEndtime(maxDate);
+            room1.setStarttime(minDate);
             roomMapper.updateByPrimaryKeySelective(room1);
         }
         if (num > 0) {
             num--;
             List<OrderForm> list2 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid2(), orderform.getHotelid());
             String maxDate = "0000000000";
+            String minDate = "9999999999";
             for (int i = 0; i < list2.size(); i++) {
                 if (basicService.getDays(maxDate, list2.get(i).getLefttime()) > 0) {
                     maxDate = list2.get(i).getLefttime();
-
+                }
+                if (basicService.getDays(list2.get(i).getArrivetime(), minDate) > 0) {
+                    minDate = list2.get(i).getArrivetime();
                 }
             }
             Room room2 = roomMapper.selectByPrimaryKey(orderform.getRoomid2());
             room2.setEndtime(maxDate);
+            room2.setStarttime(minDate);
             roomMapper.updateByPrimaryKeySelective(room2);
         }
         if (num > 0) {
             num--;
             List<OrderForm> list3 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid3(), orderform.getHotelid());
             String maxDate = "0000000000";
+            String minDate = "9999999999";
             for (int i = 0; i < list3.size(); i++) {
                 if (basicService.getDays(maxDate, list3.get(i).getLefttime()) > 0) {
                     maxDate = list3.get(i).getLefttime();
-
+                }
+                if (basicService.getDays(list3.get(i).getArrivetime(), minDate) > 0) {
+                    minDate = list3.get(i).getArrivetime();
                 }
             }
             Room room3 = roomMapper.selectByPrimaryKey(orderform.getRoomid3());
             room3.setEndtime(maxDate);
+            room3.setStarttime(minDate);
             roomMapper.updateByPrimaryKeySelective(room3);
         }
         if (num > 0) {
             num--;
             List<OrderForm> list4 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid4(), orderform.getHotelid());
             String maxDate = "0000000000";
+            String minDate = "9999999999";
             for (int i = 0; i < list4.size(); i++) {
                 if (basicService.getDays(maxDate, list4.get(i).getLefttime()) > 0) {
                     maxDate = list4.get(i).getLefttime();
-
+                }
+                if (basicService.getDays(list4.get(i).getArrivetime(), minDate) > 0) {
+                    minDate = list4.get(i).getArrivetime();
                 }
             }
             Room room4 = roomMapper.selectByPrimaryKey(orderform.getRoomid4());
             room4.setEndtime(maxDate);
+            room4.setStarttime(minDate);
             roomMapper.updateByPrimaryKeySelective(room4);
         }
         if (num > 0) {
             num--;
             List<OrderForm> list5 = this.searchOrderFormByRoomIDAndHotelid(orderform.getRoomid5(), orderform.getHotelid());
             String maxDate = "0000000000";
+            String minDate = "9999999999";
             for (int i = 0; i < list5.size(); i++) {
                 if (basicService.getDays(maxDate, list5.get(i).getLefttime()) > 0) {
                     maxDate = list5.get(i).getLefttime();
-
+                }
+                if (basicService.getDays(list5.get(i).getArrivetime(), minDate) > 0) {
+                    minDate = list5.get(i).getArrivetime();
                 }
             }
             Room room5 = roomMapper.selectByPrimaryKey(orderform.getRoomid5());
             room5.setEndtime(maxDate);
+            room5.setStarttime(minDate);
             roomMapper.updateByPrimaryKeySelective(room5);
         }
         return true;
@@ -313,14 +333,29 @@ public class CustomerService {
 
     public List<Room> searchRoomByCondition(String hotelid, String arrivetime, String lefttime, String num, String type) {
         RoomExample ex = new RoomExample();
+        BasicService basicService = new BasicService();
         int number = Integer.valueOf(num);
-        ex.createCriteria().andHotelidEqualTo(hotelid).andEndtimeLessThan(arrivetime).andTypeEqualTo(type);
+        RoomExample.Criteria criteria1 = ex.createCriteria();
+        criteria1.andHotelidEqualTo(hotelid).andEndtimeLessThan(arrivetime).andTypeEqualTo(type);
+        RoomExample.Criteria criteria2 = ex.createCriteria();
+        criteria2.andHotelidEqualTo(hotelid).andStarttimeGreaterThan(lefttime).andTypeEqualTo(type);
+        ex.or(criteria2);
         List<Room> rooms = roomMapper.selectByExample(ex);
         if (rooms.size() < number) {
             return null;
         } else {
             for (int i = 0; i < number; i++) {
-                rooms.get(i).setEndtime(lefttime);
+                if (basicService.getDays(rooms.get(i).getEndtime(), arrivetime) > 0) {
+                    if (rooms.get(i).getStarttime().equals("0000000000")) {
+                        rooms.get(i).setStarttime(arrivetime);
+                    }
+                    rooms.get(i).setEndtime(lefttime);
+                } else {
+                    if (rooms.get(i).getEndtime().equals("0000000000")) {
+                        rooms.get(i).setEndtime(lefttime);
+                    }
+                    rooms.get(i).setStarttime(arrivetime);
+                }
                 roomMapper.updateByPrimaryKeySelective(rooms.get(i));
             }
             return rooms.subList(0, number);
