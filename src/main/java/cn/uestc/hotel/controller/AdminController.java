@@ -111,6 +111,7 @@ public class AdminController {
             model.addAttribute("customer", customer);
         }
         List<Room> rooms = customerService.findAllRoom(hotelid);
+        model.addAttribute("hotelid",hotelid);
         model.addAttribute("rooms", rooms);
         return "roomList";
     }
