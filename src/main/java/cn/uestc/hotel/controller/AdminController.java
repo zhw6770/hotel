@@ -150,6 +150,12 @@ public class AdminController {
         return "redirect:hotelList";
     }
 
+    @GetMapping("/changeRoom")
+    public String changeRoom(@RequestParam("id") String id,@RequestParam("hotelid") String hotelid) {
+        customerService.changeRoomStateByid(id);
+        return "redirect:roomList?hotelid="+hotelid;
+    }
+
 
     @GetMapping("addRoom")
     public String getAddRoomPage(Model model, @RequestParam("hotelid") String hotelid) {

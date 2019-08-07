@@ -94,12 +94,25 @@ public class CustomerService {
         HotelWithBLOBs hotel = hotelMapper.selectByPrimaryKey(hotelid);
         if (hotel.getIsavailable() == 1) {
             hotel.setIsavailable(0);
-            hotelMapper.updateByPrimaryKeySelective(hotel);//有问题！！！！！！！！！！！！
+            hotelMapper.updateByPrimaryKeySelective(hotel);//
         } else {
             hotel.setIsavailable(1);
             hotelMapper.updateByPrimaryKeySelective(hotel);
         }
         return true;
+    }
+
+    public Boolean changeRoomStateByid(String roomid) {
+       Room room=roomMapper.selectByPrimaryKey(roomid);
+       if(room.getIsavailable()==1){
+           room.setIsavailable(0);
+           roomMapper.updateByPrimaryKeySelective(room);
+       }
+       else {
+           room.setIsavailable(1);
+           roomMapper.updateByPrimaryKeySelective(room);
+       }
+       return true;
     }
 
     public Boolean grant(String customerid) {
@@ -351,9 +364,9 @@ public class CustomerService {
         BasicService basicService = new BasicService();
         int number = Integer.valueOf(num);
         RoomExample.Criteria criteria1 = ex.createCriteria();
-        criteria1.andHotelidEqualTo(hotelid).andEndtimeLessThan(arrivetime).andTypeEqualTo(type);
+        criteria1.andHotelidEqualTo(hotelid).andEndtimeLessThan(arrivetime).andTypeEqualTo(type).andIsavailableEqualTo(1);
         RoomExample.Criteria criteria2 = ex.createCriteria();
-        criteria2.andHotelidEqualTo(hotelid).andStarttimeGreaterThan(lefttime).andTypeEqualTo(type);
+        criteria2.andHotelidEqualTo(hotelid).andStarttimeGreaterThan(lefttime).andTypeEqualTo(type).andIsavailableEqualTo(1);
         ex.or(criteria2);
         List<Room> rooms = roomMapper.selectByExample(ex);
         if (rooms.size() < number) {

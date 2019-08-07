@@ -93,10 +93,10 @@
                                     >修改基本信息</a></div>
                                 </td>
 
-                                <td>
-                                    <div ><a th:href="@{/deleteHotel}" >点我删除</a>
-                                    </div>
-                                </td>
+                                <td> <div th:switch="${room.isavailable}==1">
+                                    <span th:case="true">可用</span>
+                                    <span th:case="false">已停用</span>
+                                </div> <a th:href ="@{/changeRoom(id=${room.roomid},hotelid=${room.hotelid})}" >点我更改</a></td>
 
                             </tr>
 
