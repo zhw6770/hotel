@@ -338,7 +338,7 @@ public class CustomerController {
             customerService.insertOrderForm(orderform);
 
         } else {
-            return "订单失败";
+            return "redirect:fail";
         }
 
 
@@ -349,6 +349,12 @@ public class CustomerController {
     public String cancelOrderForm(@RequestParam("orderformid") String orderformid) {
         customerService.cancelOrder(orderformid);
         return "redirect:orderview";
+    }
+
+
+    @GetMapping("fail")
+    public String getFailPage(){
+        return "fail";
     }
 
 

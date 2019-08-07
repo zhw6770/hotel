@@ -101,8 +101,15 @@ public class AdminController {
     }
 
     @GetMapping("roomList")
-    public String getRoomListPage(Model model, @RequestParam("hotelid") String hotelid) {
-
+    public String getRoomListPage(Model model, @RequestParam("hotelid") String hotelid,Customer customer, HttpServletRequest request) {
+        if (customerService.searchCustomerByRequest(request) == null) {
+            Customer customer1 = new Customer();
+            customer1.setCustomername("登录");
+            model.addAttribute("customer", customer1);
+        } else {
+            customer = customerService.searchCustomerByRequest(request);
+            model.addAttribute("customer", customer);
+        }
         List<Room> rooms = customerService.findAllRoom(hotelid);
         model.addAttribute("rooms", rooms);
         return "roomList";

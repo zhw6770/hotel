@@ -161,7 +161,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">
-                                    停用
+                                    Stop
                                 </th>
 
                             </tr>
@@ -175,11 +175,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <td th:text="${hotel.city}"></td>
                                 <td>
                                     <div class="feedback-btn"><a th:href="@{/hotelEdit(hotelid=${hotel.hotelid})}"
-                                                                 >修改基本信息</a></div>
+                                    >修改基本信息</a></div>
                                 </td>
                                 <td>
                                     <div class="feedback-btn"><a th:href="@{/roomList(hotelid=${hotel.hotelid})}"
-                                                                 >管理房间</a></div>
+                                    >管理房间</a></div>
                                 </td>
                                 <td> <div th:switch="${hotel.isavailable}==1">
                                     <span th:case="true">可用</span>
