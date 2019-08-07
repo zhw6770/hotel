@@ -13,31 +13,35 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link th:href="@{/index/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/index/css/style1.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/index/css/bootstrap1.css}" rel="stylesheet" type="text/css" media="all" />
-
-    <link th:href="@{/index/css/mob.css}" rel="stylesheet" type="text/css" media="all" />
-    <link th:href="@{/index/css/animate.css}" rel="stylesheet" type="text/css" media="all" />
+    <link th:href="@{/index/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/index/css/style1.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/index/css/bootstrap1.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/index/css/websjy.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/index/css/mob.css}" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/index/css/animate.css}" rel="stylesheet" type="text/css" media="all"/>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700%7CMontserrat:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link type="text/css" rel="stylesheet" charset="UTF-8"
+          href="https://translate.googleapis.com/translate_static/css/translateelement.css">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>搜索结果</title>
     <style type="text/css">
-        .picture img{
-            width:160px;
-            margin-left:6px;
-            position:relative;
-            top:6px;
-            vertical-align:baseline}
-        .collapse ul{
-            width: auto;/*宽度也改为自动*/
+        .picture img {
+            width: 160px;
+            margin-left: 6px;
+            position: relative;
+            top: 6px;
+            vertical-align: baseline
+        }
+
+        .collapse ul {
+            width: auto; /*宽度也改为自动*/
             list-style-type: none;
-            white-space:nowrap;
+            white-space: nowrap;
             overflow: hidden;
             margin-right: 5%;
             padding: 0;
@@ -47,24 +51,24 @@
 <body>
 <div class="hellhead">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li ><a href="index" class="div-inlineinline" style="color: #ffffff">主页<span class="sr-only"></span></a></li>
-                <li><a href="IP" class="div-inlineinline" style="color: #ffffff">附近</a></li>
-                <li><a href="customerList" class="div-inlineinline" style="color: #ffffff">用户管理</a></li>
-                <li><a href="hotelList" style="color: #ffffff">酒店管理</a></li>
-                <li><a href="login" th:if="${customer.customername}=='登录'" style="color: #ffffff">登录</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"  th:if="${customer.customername}!='登录'"
-                       th:text="${customer.customername}"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="orderview" style="color: #0a0a0a" >订单查看</a></li>
-                        <li><a href="customerInformationEdit" style="color: #0a0a0a">用户信息修改</a></li>
-                        <li><a href="customerPasswordEdit" style="color: #0a0a0a">用户密码修改</a></li>
-                        <li><a href="logout" style="color: #0a0a0a">注销</a></li>
-                    </ul>
-                </li>
-            </ul>
+        <ul class="nav navbar-nav">
+            <li><a href="index" class="div-inlineinline" style="color: #ffffff">主页<span class="sr-only"></span></a></li>
+            <li><a href="IP" class="div-inlineinline" style="color: #ffffff">附近</a></li>
+            <li><a href="customerList" class="div-inlineinline" style="color: #ffffff">用户管理</a></li>
+            <li><a href="hotelList" style="color: #ffffff">酒店管理</a></li>
+            <li><a href="login" th:if="${customer.customername}=='登录'" style="color: #ffffff">登录</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false" th:if="${customer.customername}!='登录'"
+                   th:text="${customer.customername}"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="orderview" style="color: #0a0a0a">订单查看</a></li>
+                    <li><a href="customerInformationEdit" style="color: #0a0a0a">用户信息修改</a></li>
+                    <li><a href="customerPasswordEdit" style="color: #0a0a0a">用户密码修改</a></li>
+                    <li><a href="logout" style="color: #0a0a0a">注销</a></li>
+                </ul>
+            </li>
+        </ul>
 
         <div class="clearfix" align="right"></div>
     </div>
@@ -85,9 +89,14 @@
                 <div class="item">
                     <img th:src="@{/index/images/sxc.png}" alt="Chania" width="460" height="345">
                     <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">无论天涯海角 &amp; 始终伴您左右</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">总能满足您的需求</p>
-                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
+                        <h1 class="wow fadeInDown animated" data-wow-duration="1s"
+                            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
+                            无论天涯海角 &amp; 始终伴您左右</h1>
+                        <p class="wow fadeInUp animated" data-wow-duration="1.5s"
+                           style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">
+                            总能满足您的需求</p>
+                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s"
+                           style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
 
                     </div>
                 </div>
@@ -95,18 +104,28 @@
                 <div class="item">
                     <img th:src="@{/index/images/sxc.png}" alt="Chania" width="460" height="345">
                     <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">完美景致 &amp; 迷人魅力 &amp; 极致享受</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">让您的旅途尽享优悦</p>
-                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
+                        <h1 class="wow fadeInDown animated" data-wow-duration="1s"
+                            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
+                            完美景致 &amp; 迷人魅力 &amp; 极致享受</h1>
+                        <p class="wow fadeInUp animated" data-wow-duration="1.5s"
+                           style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">
+                            让您的旅途尽享优悦</p>
+                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s"
+                           style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
                     </div>
                 </div>
 
                 <div class="item active">
                     <img th:src="@{/index/images/sxc.png}" alt="Chania" width="460" height="345">
                     <div class="carousel-caption slider-cap">
-                        <h1 class="wow fadeInDown animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">精英会员尊享 &amp; "非凡礼御"</h1>
-                        <p class="wow fadeInUp animated" data-wow-duration="1.5s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">周末更可低至七折</p>
-                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s" style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
+                        <h1 class="wow fadeInDown animated" data-wow-duration="1s"
+                            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
+                            精英会员尊享 &amp; "非凡礼御"</h1>
+                        <p class="wow fadeInUp animated" data-wow-duration="1.5s"
+                           style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;">
+                            周末更可低至七折</p>
+                        <a href="/index" class="hs1 wow fadeInUp animated" data-wow-duration="2.0s"
+                           style="visibility: visible;-webkit-animation-duration: 2.0s; -moz-animation-duration: 2.0s; animation-duration: 2.0s;">极速预订</a>
                     </div>
                 </div>
             </div>
@@ -133,11 +152,12 @@
                         <!--LISTINGS START-->
                         <div class="hot-page2-alp-r-list" th:each="hotel: ${hotels}">
                             <div class="col-md-4 hot-page2-alp-r-list-re-sp">
-                                <a th:href ="@{/hotelInformation(hotelid=${hotel.hotelid},arrivetime=${arrivetime},lefttime=${lefttime},num=${num})}">
+                                <a th:href="@{/hotelInformation(hotelid=${hotel.hotelid},arrivetime=${arrivetime},lefttime=${lefttime},num=${num})}">
                                     <div class="hotel-list-score" th:text="${hotel.hotelclass}"></div>
                                     <div class="hot-page2-hli-1">
 
-                                        <img th:src="@{/showHotelImg(hotelid=${hotel.hotelid})}" alt="" th:if="${hotel.imgname}!=null">
+                                        <img th:src="@{/showHotelImg(hotelid=${hotel.hotelid})}" alt=""
+                                             th:if="${hotel.imgname}!=null">
 
                                     </div>
                                 </a>
@@ -146,7 +166,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="hot-page2-alp-ri-p2">
-                                    <a th:href ="@{/hotelInformation(hotelid=${hotel.hotelid},arrivetime=${arrivetime},lefttime=${lefttime},num=${num})}"><h3 th:text="${hotel.hotelname}"></h3></a>
+                                    <a th:href="@{/hotelInformation(hotelid=${hotel.hotelid},arrivetime=${arrivetime},lefttime=${lefttime},num=${num})}">
+                                        <h3 th:text="${hotel.hotelname}"></h3></a>
                                     <ul>
                                         <li th:text="${hotel.address}" style="vertical-align: middle"></li>
                                         <li th:text="${hotel.url}" style="vertical-align: middle"></li>
@@ -157,7 +178,29 @@
                                 <div class="hot-page2-alp-ri-p3">
                                     <div class="hot-page2-alp-r-hot-page-rat">25%Off</div>
                                     <span class="hot-list-p3-1">剩余房间</span>
-                                    <span class="hot-list-p3-2" th:text="${hotel.numroom}" style="vertical-align: middle"></span>
+                                    <span class="hot-list-p3-2" th:text="${hotel.numroom}"
+                                          style="vertical-align: middle"></span>
+                                </div>
+                            </div>
+                            <div class="open"><span onclick="openShutManager(this,'box',false,'点击这里，关闭层','点击这里，弹出层')">点击这里，弹出层</span>
+                                <div class="odiv" id="box" style="display:none">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td class="lt"></td>
+                                            <td class="t"></td>
+                                            <td class="rt"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="l"></td>
+                                            <td class="box">
+                                                <h3 class="tit"><b>这里是标题</b><a class="cls" href="javascript:;"
+                                                                               onclick="openShutManager(this,'box',false)"
+                                                                               title="关闭">关闭</a></h3>
+                                                <iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no"
+                                                        width="600" height="300" th:src="@{map(hotelid=${hotelid})}" ></iframe>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -233,5 +276,25 @@
 <script th:src="@{/index/js/bootstrap1.js}"></script>
 <script th:src="@{/index/js/wow.min.js}"></script>
 <script th:src="@{/index/js/custom.js}"></script>
+<script>
+    function openShutManager(oSourceObj, oTargetObj, shutAble, oOpenTip, oShutTip) {
+        var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
+        var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
+        var openTip = oOpenTip || "";
+        var shutTip = oShutTip || "";
+        if (targetObj.style.display != "none") {
+            if (shutAble) return;
+            targetObj.style.display = "none";
+            if (openTip && shutTip) {
+                sourceObj.innerHTML = shutTip;
+            }
+        } else {
+            targetObj.style.display = "block";
+            if (openTip && shutTip) {
+                sourceObj.innerHTML = openTip;
+            }
+        }
+    }
+</script>
 </body>
 </html>
