@@ -5,7 +5,6 @@ import cn.uestc.hotel.domain.*;
 import cn.uestc.hotel.service.BasicService;
 import cn.uestc.hotel.service.CustomerService;
 
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -27,8 +26,18 @@ public class CustomerController {
     @Autowired
     private BasicService basicService;
 
+    @GetMapping("/map")
+    public String getMap(@RequestParam("hotelid") String hotelid,Model model) {
+       Hotel hotel=customerService.searchHotelByHotelID(hotelid);
+        model.addAttribute("hotel",hotel);
+        return "map";
+    }
+
+
+
+
     @GetMapping("IP")
-    public String localtion(Model model,Customer customer, HttpServletRequest request) {
+    public String localtion(Model model, Customer customer, HttpServletRequest request) {
         if (customerService.searchCustomerByRequest(request) == null) {
             Customer customer1 = new Customer();
             customer1.setCustomername("登录");
@@ -148,6 +157,7 @@ public class CustomerController {
     @PostMapping("/register")
     public String registerCustomer(Model model, Customer customer) {
         customer.setRoleid("2");
+        customer.setIsavailable("1");
         customerService.insertCustomer(customer);
         return "redirect:login";
 
@@ -214,7 +224,7 @@ public class CustomerController {
 
 
     @PostMapping("hotelResult")
-    public String searchHotel(Customer customer, HttpServletRequest request, OrderForm orderform,@RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("roomNum") String num) {
+    public String searchHotel(Customer customer, HttpServletRequest request, OrderForm orderform, @RequestParam("word") String word, Model model, @RequestParam("hotelclass") String hotelclass, @RequestParam("where") String where, @RequestParam("arrivetime") String arrivetime, @RequestParam("lefttime") String lefttime, @RequestParam("roomNum") String num) {
         if (customerService.searchCustomerByRequest(request) == null) {
             Customer customer1 = new Customer();
             customer1.setCustomername("登录");
@@ -229,7 +239,7 @@ public class CustomerController {
         if (arrivetime.equals("") || lefttime.equals("")) {
 
 
-model.addAttribute("msg","0");
+            model.addAttribute("msg", "0");
             return "index";
         }
 
@@ -336,12 +346,11 @@ model.addAttribute("msg","0");
         return "redirect:orderview";
     }
 
-@GetMapping("/cancel")
-    public String cancelOrderForm(@RequestParam("orderformid") String orderformid){
+    @GetMapping("/cancel")
+    public String cancelOrderForm(@RequestParam("orderformid") String orderformid) {
         customerService.cancelOrder(orderformid);
         return "redirect:orderview";
-}
-
+    }
 
 
 }

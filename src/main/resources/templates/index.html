@@ -87,9 +87,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index">主页<span class="sr-only">(current)</span></a></li>
                     <li><a href="IP">附近</a></li>
-                    <li><a href="customerList">用户管理</a></li>
-                    <li><a href="hotelList">酒店管理</a></li>
+                    <li><a href="customerList" th:if="${customer.roleid}=='1'">用户管理</a></li>
+                    <li><a href="hotelList" th:if="${customer.roleid}=='1'">酒店管理</a></li>
                     <li><a href="login" th:if="${customer.customername}=='登录'">登录</a></li>
+                    <li><a href="register" th:if="${customer.customername}=='登录'">注册</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false" th:if="${customer.customername}!='登录'" th:text="${customer.customername}"><span class="caret"></span></a>

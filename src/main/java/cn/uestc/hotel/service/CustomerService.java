@@ -22,6 +22,28 @@ public class CustomerService {
     @Autowired
     private RoomMapper roomMapper;
 
+    public Boolean insertRoom(Room room) {
+        if (room != null) {
+            roomMapper.insert(room);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Boolean insertOrderForm(OrderForm orderForm) {
+        orderFormMapper.insert(orderForm);
+        return true;
+    }
+
+    public Boolean insertCustomer(Customer customer) {
+        if (customer != null) {
+            customerMapper.insert(customer);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public Boolean updateHotel(Hotel hotel) {
 
@@ -39,20 +61,6 @@ public class CustomerService {
         customer.setCustomerid(customerid);
         customerMapper.updateByPrimaryKeySelective(customer);
         return true;
-    }
-
-    public Boolean insertOrderForm(OrderForm orderForm) {
-        orderFormMapper.insert(orderForm);
-        return true;
-    }
-
-    public Boolean insertCustomer(Customer customer) {
-        if (customer != null) {
-            customerMapper.insert(customer);
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public Boolean deleteCustomerByid(String customerid) {
@@ -87,10 +95,8 @@ public class CustomerService {
 
     public Boolean grant(String customerid) {
         Customer customer = this.searchCustomerByCustomerID(customerid);
-        System.out.println("11");
         if (Integer.valueOf(customer.getRoleid()) == 1) {
             customer.setRoleid("2");
-            System.out.println("re");
         } else {
             customer.setRoleid("1");
         }

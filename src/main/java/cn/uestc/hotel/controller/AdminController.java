@@ -22,7 +22,7 @@ public class AdminController {
 
 
     @GetMapping("customerList")
-    public String getCustomerListPage(Model model,Customer customer, HttpServletRequest request) {
+    public String getCustomerListPage(Model model, Customer customer, HttpServletRequest request) {
         if (customerService.searchCustomerByRequest(request) == null) {
             Customer customer1 = new Customer();
             customer1.setCustomername("登录");
@@ -137,7 +137,6 @@ public class AdminController {
     }
 
 
-
     @GetMapping("/deleteHotel")
     public String deleteUser(@RequestParam("id") String id) {
         customerService.deleteHotelByid(id);
@@ -149,6 +148,24 @@ public class AdminController {
     public String changeHotel(@RequestParam("id") String id) {
         customerService.changeHotelStateByid(id);
         return "redirect:hotelList";
+    }
+
+
+    @GetMapping("addRoom")
+    public String getAddRoomPage(Model model, @RequestParam("hotelid") String hotelid) {
+        Room room = new Room();
+        model.addAttribute("hotelid", hotelid);
+        model.addAttribute("room", room);
+        return "addroom";
+    }
+
+    @PostMapping("addRoom")
+    public String addRoom(Model model, Room room, @RequestParam("hotelid") String hotelid) {
+        room.setStarttime("0000000000");
+        room.setEndtime("0000000000");
+        room.setIsavailable(1);
+        customerService.insertRoom(room);
+        return "redirect:index";
     }
 
 
