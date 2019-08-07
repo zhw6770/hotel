@@ -25,7 +25,7 @@ public class CustomerController {
     @Autowired
     private BasicService basicService;
 
-    @GetMapping("/map")
+    @GetMapping("map")
     public String getMap(@RequestParam("hotelid") String hotelid,Model model) {
        Hotel hotel=customerService.searchHotelByHotelID(hotelid);
         model.addAttribute("hotel",hotel);
