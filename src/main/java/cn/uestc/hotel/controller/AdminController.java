@@ -165,7 +165,23 @@ public class AdminController {
         room.setEndtime("0000000000");
         room.setIsavailable(1);
         customerService.insertRoom(room);
-        return "redirect:index";
+        return "redirect:addroom";
+    }
+
+
+    @GetMapping("addHotel")
+    public String getAddHotelPage(Model model) {
+        HotelWithBLOBs hotel=new HotelWithBLOBs();
+        model.addAttribute("hotel", hotel);
+        return "addHotel";
+    }
+
+    @PostMapping("addHotel")
+    public String addHotel(Model model, HotelWithBLOBs hotel) {
+        hotel.setIsavailable(1);
+        hotel.setImgtype("image/jpeg");
+        customerService.insertHotel(hotel);
+        return "redirect:addHotel";
     }
 
 

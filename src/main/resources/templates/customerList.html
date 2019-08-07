@@ -118,18 +118,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
             <thead>
             <tr role="row">
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="width: 217px;">ID</th>
                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" style="width: 266.6px;" aria-sort="ascending">用户名</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">性别</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">联系电话</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">权限更改</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 187.4px;">状态</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 134.8px;">删除</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="customer: ${customers}">
-                <td th:text="${customer.customerid}"></td>
                 <td th:text="${customer.customername}"></td>
                 <td th:text="${customer.sex}"></td>
                 <td th:text="${customer.phone}"></td>
@@ -141,18 +138,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span th:case="true">可用</span>
                     <span th:case="false">已停用</span>
                 </div> <a th:href ="@{/changeCustomer(id=${customer.customerid})}" >点我更改</a></td>
-                <td><a th:href ="@{/deleteCustomer(id=${customer.customerid})}" target="_blank">点我删除</a></td>
+
 
             </tbody>
             <tfoot>
             <tr>
-                <th rowspan="1" colspan="1">ID</th>
                 <th rowspan="1" colspan="1">用户名</th>
                 <th rowspan="1" colspan="1">性别</th>
                 <th rowspan="1" colspan="1">联系电话</th>
                 <th rowspan="1" colspan="1">权限更改</th>
                 <th rowspan="1" colspan="1">状态</th>
-                <th rowspan="1" colspan="1">删除</th>
             </tr>
             </tfoot>
         </table>

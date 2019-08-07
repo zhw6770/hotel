@@ -218,7 +218,9 @@ public class CustomerController {
             model.addAttribute("customer", customer);
         }
         String customerid = customerService.searchCustomerByRequest(request).getCustomerid();
-        model.addAttribute("orderForms", customerService.selectOrderFormByCustomerID(customerid));
+        List<OrderForm> orderForm=customerService.selectOrderFormByCustomerID(customerid);
+        model.addAttribute("hotel",new Hotel());
+        model.addAttribute("orderForms",orderForm);
         return "orderview";//查看订单页面
     }
 
@@ -306,32 +308,33 @@ public class CustomerController {
             orderform.setLefttime(lefttime);
             orderform.setArrivetime(arrivetime);
             orderform.setHotelid(hotelid);
+            orderform.setHotelname(customerService.searchHotelByHotelID(hotelid).getHotelname());
             orderform.setPrice(Float.valueOf(price));
             orderform.setRoomnum(num);
             orderform.setIsavailable("1");
             orderform.setCustomerid(customerService.searchCustomerByRequest(request).getCustomerid());
             int number = rooms.size();//房间数目
             if (number > 0) {
-                orderform.setRoomid1(rooms.get(0).getRoomid());
+                orderform.setRoomid1(customerService.searchRoomByRoomID(rooms.get(0).getRoomid()).getRoomnum());
                 number--;
             }
             if (number > 0) {
-                orderform.setRoomid2(rooms.get(0).getRoomid());
-                number--;
-            }
-
-            if (number > 0) {
-                orderform.setRoomid3(rooms.get(0).getRoomid());
+                orderform.setRoomid2(customerService.searchRoomByRoomID(rooms.get(1).getRoomid()).getRoomnum());
                 number--;
             }
 
             if (number > 0) {
-                orderform.setRoomid4(rooms.get(0).getRoomid());
+                orderform.setRoomid3(customerService.searchRoomByRoomID(rooms.get(2).getRoomid()).getRoomnum());
                 number--;
             }
 
             if (number > 0) {
-                orderform.setRoomid5(rooms.get(0).getRoomid());
+                orderform.setRoomid4(customerService.searchRoomByRoomID(rooms.get(3).getRoomid()).getRoomnum());
+                number--;
+            }
+
+            if (number > 0) {
+                orderform.setRoomid5(customerService.searchRoomByRoomID(rooms.get(4).getRoomid()).getRoomnum());
                 number--;
             }
 

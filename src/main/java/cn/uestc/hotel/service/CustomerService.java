@@ -45,6 +45,15 @@ public class CustomerService {
         }
     }
 
+    public Boolean insertHotel(HotelWithBLOBs hotel) {
+        if (hotel != null) {
+            hotelMapper.insert(hotel);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public Boolean updateHotel(Hotel hotel) {
 
         hotelMapper.updateByPrimaryKey(hotel);

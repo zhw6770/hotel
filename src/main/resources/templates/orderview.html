@@ -139,18 +139,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                aria-describedby="example1_info">
                             <thead>
                             <tr role="row">
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Rendering engine: activate to sort column ascending"
-                                    style="width: 217px;">订单号
-                                </th>
+
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column descending" style="width: 266.6px;"
-                                    aria-sort="ascending">酒店编号
+                                    aria-sort="ascending">酒店名字
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
-                                    客户姓名
-                                </th>
+
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
                                     入住时间
@@ -165,6 +159,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
+                                    房间
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 237px;">
                                     取消订单
                                 </th>
                             </tr>
@@ -172,12 +170,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <tbody>
 
                             <tr th:each="order: ${orderForms}">
-                                <td th:text="${order.orderformid}">OrderID</td>
-                                <td th:text="${order.hotelid}">HotelID</td>
-                                <td th:text="${customer.customername}">CustomerID</td>
+                                <td th:text="${order.hotelname}">HotelID</td>
                                 <td th:text="${order.arrivetime}">ArriveTime</td>
                                 <td th:text="${order.lefttime}">LeftTime</td>
                                 <td th:text="${order.price}">Price</td>
+                                <td>
+                                    <span th:text="${order.roomid1}"></span>
+                                    <span th:text="${order.roomid2}"></span>
+                                    <span th:text="${order.roomid3}"></span>
+                                    <span th:text="${order.roomid4}"></span>
+                                    <span th:text="${order.roomid5}"></span>
+                                </td>
                                 <td>
                                     <div class="feedback-btn"><a
                                             th:href="@{/cancel(orderformid=${order.orderformid})}" >取消订单</a>
@@ -189,14 +192,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th rowspan="1" colspan="1">订单号</th>
-                                <th rowspan="1" colspan="1">酒店编号</th>
-                                <th rowspan="1" colspan="1">客户姓名</th>
+
+                                <th rowspan="1" colspan="1">酒店名字</th>
                                 <th rowspan="1" colspan="1">入住时间</th>
                                 <th rowspan="1" colspan="1">离开时间</th>
                                 <th rowspan="1" colspan="1">价格</th>
+                                <th rowspan="1" colspan="1">房间</th>
                                 <th rowspan="1" colspan="1">取消订单</th>
-
                             </tr>
                             </tfoot>
                         </table>

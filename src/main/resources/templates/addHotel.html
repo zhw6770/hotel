@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>房间添加</title>
+    <title>酒店添加</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -30,33 +30,44 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a><b>房间添加</b></a>
+        <a><b>酒店添加</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">请输入房间基本信息</p>
+        <p class="login-box-msg">请输入酒店基本信息</p>
 
-        <form th:action="@{/addRoom(hotelid=${hotelid})}" method="post" th:object="${room}">
+        <form th:action="@{/addHotel}" method="post" th:object="${hotel}">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" th:field="*{roomnum}" placeholder="房间号" >
+                <input type="text" class="form-control" th:field="*{hotelname}" placeholder="酒店名称" >
             </div>
             <div class="form-group has-feedback">
-                <span style="font-size: 20px">房间类型：</span>
-                <select th:field="*{type}">
-                    <option value="单人间">单人间</option>
-                    <option value="双人间">双人间</option>
-                    <option value="三人间">三人间</option>
-                    <option value="温泉套房">温泉套房</option>
-                    <option value="总统套房">总统套房</option>
+                <span style="font-size: 20px">酒店类型：</span>
+                <select th:field="*{hotelclass}">
+                    <option value="1">一星级</option>
+                    <option value="2">二星级</option>
+                    <option value="3">三星级</option>
+                    <option value="4">四星级</option>
+                    <option value="5">五星级</option>
                 </select>
             </div>
 
             <div class="form-group has-feedback">
-                <input type="text" class="form-control"  th:field="*{dailyprice}" placeholder="每日价格">
+                <input type="text" class="form-control"  th:field="*{numroom}" placeholder="房间数目">
             </div>
 
             <div class="form-group has-feedback">
-                <input type="text" class="form-control"  th:field="*{breakfast}" placeholder="早餐情况">
+                <input type="text" class="form-control"  th:field="*{address}" placeholder="地址">
+            </div>
+
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control"  th:field="*{country}" placeholder="国家">
+            </div>
+
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control"  th:field="*{city}" placeholder="城市">
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control"  th:field="*{tel}" placeholder="电话">
             </div>
 
             <div class="row">
