@@ -89,7 +89,7 @@
                                 <td th:text="${room.dailyprice}"></td>
                                 <td th:text="${room.breakfast}"></td>
                                 <td>
-                                    <div ><a th:href="@{/roomEdit(roomid=${room.roomid})}"
+                                    <div ><a th:href="@{/roomEdit(roomid=${room.roomid},hotelid=${room.hotelid})}"
                                     >修改基本信息</a></div>
                                 </td>
 

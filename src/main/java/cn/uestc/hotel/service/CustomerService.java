@@ -31,6 +31,11 @@ public class CustomerService {
         }
     }
 
+    public Boolean updateRoom(Room room) {
+        roomMapper.updateByPrimaryKeySelective(room);
+        return true;
+    }
+
     public Boolean insertOrderForm(OrderForm orderForm) {
         orderFormMapper.insert(orderForm);
         return true;
@@ -103,16 +108,15 @@ public class CustomerService {
     }
 
     public Boolean changeRoomStateByid(String roomid) {
-       Room room=roomMapper.selectByPrimaryKey(roomid);
-       if(room.getIsavailable()==1){
-           room.setIsavailable(0);
-           roomMapper.updateByPrimaryKeySelective(room);
-       }
-       else {
-           room.setIsavailable(1);
-           roomMapper.updateByPrimaryKeySelective(room);
-       }
-       return true;
+        Room room = roomMapper.selectByPrimaryKey(roomid);
+        if (room.getIsavailable() == 1) {
+            room.setIsavailable(0);
+            roomMapper.updateByPrimaryKeySelective(room);
+        } else {
+            room.setIsavailable(1);
+            roomMapper.updateByPrimaryKeySelective(room);
+        }
+        return true;
     }
 
     public Boolean grant(String customerid) {
@@ -148,9 +152,9 @@ public class CustomerService {
             }
             Room room1 = roomMapper.selectByPrimaryKey(orderform.getRoomid1());
             room1.setEndtime(maxDate);
-            if(minDate=="9999999999"){
+            if (minDate == "9999999999") {
                 room1.setStarttime("0000000000");
-            }else{
+            } else {
                 room1.setStarttime(minDate);
             }
 
@@ -171,9 +175,9 @@ public class CustomerService {
             }
             Room room2 = roomMapper.selectByPrimaryKey(orderform.getRoomid2());
             room2.setEndtime(maxDate);
-            if(minDate=="9999999999"){
+            if (minDate == "9999999999") {
                 room2.setStarttime("0000000000");
-            }else{
+            } else {
                 room2.setStarttime(minDate);
             }
             roomMapper.updateByPrimaryKeySelective(room2);
@@ -193,9 +197,9 @@ public class CustomerService {
             }
             Room room3 = roomMapper.selectByPrimaryKey(orderform.getRoomid3());
             room3.setEndtime(maxDate);
-            if(minDate=="9999999999"){
+            if (minDate == "9999999999") {
                 room3.setStarttime("0000000000");
-            }else{
+            } else {
                 room3.setStarttime(minDate);
             }
 
@@ -216,9 +220,9 @@ public class CustomerService {
             }
             Room room4 = roomMapper.selectByPrimaryKey(orderform.getRoomid4());
             room4.setEndtime(maxDate);
-            if(minDate=="9999999999"){
+            if (minDate == "9999999999") {
                 room4.setStarttime("0000000000");
-            }else{
+            } else {
                 room4.setStarttime(minDate);
             }
             roomMapper.updateByPrimaryKeySelective(room4);
@@ -238,9 +242,9 @@ public class CustomerService {
             }
             Room room5 = roomMapper.selectByPrimaryKey(orderform.getRoomid5());
             room5.setEndtime(maxDate);
-            if(minDate=="9999999999"){
+            if (minDate == "9999999999") {
                 room5.setStarttime("0000000000");
-            }else{
+            } else {
                 room5.setStarttime(minDate);
             }
             roomMapper.updateByPrimaryKeySelective(room5);

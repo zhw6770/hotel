@@ -32,9 +32,6 @@ public class CustomerController {
         return "map";
     }
 
-
-
-
     @GetMapping("IP")
     public String localtion(Model model, Customer customer, HttpServletRequest request) {
         if (customerService.searchCustomerByRequest(request) == null) {

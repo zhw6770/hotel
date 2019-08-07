@@ -89,7 +89,7 @@ public class AdminController {
             }
         }
         model.addAttribute("hotels", customerService.findAllHotel());
-        return "hotelList";
+        return "redirect:hotelList";
     }
 
     @GetMapping("hotelEdit")
@@ -109,11 +109,20 @@ public class AdminController {
     }
 
     @GetMapping("roomEdit")
-    public String roomEdit(Model model, @RequestParam("roomid") String roomid) {
+    public String getRoomEdit(Model model, @RequestParam("roomid") String roomid, @RequestParam("hotelid") String hotelid) {
 
         Room room = customerService.searchRoomByRoomID(roomid);
         model.addAttribute("room", room);
+        model.addAttribute("hotelid", hotelid);
+        model.addAttribute("roomid",roomid);
         return "roomEdit";
+    }
+
+    @PostMapping("roomEdit")
+    public String roomEdit(Model model, @RequestParam("hotelid") String hotelid, Room room,@RequestParam("roomid") String roomid) {
+        room.setRoomid(roomid);
+        customerService.updateRoom(room);
+        return "redirect:roomList?hotelid="+hotelid;
     }
 
     @GetMapping("/deleteCustomer")
@@ -151,9 +160,9 @@ public class AdminController {
     }
 
     @GetMapping("/changeRoom")
-    public String changeRoom(@RequestParam("id") String id,@RequestParam("hotelid") String hotelid) {
+    public String changeRoom(@RequestParam("id") String id, @RequestParam("hotelid") String hotelid) {
         customerService.changeRoomStateByid(id);
-        return "redirect:roomList?hotelid="+hotelid;
+        return "redirect:roomList?hotelid=" + hotelid;
     }
 
 
@@ -177,7 +186,7 @@ public class AdminController {
 
     @GetMapping("addHotel")
     public String getAddHotelPage(Model model) {
-        HotelWithBLOBs hotel=new HotelWithBLOBs();
+        HotelWithBLOBs hotel = new HotelWithBLOBs();
         model.addAttribute("hotel", hotel);
         return "addHotel";
     }
