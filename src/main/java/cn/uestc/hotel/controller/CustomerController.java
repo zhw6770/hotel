@@ -4,7 +4,6 @@ package cn.uestc.hotel.controller;
 import cn.uestc.hotel.domain.*;
 import cn.uestc.hotel.service.BasicService;
 import cn.uestc.hotel.service.CustomerService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
