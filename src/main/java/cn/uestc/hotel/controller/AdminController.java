@@ -188,7 +188,7 @@ public class AdminController {
         room.setEndtime("0000000000");
         room.setIsavailable(1);
         customerService.insertRoom(room);
-        return "redirect:addroom";
+        return "redirect:roomList?hotelid="+hotelid;
     }
 
 
